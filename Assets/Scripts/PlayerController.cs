@@ -1,15 +1,29 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
     // Player thrust force
     [Header("Player movement")]
-    [SerializeField] float thrustForce = 1f;
-    [SerializeField] float maxSpeed = 5f;
+    [SerializeField] private float thrustForce = 1f;
+    [SerializeField] private float maxSpeed = 5f;
 
     [Header("Booster Flames")]
     [SerializeField] GameObject boosterFlameSprite;
+
+    // ++++++++++ Scoring System UI +++++++++++
+    // Time elpased until the player dies
+    private float elapsedTime = 0f;
+    // The final score
+    private float score = 0f;
+    // The multiplier of the Time.deltaTime to create a score for the player
+    private float scoreMultiplier = 10f;
+
+    [Header("HUD")]
+    [SerializeField] private UIDocument uIDocument;
+    // Label is a UI Toolkit class that is used to display text
+    private Label scoreText;
 
     Rigidbody2D rb;
 
@@ -19,13 +33,17 @@ public class PlayerController : MonoBehaviour
         boosterFlameSprite.SetActive(false);
         // !!! Assign the component to the rb variable which is type of Rigidbody2D
         rb = GetComponent<Rigidbody2D>();
+
+        // uiDocument gives access to the Document like JS, Q is s querySelector, <> the type of element, "ScoreLabel" the name of the Label we are looking for.
+        scoreText = uIDocument.rootVisualElement.Q<Label>("ScoreLabel");
     }
 
-    // Update is called once per frame
+    // Update is called once per frame 
     void Update()
     {
         UserInput();
         BoosterFlames();
+        UpdateScore();
     }
 
     void UserInput()
@@ -68,6 +86,16 @@ public class PlayerController : MonoBehaviour
         {
             boosterFlameSprite.SetActive(false);
         }
+    }
+
+    void UpdateScore()
+    {
+        // Time.deltaTime is the time in seconds since the last frame. - https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Time-deltaTime.html
+        elapsedTime += Time.deltaTime;
+
+        // Multiply the time by the score multiplier and round it down to the nearest integer with the Mathf.FloorToInt()
+        score = Mathf.FloorToInt(elapsedTime * scoreMultiplier);
+        scoreText.text = "Score: " + score;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
