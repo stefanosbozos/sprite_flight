@@ -5,16 +5,19 @@ public class Obstacle : MonoBehaviour
     // Get a reference to the Rigidbody component
     Rigidbody2D rb;
     
+    [Header("Meteor Size Limits")]
     // The size limits of the obstacle
-    float minSize = 0.5f;
-    float maxSize = 3.0f;
+    [SerializeField] float minSize = 0.5f;
+    [SerializeField] float maxSize = 3.0f;
 
+    [Header("Meteor Speed Limits")]
     // The speed of the obstacle
-    float minSpeed = 50f;
-    float maxSpeed = 150f;
+    [SerializeField] float minSpeed = 50f;
+    [SerializeField] float maxSpeed = 150f;
 
+    [Header("Meteor Spin Speed Limit")]
     // The spin applied to the obstacle
-    float maxSpinSpeed = 10f;
+    [SerializeField] float maxSpinSpeed = 10f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
