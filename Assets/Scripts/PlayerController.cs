@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -11,6 +12,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Booster Flames")]
     [SerializeField] GameObject boosterFlameSprite;
+
+    [Header("Particle Effects")]
+    [SerializeField] private GameObject explosionParticleEffect;
 
     // ++++++++++ Scoring System UI +++++++++++
     // Time elpased until the player dies
@@ -100,6 +104,9 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        // Instantiate the particle when the player collides with any object in the world
+        Instantiate(explosionParticleEffect, transform.position, transform.rotation);
+
         // When the player collides with any other object the player spaceship is destroyed.
         Destroy(gameObject);
     }
