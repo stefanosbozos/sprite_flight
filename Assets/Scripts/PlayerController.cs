@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private UIDocument uIDocument;
     // Label is a UI Toolkit class that is used to display text
     private Label scoreText;
+    private Button restartButton;
 
     Rigidbody2D rb;
 
@@ -40,6 +42,13 @@ public class PlayerController : MonoBehaviour
 
         // uiDocument gives access to the Document like JS, Q is s querySelector, <> the type of element, "ScoreLabel" the name of the Label we are looking for.
         scoreText = uIDocument.rootVisualElement.Q<Label>("ScoreLabel");
+
+        // Get the RestartButton element from the UI layout and hide it from the screen
+        restartButton = uIDocument.rootVisualElement.Q<Button>("RestartButton");
+        restartButton.style.display = DisplayStyle.None;
+
+        // Assigne an event listener for the restart button
+        restartButton.clicked += ReloadScene;
     }
 
     // Update is called once per frame 
@@ -109,9 +118,20 @@ public class PlayerController : MonoBehaviour
 
         // When the player collides with any other object the player spaceship is destroyed.
         Destroy(gameObject);
+
+        // Show the Restart Button when the player dies
+        restartButton.style.display = DisplayStyle.Flex;
+    }
+
+    // Reload the screen after the player clicks on the "Restart" Button
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }
+
+
 
 
 

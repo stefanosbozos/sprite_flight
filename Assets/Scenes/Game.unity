@@ -356,6 +356,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 0.6503906
       objectReference: {fileID: 0}
+    - target: {fileID: 7262516667903134361, guid: 8fd87fae996286b4b889d6eda2154a15, type: 3}
+      propertyPath: impactExplosion
+      value: 
+      objectReference: {fileID: 2948674198479789337, guid: 1ee5a33fa6810b14499395c209fe4042, type: 3}
     - target: {fileID: 7794888939300605397, guid: 8fd87fae996286b4b889d6eda2154a15, type: 3}
       propertyPath: m_Name
       value: Obstacle (1)
@@ -832,6 +836,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 0.6503906
       objectReference: {fileID: 0}
+    - target: {fileID: 7262516667903134361, guid: 8fd87fae996286b4b889d6eda2154a15, type: 3}
+      propertyPath: impactExplosion
+      value: 
+      objectReference: {fileID: 2948674198479789337, guid: 1ee5a33fa6810b14499395c209fe4042, type: 3}
     - target: {fileID: 7794888939300605397, guid: 8fd87fae996286b4b889d6eda2154a15, type: 3}
       propertyPath: m_Name
       value: Obstacle
@@ -1101,6 +1109,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 0.6503906
       objectReference: {fileID: 0}
+    - target: {fileID: 7262516667903134361, guid: 8fd87fae996286b4b889d6eda2154a15, type: 3}
+      propertyPath: impactExplosion
+      value: 
+      objectReference: {fileID: 2948674198479789337, guid: 1ee5a33fa6810b14499395c209fe4042, type: 3}
     - target: {fileID: 7794888939300605397, guid: 8fd87fae996286b4b889d6eda2154a15, type: 3}
       propertyPath: m_Name
       value: Obstacle
@@ -1164,7 +1176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: maxSpeed
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: uIDocument
@@ -1172,7 +1184,7 @@ PrefabInstance:
       objectReference: {fileID: 41631760}
     - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: thrustForce
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: explosionParticleEffect

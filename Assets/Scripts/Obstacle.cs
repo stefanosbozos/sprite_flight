@@ -4,7 +4,7 @@ public class Obstacle : MonoBehaviour
 {
     // Get a reference to the Rigidbody component
     Rigidbody2D rb;
-    
+
     [Header("Meteor Size Limits")]
     // The size limits of the obstacle
     [SerializeField] float minSize = 0.5f;
@@ -18,6 +18,9 @@ public class Obstacle : MonoBehaviour
     [Header("Meteor Spin Speed Limit")]
     // The spin applied to the obstacle
     [SerializeField] float maxSpinSpeed = 10f;
+
+    [Header("Impact Effects")]
+    [SerializeField] private GameObject impactExplosion;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,7 +43,7 @@ public class Obstacle : MonoBehaviour
 
         // Change the size of the obstacle on Start
         transform.localScale = new Vector3(randomSize, randomSize, 1);
-        
+
         // Vector2.right = move right along the x-axis
         rb.AddForce(randomForceDirection * randomSpeed);
     }
@@ -48,7 +51,19 @@ public class Obstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Get the point of impact on the object
+        Vector2 contactPoint = collision.GetContact(0).point;
+
+        // Instantiate the particle in the world
+        GameObject bounceEffect = Instantiate(impactExplosion, contactPoint, Quaternion.identity);
+
+        // Destroy after 1 second
+        Destroy(bounceEffect, 1f);
     }
 
 }
