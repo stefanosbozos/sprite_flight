@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 5802271188003381315}
   m_Layer: 0
   m_Name: Spaceship
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -769,7 +769,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrustForce: 1
   maxSpeed: 5
+  isMoving: 0
   boosterFlameSprite: {fileID: 70343849168572614}
+  explosionParticleEffect: {fileID: 0}
+  uIDocument: {fileID: 0}
 --- !u!1 &6524970814145360071
 GameObject:
   m_ObjectHideFlags: 0
