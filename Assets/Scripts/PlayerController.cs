@@ -129,18 +129,11 @@ public class PlayerController : MonoBehaviour
         // When the player collides with any other object the player spaceship is destroyed.
         Destroy(gameObject);
 
-<<<<<<< HEAD
         // Show the Restart Button when the player dies
         restartButton.style.display = DisplayStyle.Flex;
     }
 
     // Reload the screen after the player clicks on the "Restart" Button
-=======
-        // Show the restart Button
-        restartButton.style.display = DisplayStyle.Flex;
-    }
-
->>>>>>> 49a9b2f3ab96106164cad4dbb4a176c7c6a54b7c
     void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
