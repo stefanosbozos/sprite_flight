@@ -769,7 +769,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrustForce: 1
   maxSpeed: 5
-  isMoving: 0
   boosterFlameSprite: {fileID: 70343849168572614}
   explosionParticleEffect: {fileID: 0}
   uIDocument: {fileID: 0}
