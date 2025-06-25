@@ -30,9 +30,6 @@ public class PlayerController : MonoBehaviour
     private Label scoreText;
     private Button restartButton;
 
-    // The restart button
-    private Button restartButton;
-
     Rigidbody2D rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,19 +42,11 @@ public class PlayerController : MonoBehaviour
         // uiDocument gives access to the Document like JS, Q is s querySelector, <> the type of element, "ScoreLabel" the name of the Label we are looking for.
         scoreText = uIDocument.rootVisualElement.Q<Label>("ScoreLabel");
 
-<<<<<<< HEAD
-        // Get the RestartButton element from the UI layout and hide it from the screen
-        restartButton = uIDocument.rootVisualElement.Q<Button>("RestartButton");
-        restartButton.style.display = DisplayStyle.None;
-
-        // Assigne an event listener for the restart button
-=======
         // Assing the button from the UI document
         restartButton = uIDocument.rootVisualElement.Q<Button>("RestartButton");
         restartButton.style.display = DisplayStyle.None;
 
         // set a listener for the restart button
->>>>>>> 49a9b2f3ab96106164cad4dbb4a176c7c6a54b7c
         restartButton.clicked += ReloadScene;
     }
 
