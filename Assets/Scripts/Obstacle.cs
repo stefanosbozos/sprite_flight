@@ -20,7 +20,7 @@ public class Obstacle : MonoBehaviour
     [SerializeField] float maxSpinSpeed = 10f;
 
     [Header("Impact Effects")]
-    [SerializeField] private GameObject impactExplosion;
+    [SerializeField] private GameObject collisionFX;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -60,7 +60,7 @@ public class Obstacle : MonoBehaviour
         Vector2 contactPoint = collision.GetContact(0).point;
 
         // Instantiate the particle in the world
-        GameObject bounceEffect = Instantiate(impactExplosion, contactPoint, Quaternion.identity);
+        GameObject bounceEffect = Instantiate(collisionFX, contactPoint, Quaternion.identity);
 
         // Destroy after 1 second
         Destroy(bounceEffect, 1f);

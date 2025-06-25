@@ -187,4 +187,4 @@ MonoBehaviour:
   minSpeed: 100
   maxSpeed: 200
   maxSpinSpeed: 10
-  impactExplosion: {fileID: 0}
+  collisionFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}

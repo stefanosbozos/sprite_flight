@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8845351895563818183}
   - component: {fileID: 4478516802891582795}
   m_Layer: 0
-  m_Name: Collision_FX
+  m_Name: Stars_FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
