@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private float elapsedTime = 0f;
     // The final score
     private float score = 0f;
+    // Highscore
+    private float highscore = 0f;    
     // The multiplier of the Time.deltaTime to create a score for the player
     private float scoreMultiplier = 10f;
 
@@ -28,6 +31,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private UIDocument uIDocument;
     // Label is a UI Toolkit class that is used to display text
     private Label scoreText;
+
+    private Label highScoreText;
+
     private Button restartButton;
 
     Rigidbody2D rb;
@@ -49,6 +55,10 @@ public class PlayerController : MonoBehaviour
 
         // set a listener for the restart button
         restartButton.clicked += ReloadScene;
+
+        // Assign the highscore text from the UI Builder
+        highScoreText = uIDocument.rootVisualElement.Q<Label>("Highscore");
+        highScoreText.style.display = DisplayStyle.None;
     }
 
     // Update is called once per frame 
@@ -121,12 +131,46 @@ public class PlayerController : MonoBehaviour
 
         // Show the Restart Button when the player dies
         restartButton.style.display = DisplayStyle.Flex;
+
+        UpdateHighscore();
     }
 
     // Reload the screen after the player clicks on the "Restart" Button
     void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void UpdateHighscore()
+    {
+        // Check first if there is a key named highscore
+        if (PlayerPrefs.HasKey("highscore"))
+        {
+            highscore = PlayerPrefs.GetFloat("highscore");
+            // Check whether the current score is higher than the highscore
+            // and if it is a new highscore, delete the previous key from PlayerPrefs
+            // and create a new key with the new highscore (peculiarity of PlayerPrefs)
+            if (score > highscore)
+            {
+
+                highscore = Mathf.CeilToInt(score);
+                PlayerPrefs.SetFloat("highscore", 0f);
+                PlayerPrefs.SetFloat("highscore", highscore);
+            }
+        }
+        // Simply store the score to the PlayerPrefs
+        else
+        {
+            highscore = Mathf.CeilToInt(score);
+            PlayerPrefs.SetFloat("highscore", highscore);
+        }
+        ShowHighscore();
+    }
+
+    void ShowHighscore()
+    {
+        highScoreText.text = "Highscore: " + highscore;
+        highScoreText.style.display = DisplayStyle.Flex;
     }
 
 }
