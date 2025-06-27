@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 4378109832152802}
   - component: {fileID: 2156119352659199959}
   - component: {fileID: 5802271188003381315}
-  - component: {fileID: 5019967087179905290}
+  - component: {fileID: -1452207481370151677}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Player
@@ -768,12 +768,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7beba31cb92de5d4f8322b279415872f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustForce: 1
+  thrustForce: 3
   maxSpeed: 5
   boosterFlameSprite: {fileID: 70343849168572614}
-  explosionParticleEffect: {fileID: 0}
+  explosionParticleEffect: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
   uIDocument: {fileID: 0}
---- !u!114 &5019967087179905290
+--- !u!114 &-1452207481370151677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -782,9 +782,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4152517578923950792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d7634829aa95c43be0ff293e138bfc, type: 3}
+  m_Script: {fileID: 11500000, guid: 19be59a18b9d44744afe4a9f1a2fb6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffer: 0.5
 --- !u!1 &6524970814145360071
 GameObject:
   m_ObjectHideFlags: 0
