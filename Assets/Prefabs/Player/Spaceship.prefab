@@ -704,6 +704,8 @@ GameObject:
   - component: {fileID: 2156119352659199959}
   - component: {fileID: 5802271188003381315}
   - component: {fileID: -1452207481370151677}
+  - component: {fileID: -5120054335950084215}
+  - component: {fileID: 6565024620808225040}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Player
@@ -772,8 +774,6 @@ MonoBehaviour:
   maxSpeed: 5
   boosterFlameSprite: {fileID: 70343849168572614}
   explosionParticleEffect: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
-  uIDocument: {fileID: 0}
-  laserProjectile: {fileID: 976426763524034030, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
 --- !u!114 &-1452207481370151677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,6 +787,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffer: 0.5
+--- !u!114 &-5120054335950084215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152517578923950792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734585bc1f1925f46b033e46deba4d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uIDocument: {fileID: 0}
+--- !u!114 &6565024620808225040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152517578923950792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f249bb9524a834bb7232666c83f5cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserProjectile: {fileID: -4769006332355853226, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+  projectileSpeed: 500
+  timeBetweenShots: 0.1
 --- !u!1 &6524970814145360071
 GameObject:
   m_ObjectHideFlags: 0
