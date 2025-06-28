@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -40,7 +41,9 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
 
     [Header("Projectile")]
-    [SerializeField] private GameObject laserProjectile;
+    [SerializeField] private Rigidbody2D laserProjectile;
+    [SerializeField] private float projectileSpeed = 500.0f;
+    [SerializeField] private float laserCooldown = 10f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -81,14 +84,14 @@ public class PlayerController : MonoBehaviour
         */
         MoveToMousePos();
 
-        // Shooting system
-        // if (Mouse.current.leftButton.isPressed)
-        // {
-        //     Instantiate(laserProjectile, transform.position, transform.rotation);
+        //Shooting system
+        if (Mouse.current.leftButton.isPressed)
+        {
+            Rigidbody2D laser = Instantiate(laserProjectile, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation) as Rigidbody2D;
 
-        //     laserProjectile.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector3(700f, 0f, 0));
+            laser.GetComponent<Rigidbody2D>().AddForce(transform.up * projectileSpeed);
 
-        // }
+        }
     }
 
     void MoveToMousePos()
