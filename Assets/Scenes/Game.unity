@@ -842,8 +842,16 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8845351895563818183, guid: 80a3248e1eee6b74ea563e452ee2096e, type: 3}
+      propertyPath: ShapeModule.type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845351895563818183, guid: 80a3248e1eee6b74ea563e452ee2096e, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845351895563818183, guid: 80a3248e1eee6b74ea563e452ee2096e, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -984,6 +992,64 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &4259093917438103166
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 976426763524034030, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+      propertyPath: m_Name
+      value: Laser_Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803555498961946187, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803555498961946187, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.8049128
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803555498961946187, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803555498961946187, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803555498961946187, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803555498961946187, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803555498961946187, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803555498961946187, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803555498961946187, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803555498961946187, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -5652484176381921981, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
 --- !u!1001 &7492020923445270669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -998,7 +1064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4378109832152802, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 4378109832152802, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1037,9 +1103,17 @@ PrefabInstance:
       value: Spaceship
       objectReference: {fileID: 0}
     - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: maxSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: uIDocument
       value: 
       objectReference: {fileID: 41631760}
+    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: thrustForce
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1054,3 +1128,4 @@ SceneRoots:
   - {fileID: 7492020923445270669}
   - {fileID: 41631761}
   - {fileID: 198291174}
+  - {fileID: 4259093917438103166}

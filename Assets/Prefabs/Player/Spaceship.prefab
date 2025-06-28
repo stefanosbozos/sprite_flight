@@ -773,6 +773,7 @@ MonoBehaviour:
   boosterFlameSprite: {fileID: 70343849168572614}
   explosionParticleEffect: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
   uIDocument: {fileID: 0}
+  laserProjectile: {fileID: 976426763524034030, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
 --- !u!114 &-1452207481370151677
 MonoBehaviour:
   m_ObjectHideFlags: 0

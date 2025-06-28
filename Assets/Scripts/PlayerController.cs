@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -38,6 +39,9 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb;
 
+    [Header("Projectile")]
+    [SerializeField] private GameObject laserProjectile;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -65,7 +69,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         UserInput();
-        BoosterFlames();
+        //BoosterFlames();
         UpdateScore();
     }
 
@@ -75,41 +79,52 @@ public class PlayerController : MonoBehaviour
             Gets the mouse click on the screen, translates it to world position and 
             moves the player spaceship towards that direction.
         */
+        MoveToMousePos();
 
-        if (Mouse.current.leftButton.isPressed)
-        {
+        // Shooting system
+        // if (Mouse.current.leftButton.isPressed)
+        // {
+        //     Instantiate(laserProjectile, transform.position, transform.rotation);
 
-            // Get the mouse screen position, translate that position to world position and put it in a Vector3
-            // https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Camera.ScreenToWorldPoint.html
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+        //     laserProjectile.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector3(700f, 0f, 0));
 
-            // Calculate the direction to the mouse and normalize it (1)
-            Vector2 direction = (mousePos - transform.position).normalized;
-
-            // Set the Player game object to face this direction - https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Transform-up.html
-            transform.up = direction;
-
-            // Add force towards the direction of the mouse click location(1)
-            rb.AddForce(direction * thrustForce);
-
-            if (rb.linearVelocity.magnitude > maxSpeed)
-            {
-                rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
-            }
-        }
+        // }
     }
 
-    void BoosterFlames()
+    void MoveToMousePos()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        // Get the mouse screen position, translate that position to world position and put it in a Vector3
+        // https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Camera.ScreenToWorldPoint.html
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+
+        // Calculate the direction to the mouse and normalize it (1)
+        Vector2 direction = (mousePos - transform.position).normalized;
+
+        // Set the Player game object to face this direction - https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Transform-up.html
+        transform.up = direction;
+
+        // Add force towards the direction of the mouse click location(1)
+        rb.AddForce(direction * thrustForce);
+
+        if (rb.linearVelocity.magnitude > maxSpeed)
         {
-            boosterFlameSprite.SetActive(true);
+            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
-        else if (Mouse.current.leftButton.wasReleasedThisFrame)
-        {
-            boosterFlameSprite.SetActive(false);
-        }
+
+        boosterFlameSprite.SetActive(true);
     }
+
+    // void BoosterFlames()
+    // {
+    //     if (Mouse.current.leftButton.wasPressedThisFrame)
+    //     {
+    //         boosterFlameSprite.SetActive(true);
+    //     }
+    //     else if (Mouse.current.leftButton.wasReleasedThisFrame)
+    //     {
+    //         boosterFlameSprite.SetActive(false);
+    //     }
+    // }
 
     void UpdateScore()
     {
@@ -121,19 +136,19 @@ public class PlayerController : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Instantiate the particle when the player collides with any object in the world
-        Instantiate(explosionParticleEffect, transform.position, transform.rotation);
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     // Instantiate the particle when the player collides with any object in the world
+    //     Instantiate(explosionParticleEffect, transform.position, transform.rotation);
 
-        // When the player collides with any other object the player spaceship is destroyed.
-        Destroy(gameObject);
+    //     // When the player collides with any other object the player spaceship is destroyed.
+    //     Destroy(gameObject);
 
-        // Show the Restart Button when the player dies
-        restartButton.style.display = DisplayStyle.Flex;
+    //     // Show the Restart Button when the player dies
+    //     restartButton.style.display = DisplayStyle.Flex;
 
-        UpdateHighscore();
-    }
+    //     UpdateHighscore();
+    // }
 
     // Reload the screen after the player clicks on the "Restart" Button
     void ReloadScene()
