@@ -5,8 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     // Player thrust force
     [Header("Player movement")]
-    [SerializeField] private float thrustForce = 1f;
-    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float thrustForce = 100f;
+    //[SerializeField] private float maxSpeed = 5f;
 
     [Header("Booster Flames")]
     [SerializeField] GameObject boosterFlameSprite;
@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb;
 
+    // Input system
+    InputAction moveAction;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,46 +27,39 @@ public class PlayerController : MonoBehaviour
         // !!! Assign the component to the rb variable which is type of Rigidbody2D
         rb = GetComponent<Rigidbody2D>();
 
+        moveAction = InputSystem.actions.FindAction("Move");
+
     }
 
     // Update is called once per frame 
     void Update()
     {
-        UserInput();
-        //BoosterFlames();
+        Throttle();
     }
 
-    void UserInput()
+    void Throttle()
     {
-        /*
-            Gets the mouse click on the screen, translates it to world position and 
-            moves the player spaceship towards that direction.
-        */
-        MoveToMousePos();
-    }
+        // Get the direction of the move action and store it to a Vector2
+        Vector2 moveValue = moveAction.ReadValue<Vector2>();
 
-    void MoveToMousePos()
-    {
-        // Get the mouse screen position, translate that position to world position and put it in a Vector3
-        // https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Camera.ScreenToWorldPoint.html
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
-
-        // Calculate the direction to the mouse and normalize it (1)
-        Vector2 direction = (mousePos - transform.position).normalized;
-
-        // Set the Player game object to face this direction - https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Transform-up.html
-        transform.up = direction;
-
-        // Add force towards the direction of the mouse click location(1)
-        rb.AddForce(direction * thrustForce);
-
-        if (rb.linearVelocity.magnitude > maxSpeed)
+        // Move the player
+        rb.AddForce(moveValue * thrustForce);
+        
+        
+        // Play thrusters animation if the move action is active
+        if (moveAction.WasPressedThisFrame())
         {
-            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+            boosterFlameSprite.SetActive(true);
         }
-
-        boosterFlameSprite.SetActive(true);
+        
+        // Stop the thrusters animation if the move is disabled
+        if (moveAction.WasReleasedThisFrame())
+        {
+            boosterFlameSprite.SetActive(false);
+        }
     }
+
+    // 
 
     // void BoosterFlames()
     // {
@@ -105,3 +101,27 @@ public class PlayerController : MonoBehaviour
     Normalization keeps direction the same but limits its length to 1.
 
 */
+
+// Old functionality scripts
+//void MoveToDirection()
+    // {
+
+    //     // This script moves the player towards where the mouse is pointing.
+    //     // Get the mouse screen position, translate that position to world position and put it in a Vector3
+    //     // https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Camera.ScreenToWorldPoint.html
+    //     Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+
+    //     // Calculate the direction to the mouse and normalize it (1)
+    //     Vector2 direction = (mousePos - transform.position).normalized;
+
+    //     // Set the Player game object to face this direction - https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Transform-up.html
+    //     transform.up = direction;
+        
+    //     //Add force towards the direction of the mouse click location(1)
+    //     rb.AddForce(direction * thrustForce);
+
+    //     if (rb.linearVelocity.magnitude > maxSpeed)
+    //     {
+    //         rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+    //     }
+    // }
