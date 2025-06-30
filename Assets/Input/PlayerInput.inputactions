@@ -47,7 +47,7 @@
                 },
                 {
                     "name": "WASD",
-                    "id": "2bb7ecda-20e0-4a6f-a0ba-89d79ad52a45",
+                    "id": "f301124d-e39a-479a-8a6f-7e55bec5280d",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -58,7 +58,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "575afe48-410c-41df-a476-8844050942cb",
+                    "id": "a4b2f444-a9a6-4ba4-a9ad-b70a19b4a525",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -69,7 +69,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "4de1ca58-5ea2-4d46-bb4d-17d48c756dd2",
+                    "id": "cbea6bd1-9b25-4d31-9211-1dc38868959b",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -79,9 +79,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "up",
-                    "id": "4a761d70-1c76-49a8-853c-a2a97b75f6df",
-                    "path": "<Keyboard>/upArrow",
+                    "name": "left",
+                    "id": "21f96a33-167b-4c76-bb90-9ca21cfb8e5d",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -90,9 +90,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
-                    "id": "84fb7820-a477-40bd-9ee1-12e4ae60d2a5",
-                    "path": "<Keyboard>/downArrow",
+                    "name": "right",
+                    "id": "a4f5b23b-916d-4ee1-b5c6-7540bb5c83e8",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

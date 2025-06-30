@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         moveValue = moveAction.ReadValue<Vector2>();
 
         // Move the player in relation to its local Y axis
-        rb.AddRelativeForceY(moveValue.y * thrustForce);
+        rb.AddRelativeForce(moveValue * thrustForce);
 
         // This is to stop the player for accelerating if the move button is constantly pressed.
         if (rb.linearVelocity.magnitude > maxSpeed)

@@ -46,7 +46,8 @@ public class ShootingSystem : MonoBehaviour
     {
         if (shoot.WasPressedThisFrame())
         {
-            Instantiate(laserProjectile, transform.position, transform.rotation);
+            // Solution at https://discussions.unity.com/t/spawning-a-projectile-in-front-of-a-player-based-on-player-rotation/165403
+            Instantiate(laserProjectile, transform.Find("LaserSpawn").position, transform.Find("LaserSpawn").rotation);
         }
     }
 
