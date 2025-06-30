@@ -8,10 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float thrustForce = 100f;
     [SerializeField] private float maxSpeed = 10f;
 
-    [Header("Booster Flames")]
-    [SerializeField] GameObject boosterFlameSprite;
 
     [Header("Particle Effects")]
+    [SerializeField] GameObject boosterFlameSprite;
     [SerializeField] private GameObject explosionParticleEffect;
 
     Rigidbody2D rb;
@@ -35,26 +34,32 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame 
     void Update()
     {
+        MovePlayer();
+    }
+
+    void MovePlayer()
+    {
         Throttle();
+        BoosterFlames();
     }
 
     void Throttle()
     {
-
         // Get the direction of the move action and store it to a Vector2
         moveValue = moveAction.ReadValue<Vector2>();
 
-        // Move the player
-        rb.AddForce(moveValue * thrustForce);
+        // Move the player in relation to its local Y axis
+        rb.AddRelativeForceY(moveValue.y * thrustForce);
 
         // This is to stop the player for accelerating if the move button is constantly pressed.
         if (rb.linearVelocity.magnitude > maxSpeed)
         {
             rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
-        
-        
-        // Play thrusters animation if the move action is active
+    }
+
+    void BoosterFlames()
+    {
         if (moveAction.WasPressedThisFrame())
         {
             boosterFlameSprite.SetActive(true);
@@ -67,33 +72,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "asteroid")
+        {
+            // Instantiate the particle when the player collides with any object in the world
+            Instantiate(explosionParticleEffect, transform.position, transform.rotation);
 
-    // void BoosterFlames()
-    // {
-    //     if (Mouse.current.leftButton.wasPressedThisFrame)
-    //     {
-    //         boosterFlameSprite.SetActive(true);
-    //     }
-    //     else if (Mouse.current.leftButton.wasReleasedThisFrame)
-    //     {
-    //         boosterFlameSprite.SetActive(false);
-    //     }
-    // }
-
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     // Instantiate the particle when the player collides with any object in the world
-    //     Instantiate(explosionParticleEffect, transform.position, transform.rotation);
-
-    //     // When the player collides with any other object the player spaceship is destroyed.
-    //     Destroy(gameObject);
-
-    //     // Show the Restart Button when the player dies
-    //     restartButton.style.display = DisplayStyle.Flex;
-
-    //     UpdateHighscore();
-    // }
+            // When the player collides with any other object the player spaceship is destroyed.
+            Destroy(gameObject);
+        }
+    }
 
 }
 

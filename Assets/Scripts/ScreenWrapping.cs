@@ -36,18 +36,6 @@ public class ScreenWrapping : MonoBehaviour
         bottomConstraint = m_MainCamera.ScreenToWorldPoint(new Vector3(0f, 0f, 0 - m_MainCamera.transform.position.z)).y;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ScreenWrap();
-    }
-
     void ScreenWrap()
     {
         // Left side of the screen
@@ -70,5 +58,10 @@ public class ScreenWrapping : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, topConstraint + buffer, transform.position.z);
         }
+    }
+
+    void Update()
+    {
+        ScreenWrap();
     }
 }

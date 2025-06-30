@@ -64,6 +64,12 @@ public class Obstacle : MonoBehaviour
 
         // Destroy after 1 second
         Destroy(bounceEffect, 1f);
+
+        if (collision.gameObject.tag == "laser_blue")
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
     }
 
 }

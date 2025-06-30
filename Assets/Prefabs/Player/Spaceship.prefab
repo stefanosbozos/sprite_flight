@@ -865,7 +865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7beba31cb92de5d4f8322b279415872f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustForce: 100
+  thrustForce: 2
+  maxSpeed: 3
   boosterFlameSprite: {fileID: 70343849168572614}
   explosionParticleEffect: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
 --- !u!114 &-1452207481370151677
@@ -906,8 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f249bb9524a834bb7232666c83f5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserProjectile: {fileID: -4769006332355853226, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
-  projectileSpeed: 500
+  laserProjectile: {fileID: -149235070593503204, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
 --- !u!1 &6524970814145360071
 GameObject:
   m_ObjectHideFlags: 0
