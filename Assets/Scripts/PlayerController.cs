@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     // Player thrust force
     [Header("Player movement")]
     [SerializeField] private float thrustForce = 100f;
-    //[SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float maxSpeed = 10f;
 
     [Header("Booster Flames")]
     [SerializeField] GameObject boosterFlameSprite;
@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     // Input system
     InputAction moveAction;
 
+    Vector2 moveValue;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,7 +30,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         moveAction = InputSystem.actions.FindAction("Move");
-
     }
 
     // Update is called once per frame 
@@ -39,11 +40,18 @@ public class PlayerController : MonoBehaviour
 
     void Throttle()
     {
+
         // Get the direction of the move action and store it to a Vector2
-        Vector2 moveValue = moveAction.ReadValue<Vector2>();
+        moveValue = moveAction.ReadValue<Vector2>();
 
         // Move the player
         rb.AddForce(moveValue * thrustForce);
+
+        // This is to stop the player for accelerating if the move button is constantly pressed.
+        if (rb.linearVelocity.magnitude > maxSpeed)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+        }
         
         
         // Play thrusters animation if the move action is active

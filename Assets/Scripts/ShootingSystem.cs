@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,67 +13,54 @@ public class ShootingSystem : MonoBehaviour
     [SerializeField] private Rigidbody2D laserProjectile;
     [SerializeField] private float projectileSpeed = 500.0f;
 
-
-    [Header("Cooldowns")]
+    //[Header("Cooldowns")]
     // The time in seconds between the shots
-    [SerializeField] private float timeBetweenShots = 0.05f;
+    //[SerializeField] private float timeBetweenShots = 0.05f;
     // Store the time that passed in second since the last shot.
-    private float timeSinceLastShot = 0f;
-    private bool readyToShoot = true;
+    //private float timeSinceLastShot = 0f;
+    //private bool readyToShoot = true;
 
     // Input System
-    InputAction fire;
+    Camera mainCam;
+    Vector3 mousePos;
+
+    InputAction shoot;
     InputAction aim;
-
-    Vector2 lastAimPosition;
-
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        fire = InputSystem.actions.FindAction("Fire");
-        aim = InputSystem.actions.FindAction("Look");
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        
+        shoot = InputSystem.actions.FindAction("Shoot");
     }
 
     // Update is called once per frame
     void Update()
     {
         Aim();
-        Fire();
+        Shoot();
     }
 
     void Aim()
     {
-        // This is the aiming system for the player
-        // Get the mouse screen position, translate that position to world position and put it in a Vector3
-        // https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Camera.ScreenToWorldPoint.html
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
-        //Debug.Log("Mouse Pos:" + mousePos);
+        mousePos = mainCam.ScreenToWorldPoint(Mouse.current.position.value);
 
-        // Calculate the direction to the mouse and normalize it (1)
-        //Vector2 direction = (mousePos - transform.position).normalized;
-        Vector2 direction = aim.ReadValue<Vector2>();
-        Debug.Log("Direction" + direction);
+        Vector3 playerRotation = mousePos - transform.position;
 
-        // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        // transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        float rotationZ = Mathf.Atan2(playerRotation.y, playerRotation.x) * Mathf.Rad2Deg;
 
-        // Set the Player game object to face this direction - https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Transform-up.html
-        //transform.up = direction;
-
-        if (direction.x != 0 && direction.y != 0)
-        {
-            lastAimPosition = direction;
-            Debug.Log("Last: " + lastAimPosition);
-            transform.up = lastAimPosition;
-        }
-
+        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        
     }
 
-    // Need to decide a better name later
-    void Fire()
+    void Shoot()
     {
+        if (shoot.WasPressedThisFrame())
+        {
+            InstantiateProjectile();
+        }
+
         // This is using the old input system system
         // //increase the time since the last shot
         // timeSinceLastShot += Time.deltaTime;
@@ -95,11 +81,6 @@ public class ShootingSystem : MonoBehaviour
         // {
         //     readyToShoot = !readyToShoot;
         // }
-
-        if (fire.WasPressedThisFrame())
-        {
-            InstantiateProjectile();
-        }
     }
 
     void InstantiateProjectile()

@@ -771,8 +771,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
+  m_Actions: {fileID: -944628639613478452, guid: 5aa7ce40f1a19914790adffdbc502d65, type: 3}
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -783,10 +783,74 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f83e655e-1a93-4412-a4c7-e0e8e0d7df58
+    m_ActionName: 'Player Input/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 13f249bb9524a834bb7232666c83f5cc, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: set_name
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnAim
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e6b24456-fac6-457f-b28b-12bf5b201462
+    m_ActionName: 'Player Input/Aim[/Mouse/position]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f528e582-b882-449e-9e0f-fc13453bf87d
+    m_ActionName: 'Player Input/Shoot[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d6a9c647-a892-4f8b-8117-5c947a531cab
+    m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f19075e6-8733-4d8c-ae7e-792110fa614c
+    m_ActionName: 'UI/Submit[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9c5a7029-9cfe-45d0-ac31-755801681aed
+    m_ActionName: 'UI/Cancel[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cb783c94-723a-4265-9bd7-c6b2f8b8fbdb
+    m_ActionName: 'UI/Point[/Mouse/position]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9ded0890-e38e-4a2a-ba2f-1c0445d12952
+    m_ActionName: 'UI/Click[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 123be400-b9c9-4112-94c5-ac53c66c70cb
+    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7cd2040e-0d6b-4765-855b-49456e361da3
+    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 71958922-8488-481d-af8c-3cba762fd4c7
+    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dfcf9975-6f39-43a6-9e5c-8520ec09e21f
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f2c9dd97-eba6-48dc-99a8-f1e0591e53ee
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: MyPlayerInput
+  m_DefaultActionMap: Player Input
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &5802271188003381315
@@ -844,7 +908,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserProjectile: {fileID: -4769006332355853226, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
   projectileSpeed: 500
-  timeBetweenShots: 0.1
 --- !u!1 &6524970814145360071
 GameObject:
   m_ObjectHideFlags: 0
