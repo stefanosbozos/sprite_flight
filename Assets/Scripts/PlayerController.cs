@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player movement")]
     [SerializeField] private float thrustForce = 10f;
     [SerializeField] private float maxSpeed = 10f;
+    private float brakingForce = 0.5f;
 
 
     [Header("Particle Effects")]
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     // Input system
     InputAction moveAction;
     Vector2 moveValue;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,14 +52,12 @@ public class PlayerController : MonoBehaviour
         // Relative force because the "W" is more like throttle
         if (moveValue.y < 0)
         {
-            rb.AddRelativeForce(-rb.linearVelocity * 0.5f);
+            rb.AddRelativeForce(-rb.linearVelocity * brakingForce);
         }
         else
         {
             rb.AddRelativeForce(moveValue * thrustForce);
         }
-
-        Debug.Log(rb.linearVelocity);
 
         // This is to stop the player for accelerating if the move button is constantly pressed.
         if (rb.linearVelocity.magnitude > maxSpeed)

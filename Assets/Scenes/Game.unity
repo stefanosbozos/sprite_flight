@@ -1129,6 +1129,10 @@ PrefabInstance:
       propertyPath: thrustForce
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6565024620808225040, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: reloadCooldown
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
