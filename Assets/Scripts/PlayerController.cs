@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerController : MonoBehaviour
 {
     // Player thrust force
     [Header("Player movement")]
-    [SerializeField] private float thrustForce = 100f;
+    [SerializeField] private float thrustForce = 10f;
     [SerializeField] private float maxSpeed = 10f;
 
 
@@ -14,10 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject explosionParticleEffect;
 
     Rigidbody2D rb;
-
     // Input system
     InputAction moveAction;
-
     Vector2 moveValue;
 
 

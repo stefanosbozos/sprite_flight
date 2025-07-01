@@ -897,8 +897,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7beba31cb92de5d4f8322b279415872f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustForce: 2
-  maxSpeed: 3
+  thrustForce: 5
+  strafeSpeed: 2
+  maxSpeed: 5
   boosterFlameSprite: {fileID: 70343849168572614}
   explosionParticleEffect: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
 --- !u!114 &-1452207481370151677
