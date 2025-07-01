@@ -22,8 +22,6 @@ public class Obstacle : MonoBehaviour
     [Header("Impact Effects")]
     [SerializeField] private GameObject collisionFX;
 
-    private Vector3 MIN_SIZE = new Vector3(0.5f, 0.5f, 1);
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -50,12 +48,6 @@ public class Obstacle : MonoBehaviour
         rb.AddForce(randomForceDirection * randomSpeed);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnCollisionEnter2D(Collision2D collision)
     {
         // Get the point of impact on the object
@@ -70,16 +62,7 @@ public class Obstacle : MonoBehaviour
         if (collision.gameObject.tag == "laser_blue")
         {
             Destroy(collision.gameObject);
-
-            transform.localScale = transform.localScale / 2f;
-            Debug.Log(transform.localScale);
-            
-            Instantiate(gameObject);
-            
-            if (transform.localScale.x <= MIN_SIZE.x && transform.localScale.y <= MIN_SIZE.y)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
 

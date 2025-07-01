@@ -880,6 +880,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f2c9dd97-eba6-48dc-99a8-f1e0591e53ee
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: befbfb0d-f2ea-4156-b0b0-022a229a2a41
+    m_ActionName: 'Player Input/Reload[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player Input
@@ -939,9 +943,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f249bb9524a834bb7232666c83f5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserProjectile: {fileID: 4481486263257942118, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+  laserProjectile: {fileID: 976426763524034030, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
   cooldownTime: 3
-  coolingOffStep: 3
+  coolingOffStep: 8
 --- !u!1 &6524970814145360071
 GameObject:
   m_ObjectHideFlags: 0

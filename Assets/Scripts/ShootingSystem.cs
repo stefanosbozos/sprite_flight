@@ -16,7 +16,7 @@ public class ShootingSystem : MonoBehaviour
     private float laserTemp = 0;
 
     [Header("Laser System")]
-    [SerializeField] private Rigidbody2D laserProjectile;
+    [SerializeField] private GameObject laserProjectile;
     // The amount of heat that the laser can withstand before shutting down to cool off
     [SerializeField] private float cooldownTime = 3f;
     // The step that the laser coolsdown while not overheated and not fired
@@ -65,6 +65,7 @@ public class ShootingSystem : MonoBehaviour
                 // Solution at https://discussions.unity.com/t/spawning-a-projectile-in-front-of-a-player-based-on-player-rotation/165403
                 Instantiate(laserProjectile, transform.Find("LaserSpawn").position, transform.Find("LaserSpawn").rotation);
                 laserTemp += 10;
+                Debug.Log("Laser temp: " + laserTemp);
             }
             else
             {
