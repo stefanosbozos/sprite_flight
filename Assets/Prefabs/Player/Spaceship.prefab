@@ -939,7 +939,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f249bb9524a834bb7232666c83f5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserProjectile: {fileID: -149235070593503204, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+  laserProjectile: {fileID: 4481486263257942118, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+  cooldownTime: 3
+  coolingOffStep: 3
 --- !u!1 &6524970814145360071
 GameObject:
   m_ObjectHideFlags: 0

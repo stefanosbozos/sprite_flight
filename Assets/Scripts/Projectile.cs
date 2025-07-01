@@ -15,7 +15,6 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         rb.AddForce(transform.up * projectileSpeed);
-
         Destroy(gameObject, timeToLive);
     }
 
