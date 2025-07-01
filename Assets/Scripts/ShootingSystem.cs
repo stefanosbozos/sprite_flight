@@ -14,6 +14,8 @@ public class ShootingSystem : MonoBehaviour
     [SerializeField] private int ammoAmount = 10;
     [SerializeField] private float reloadTime = 0f;
     [SerializeField] private float reloadCooldown = 0.5f;
+    private bool magazineIsEmpty = false;
+    private bool initiateReloadAction = false;
 
     // Player Input system
     Camera mainCam;
@@ -50,7 +52,7 @@ public class ShootingSystem : MonoBehaviour
 
     void Shoot()
     {
-        if (shoot.WasPressedThisFrame() && ammoAmount > 0)
+        if (shoot.WasPressedThisFrame() && !magazineIsEmpty)
         {
             // Solution at https://discussions.unity.com/t/spawning-a-projectile-in-front-of-a-player-based-on-player-rotation/165403
             Instantiate(laserProjectile, transform.Find("LaserSpawn").position, transform.Find("LaserSpawn").rotation);
@@ -59,22 +61,27 @@ public class ShootingSystem : MonoBehaviour
         }
         if (ammoAmount == 0)
         {
+            magazineIsEmpty = true;
             //Debug.Log("Out of Ammo - Reload");
         }
     }
 
     void Reload()
     {
+        // This works but is ugly and needs refactoring!!!
         reloadTime += Time.deltaTime;
-        if (reload.WasPerformedThisFrame() && ammoAmount <= 0)
+        if (reload.WasPressedThisFrame())
         {
             reloadTime = 0f;
+            initiateReloadAction = true;
             Debug.Log("RELOADING!");
-            if (reloadTime >= reloadCooldown)
-            {
-                ammoAmount = 10;
-                Debug.Log("Ready!");
-            }
+        }
+        if (reloadTime >= reloadCooldown && magazineIsEmpty && initiateReloadAction)
+        {
+            ammoAmount = 3;
+            magazineIsEmpty = false;
+            initiateReloadAction = false;
+            Debug.Log("Ready!");
         }
     }
 
