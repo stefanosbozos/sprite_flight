@@ -47,8 +47,17 @@ public class PlayerController : MonoBehaviour
         // Get the direction of the move action and store it to a Vector2
         moveValue = moveAction.ReadValue<Vector2>();
 
-        // Move the player in relation to its local Y axis
-        rb.AddRelativeForce(moveValue * thrustForce);
+        // Relative force because the "W" is more like throttle
+        if (moveValue.y < 0)
+        {
+            rb.AddRelativeForce(-rb.linearVelocity * 0.5f);
+        }
+        else
+        {
+            rb.AddRelativeForce(moveValue * thrustForce);
+        }
+
+        Debug.Log(rb.linearVelocity);
 
         // This is to stop the player for accelerating if the move button is constantly pressed.
         if (rb.linearVelocity.magnitude > maxSpeed)
@@ -59,13 +68,13 @@ public class PlayerController : MonoBehaviour
 
     void BoosterFlames()
     {
-        if (moveAction.WasPressedThisFrame())
+        if (Keyboard.current.wKey.wasPressedThisFrame)
         {
             boosterFlameSprite.SetActive(true);
         }
         
         // Stop the thrusters animation if the move is disabled
-        if (moveAction.WasReleasedThisFrame())
+        if (Keyboard.current.wKey.wasReleasedThisFrame)
         {
             boosterFlameSprite.SetActive(false);
         }

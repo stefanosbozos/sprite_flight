@@ -38,8 +38,7 @@ public class ShootingSystem : MonoBehaviour
 
         float rotationZ = Mathf.Atan2(playerRotation.y, playerRotation.x) * Mathf.Rad2Deg;
 
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
-
+        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ - 90);
     }
 
     void Shoot()
