@@ -6,6 +6,7 @@ TagManager:
   tags:
   - laser_blue
   - asteroid
+  - border
   layers:
   - Default
   - TransparentFX

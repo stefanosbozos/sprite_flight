@@ -22,30 +22,20 @@ public class Obstacle : MonoBehaviour
     [Header("Impact Effects")]
     [SerializeField] private GameObject collisionFX;
 
+    private float randomSize;
+    private float randomSpin;
+
+    [SerializeField] private float timeBetweenNudges = 3f;
+    private float timer = 0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // Get the rigidbody component
         rb = GetComponent<Rigidbody2D>();
+        RandomizeSize();
+        MoveAtRandomDirection();
 
-        //Randomize the size of the obstacle on Start
-        float randomSize = Random.Range(minSize, maxSize);
-
-        // Randomize the speed of the added force on the obstacles. We divide with the randomSize to apply different speeds for different size objects
-        float randomSpeed = Random.Range(minSpeed, maxSpeed) / randomSize;
-
-        // Add a randomized spin on the obstacles - (.AddTorque - https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Rigidbody.AddTorque.html)
-        float randomSpin = Random.Range(-maxSpinSpeed, +maxSpinSpeed);
-        rb.AddTorque(randomSpin);
-
-        // Randomize the force direction (.insideUnitCircle - https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Random-insideUnitSphere.html )
-        Vector2 randomForceDirection = Random.insideUnitCircle;
-
-        // Change the size of the obstacle on Start
-        transform.localScale = new Vector3(randomSize, randomSize, 1);
-
-        // Vector2.right = move right along the x-axis
-        rb.AddForce(randomForceDirection * randomSpeed);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -63,6 +53,43 @@ public class Obstacle : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Destroy(gameObject);
+        }
+    }
+
+    void MoveAtRandomDirection()
+    {
+        // Randomize the speed of the added force on the obstacles. We divide with the randomSize to apply different speeds for different size objects
+        float randomSpeed = Random.Range(minSpeed, maxSpeed) / randomSize;
+
+        // Randomize the force direction (.insideUnitCircle - https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Random-insideUnitSphere.html )
+        Vector2 randomForceDirection = Random.insideUnitCircle;
+
+        // Add a randomized spin on the obstacles - (.AddTorque - https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Rigidbody.AddTorque.html)
+        randomSpin = Random.Range(-maxSpinSpeed, +maxSpinSpeed);
+        rb.AddTorque(randomSpin);
+
+        // Vector2.right = move right along the x-axis
+        rb.AddForce(randomForceDirection * randomSpeed);
+    }
+
+    void RandomizeSize()
+    {
+        //Randomize the size of the obstacle on Start
+        randomSize = Random.Range(minSize, maxSize);
+
+        // Change the size of the obstacle on Start
+        transform.localScale = new Vector3(randomSize, randomSize, 1);
+    }
+
+    void Nudge()
+    {
+        // This is used to move the asteroids every x amount of seconds
+        // Not sure if I will use it.
+        timer += Time.deltaTime;
+        if (timer > timeBetweenNudges)
+        {
+            MoveAtRandomDirection();
+            timer = 0;
         }
     }
 

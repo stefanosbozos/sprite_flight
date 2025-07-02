@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             boosterFlameSprite.SetActive(true);
         }
-        
+
         // Stop the thrusters animation if the move is disabled
         if (Keyboard.current.wKey.wasReleasedThisFrame)
         {

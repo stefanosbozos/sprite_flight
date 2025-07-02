@@ -182,9 +182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef7ed91a6bf79140ab2456b0fa4a823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSize: 0.5
+  minSize: 1
   maxSize: 2
-  minSpeed: 100
-  maxSpeed: 200
+  minSpeed: 99.4
+  maxSpeed: 100
   maxSpinSpeed: 10
   collisionFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}
+  timeBetweenNudges: 3
