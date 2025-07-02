@@ -33,9 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Reload",
+                    "name": "Gamepad_Accelerate",
                     "type": "Button",
-                    "id": "befbfb0d-f2ea-4156-b0b0-022a229a2a41",
+                    "id": "ff9f097c-b224-4511-b504-621d93aa952f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Gamepad_Brake",
+                    "type": "Button",
+                    "id": "3fefa9ce-6853-48de-b0a1-d05d96e9dc91",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -43,17 +52,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "71046532-6881-4ee3-a2f1-3a9fcd0b8b66",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "WASD",
                     "id": "f301124d-e39a-479a-8a6f-7e55bec5280d",
@@ -122,8 +120,8 @@
                 },
                 {
                     "name": "",
-                    "id": "a9c2d8bd-3be8-45d9-8fd7-f875d5d19512",
-                    "path": "<Gamepad>/rightStick",
+                    "id": "7edbbf8d-4609-4a19-a728-340a4bd09285",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -145,7 +143,7 @@
                 {
                     "name": "",
                     "id": "fca2dddf-862b-4bd4-873d-fe764061aad9",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -155,12 +153,23 @@
                 },
                 {
                     "name": "",
-                    "id": "f62c7e5c-522f-4813-a309-984189c0383f",
-                    "path": "<Keyboard>/r",
+                    "id": "69df4fcb-4f98-459d-9ea6-0772c16d1322",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Reload",
+                    "action": "Gamepad_Accelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53b8a1a9-b351-4b01-b556-ae4e855b01aa",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Gamepad_Brake",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

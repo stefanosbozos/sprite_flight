@@ -28,6 +28,10 @@ public class ShootingSystem : MonoBehaviour
     Camera mainCam;
     Vector3 mousePos;
     InputAction shoot;
+
+    // Aiming system for gamepad only
+    InputAction aim_gp;
+
     // This is used to make sure that the mouse is aiming from the Y axis of the player.
     private float rotationOffset = 90.0f;
 
@@ -35,6 +39,7 @@ public class ShootingSystem : MonoBehaviour
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         shoot = InputSystem.actions.FindAction("Shoot");
+        aim_gp = InputSystem.actions.FindAction("Aim");
     }
 
     void Update()
@@ -51,8 +56,14 @@ public class ShootingSystem : MonoBehaviour
         mousePos = mainCam.ScreenToWorldPoint(Mouse.current.position.value);
         Vector3 playerRotation = mousePos - transform.position;
 
+        Vector2 playerRotation_gp = aim_gp.ReadValue<Vector2>();
+
         float rotationZ = Mathf.Atan2(playerRotation.y, playerRotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotationZ - rotationOffset);
+
+        float rotationZ_gp = Mathf.Atan2(playerRotation_gp.y, playerRotation_gp.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ_gp);
+
     }
 
     // Instantiate a laser PreFab on the screen

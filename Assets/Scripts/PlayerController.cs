@@ -8,6 +8,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float thrustForce = 10f;
     [SerializeField] private float maxSpeed = 10f;
     private float brakingForce = 0.5f;
+    // Input system
+    InputAction moveAction;
+    Vector2 moveValue;
+
+    // The gamepad control is different than the keyboard
+    InputAction accelerate_gp;
+    InputAction brake_gp;
 
 
     [Header("Particle Effects")]
@@ -15,20 +22,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject explosionParticleEffect;
 
     Rigidbody2D rb;
-    // Input system
-    InputAction moveAction;
-    Vector2 moveValue;
-
+    
     private bool isAlive;
-
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         boosterFlameSprite.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
+
+        //Keyboard support input
         moveAction = InputSystem.actions.FindAction("Move");
+
+        // Gamepad support input
+        accelerate_gp = InputSystem.actions.FindAction("Gamepad_Accelerate");
+        brake_gp = InputSystem.actions.FindAction("Gamepad_Brake");
+
+        // Player state
         isAlive = true;
     }
 
@@ -64,17 +74,30 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
+
+        // Gamepad support contoller
+        if (accelerate_gp.IsPressed())
+        {
+            moveValue = new Vector2(0, 1);
+            rb.AddRelativeForce(moveValue * thrustForce);
+        }
+
+        if (brake_gp.IsPressed())
+        {
+            rb.AddRelativeForce(-rb.linearVelocity * brakingForce);
+        }
+
     }
 
     void BoosterFlames()
     {
-        if (Keyboard.current.wKey.wasPressedThisFrame)
+        if (Keyboard.current.wKey.wasPressedThisFrame || accelerate_gp.WasPressedThisFrame())
         {
             boosterFlameSprite.SetActive(true);
         }
 
         // Stop the thrusters animation if the move is disabled
-        if (Keyboard.current.wKey.wasReleasedThisFrame)
+        if (Keyboard.current.wKey.wasReleasedThisFrame || accelerate_gp.WasReleasedThisFrame())
         {
             boosterFlameSprite.SetActive(false);
         }
