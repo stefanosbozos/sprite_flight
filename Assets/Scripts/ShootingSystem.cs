@@ -47,7 +47,7 @@ public class ShootingSystem : MonoBehaviour
 
     // The aiming system to point the Y axis of the player where the mouse points to.
     void Aim()
-    {        
+    {
         mousePos = mainCam.ScreenToWorldPoint(Mouse.current.position.value);
         Vector3 playerRotation = mousePos - transform.position;
 
@@ -74,7 +74,7 @@ public class ShootingSystem : MonoBehaviour
         }
 
     }
-    
+
     // Checks the heat levels of the laser.
     void LaserHeatingCheck()
     {
@@ -101,6 +101,11 @@ public class ShootingSystem : MonoBehaviour
             laserOverheated = false;
             cooldownTime = 3f;
         }
+    }
+
+    public float GetLaserTemp()
+    {
+        return laserTemp;
     }
 
 }

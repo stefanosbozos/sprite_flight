@@ -22,11 +22,12 @@ public class Obstacle : MonoBehaviour
     [Header("Impact Effects")]
     [SerializeField] private GameObject collisionFX;
 
+    // The points each asteroid holds
+    private int points;
+    private UISystem uISystem;
+
     private float randomSize;
     private float randomSpin;
-
-    [SerializeField] private float timeBetweenNudges = 3f;
-    private float timer = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,6 +36,8 @@ public class Obstacle : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         RandomizeSize();
         MoveAtRandomDirection();
+
+        uISystem = GameObject.FindGameObjectWithTag("game_manager").GetComponent<UISystem>();
 
     }
 
@@ -51,6 +54,7 @@ public class Obstacle : MonoBehaviour
 
         if (collision.gameObject.tag == "laser_blue")
         {
+            uISystem.UpdateScore(points);
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
@@ -79,18 +83,14 @@ public class Obstacle : MonoBehaviour
 
         // Change the size of the obstacle on Start
         transform.localScale = new Vector3(randomSize, randomSize, 1);
+
+        SetPoints(randomSize);
     }
 
-    void Nudge()
+    void SetPoints(float asteroidSize)
     {
-        // This is used to move the asteroids every x amount of seconds
-        // Not sure if I will use it.
-        timer += Time.deltaTime;
-        if (timer > timeBetweenNudges)
-        {
-            MoveAtRandomDirection();
-            timer = 0;
-        }
+        //Set the points in proporsion to the size of the asteroid
+        float meanSize = (minSize + maxSize) / 2;
+        points = asteroidSize < meanSize ? 5 : 10;
     }
-
 }

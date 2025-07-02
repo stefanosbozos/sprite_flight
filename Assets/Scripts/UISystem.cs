@@ -9,14 +9,12 @@ using UnityEngine.SceneManagement;
 
 public class UISystem : MonoBehaviour
 {
-    // Time elpased until the player dies
-    private float elapsedTime = 0f;
     // The final score
     private float score = 0f;
     // Highscore
     private float highscore = 0f;
     // The multiplier of the Time.deltaTime to create a score for the player
-    private float scoreMultiplier = 10f;
+    private float scoreMultiplier = 2.5f;
 
     [Header("HUD")]
     [SerializeField] private UIDocument uIDocument;
@@ -26,6 +24,12 @@ public class UISystem : MonoBehaviour
     private Label highScoreText;
 
     private Button restartButton;
+
+    private ProgressBar heatBar;
+
+    private PlayerController player;
+
+    private ShootingSystem shootingSystem;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,24 +44,30 @@ public class UISystem : MonoBehaviour
         // set a listener for the restart button
         restartButton.clicked += ReloadScene;
 
+        heatBar = uIDocument.rootVisualElement.Q<ProgressBar>("LaserTemperature");
+
         // Assign the highscore text from the UI Builder
         highScoreText = uIDocument.rootVisualElement.Q<Label>("Highscore");
         highScoreText.style.display = DisplayStyle.None;
-    }
 
-    // Update is called once per frame
+        // To be able to check whether the player is alive or not.
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        shootingSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<ShootingSystem>();
+
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+    }   
+
     void Update()
     {
-        UpdateScore();
+        CheckPlayerStatus();
+        UpdateHeatBar();
     }
 
-    void UpdateScore()
+    public void UpdateScore(int gainedScore)
     {
-        // Time.deltaTime is the time in seconds since the last frame. - https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Time-deltaTime.html
-        elapsedTime += Time.deltaTime;
-
         // Multiply the time by the score multiplier and round it down to the nearest integer with the Mathf.FloorToInt()
-        score = Mathf.FloorToInt(elapsedTime * scoreMultiplier);
+        score += Mathf.FloorToInt(gainedScore * scoreMultiplier);
         scoreText.text = "Score: " + score;
     }
 
@@ -97,5 +107,21 @@ public class UISystem : MonoBehaviour
     {
         highScoreText.text = "Highscore: " + highscore;
         highScoreText.style.display = DisplayStyle.Flex;
+    }
+
+    void CheckPlayerStatus()
+    {
+        if (!player.IsAlive())
+        {
+            UpdateHighscore();
+            restartButton.style.display = DisplayStyle.Flex;
+            UnityEngine.Cursor.visible = true;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    void UpdateHeatBar()
+    {
+        heatBar.value = shootingSystem.GetLaserTemp();
     }
 }

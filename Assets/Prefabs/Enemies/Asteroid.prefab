@@ -184,8 +184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSize: 1
   maxSize: 2
-  minSpeed: 99.4
-  maxSpeed: 100
-  maxSpinSpeed: 10
+  minSpeed: 50
+  maxSpeed: 50
+  maxSpinSpeed: 20
   collisionFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}
-  timeBetweenNudges: 3
+  gameManager: {fileID: 7005246431361686388, guid: b75bfd5818fdb4b43b352c284a82ad0c, type: 3}

@@ -1,19 +1,21 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     // This array holds all the enemies that the player can encounter.
     public GameObject[] enemy;
-    public GameObject Player;
+    private GameObject Player;
     private GameObject[] enemiesOnScreen;
-    [SerializeField] private float timeBetweenSpawns = 2f;
+    public float timeBetweenSpawns = 2f;
     [SerializeField] private int enemyLimitOnScreen = 10;
     private float timer = 0f;
 
     [SerializeField] private GameObject spawnFX;
 
+    void Start()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+    }
     // Update is called once per frame
     void Update()
     {
@@ -23,17 +25,29 @@ public class Spawner : MonoBehaviour
 
     void SpawnEnemy()
     {
+        if (Player == null)
+        {
+            GameObject[] stillOnScreen = GameObject.FindGameObjectsWithTag(enemy[0].tag);
+            foreach(GameObject enemyOnScreen in stillOnScreen)
+            {
+                // If player dies destroy all enemies from screen.
+                Destroy(enemyOnScreen);
+            }
+        }
         timer += Time.deltaTime;
         // Check the spawning interval and how many enemies are on the screen.
         if (timer >= timeBetweenSpawns && countEnemiesOnScreen() <= enemyLimitOnScreen)
         {
             Vector3 position = RandomSpawningPosition();
-            if (position != Player.transform.position)
+            if (Player != null)
             {
-                GameObject spawnEffect = Instantiate(spawnFX, position, Quaternion.identity);
-                Instantiate(enemy[0], position, Quaternion.identity);
-                timer = 0f;
-                Destroy(spawnEffect, 1f);
+                if (position != Player.transform.position)
+                {
+                    GameObject spawnEffect = Instantiate(spawnFX, position, Quaternion.identity);
+                    Instantiate(enemy[0], position, Quaternion.identity);
+                    timer = 0f;
+                    Destroy(spawnEffect, 1f);
+                }
             }
         }
     }

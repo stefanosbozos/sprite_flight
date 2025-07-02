@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,16 +19,17 @@ public class PlayerController : MonoBehaviour
     InputAction moveAction;
     Vector2 moveValue;
 
+    private bool isAlive;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         boosterFlameSprite.SetActive(false);
-        // !!! Assign the component to the rb variable which is type of Rigidbody2D
         rb = GetComponent<Rigidbody2D>();
-
         moveAction = InputSystem.actions.FindAction("Move");
+        isAlive = true;
     }
 
     // Update is called once per frame 
@@ -85,11 +85,18 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "asteroid")
         {
             // Instantiate the particle when the player collides with any object in the world
-            Instantiate(explosionParticleEffect, transform.position, transform.rotation);
+            GameObject explosion = Instantiate(explosionParticleEffect, transform.position, transform.rotation);
 
+            isAlive = false;
             // When the player collides with any other object the player spaceship is destroyed.
             Destroy(gameObject);
+            Destroy(explosion, 1f);
         }
+    }
+
+    public bool IsAlive()
+    {
+        return isAlive;
     }
 
 }
