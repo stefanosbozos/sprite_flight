@@ -4,6 +4,8 @@ using UnityEngine.UIElements;
 public class PlayerHUD : MonoBehaviour
 {
     [SerializeField] private UIDocument UIDoc;
+    [SerializeField] private RectTransform temperatureBar;
+    [SerializeField] private float barWidth, barHeight;
     private ShootingSystem PlayerShootingSystem;
     private Label m_LaserTemperature;
     private VisualElement m_LaserTempMask;
@@ -39,5 +41,8 @@ public class PlayerHUD : MonoBehaviour
     void LaserTemperatureProgress()
     {
         m_LaserTempMask.style.width = Length.Percent(PlayerShootingSystem.GetLaserTemp());
+
+        float newHeight = PlayerShootingSystem.GetLaserTemp() / 100 * barHeight;
+        temperatureBar.sizeDelta = new Vector2(barWidth, newHeight);
     }
 }

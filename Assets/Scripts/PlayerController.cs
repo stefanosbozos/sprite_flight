@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player movement")]
     [SerializeField] private float thrustForce = 10f;
     [SerializeField] private float maxSpeed = 10f;
-    private float brakingForce = 0.5f;
+
     // Input system
     InputAction moveAction;
     Vector2 moveValue;
