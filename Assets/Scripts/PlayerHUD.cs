@@ -17,6 +17,9 @@ public class PlayerHUD : MonoBehaviour
         PlayerShootingSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<ShootingSystem>();
         m_LaserTemperature = UIDoc.rootVisualElement.Q<Label>("LaserTemp");
         m_LaserTempMask = UIDoc.rootVisualElement.Q<VisualElement>("LasertempMask");
+
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
     }
 
     // Update is called once per frame
