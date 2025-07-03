@@ -25,7 +25,7 @@ public class UISystem : MonoBehaviour
 
     private Button restartButton;
 
-    private ProgressBar heatBar;
+    private VisualElement heatBar;
 
     private PlayerController player;
 
@@ -44,7 +44,7 @@ public class UISystem : MonoBehaviour
         // set a listener for the restart button
         restartButton.clicked += ReloadScene;
 
-        heatBar = uIDocument.rootVisualElement.Q<ProgressBar>("LaserTemperature");
+        heatBar = uIDocument.rootVisualElement.Q<VisualElement>("LasertempMask");
 
         // Assign the highscore text from the UI Builder
         highScoreText = uIDocument.rootVisualElement.Q<Label>("Highscore");
@@ -120,7 +120,8 @@ public class UISystem : MonoBehaviour
     }
 
     void UpdateHeatBar()
-    {
-        heatBar.value = shootingSystem.GetLaserTemp();
+    { 
+        heatBar.style.width = Length.Percent(shootingSystem.GetLaserTemp());
+        Debug.Log(Length.Percent(shootingSystem.GetLaserTemp()));
     }
 }

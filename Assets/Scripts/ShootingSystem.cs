@@ -150,4 +150,9 @@ public class ShootingSystem : MonoBehaviour
         return laserTemp;
     }
 
+    public bool IsOverheated()
+    {
+        return laserOverheated;
+    }
+
 }

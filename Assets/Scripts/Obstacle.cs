@@ -54,7 +54,7 @@ public class Obstacle : MonoBehaviour
 
         if (collision.gameObject.tag == "laser_blue")
         {
-            uISystem.UpdateScore(points);
+            //uISystem.UpdateScore(points);
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }

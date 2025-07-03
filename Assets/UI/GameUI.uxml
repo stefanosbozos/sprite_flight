@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/GameUIStyle.uss?fileID=7433441132597879392&amp;guid=2f2a187870955df46ac67461942abb5a&amp;type=3#GameUIStyle" />
+    <ui:VisualElement name="LaserTemperatureBackground" class="laserTemperature" style="flex-grow: 1; position: absolute; width: 400px; height: 100px; bottom: 0; background-image: url(&quot;project://database/Assets/Sci-Fi%20UI/_SciFi_GUISkin_/Skin_Assets/bars/progress_bar_background.png?fileID=2800000&amp;guid=fcabe002e685bc147918c97e9538d17f&amp;type=3#progress_bar_background&quot;); -unity-background-image-tint-color: rgb(255, 255, 255); left: 25px;">
+        <ui:Label text="Laser Temperature" name="LaserTemp" style="color: rgb(255, 255, 255); font-size: 28px; position: absolute; height: 100%; width: 100%; -unity-text-align: upper-left; -unity-font-definition: url(&quot;project://database/Assets/Sci-Fi%20UI/_SciFi_GUISkin_/Skin_Assets/font/zekton%20free.ttf?fileID=12800000&amp;guid=8297a2bf97dbbba468bd2518d003a876&amp;type=3#zekton free&quot;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 10px;" />
+        <ui:VisualElement name="LasertempMask" style="flex-grow: 1; position: absolute; width: 50%; height: 100%; overflow: hidden;">
+            <ui:VisualElement name="LasertempFill" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sci-Fi%20UI/_SciFi_GUISkin_/Bonus_Assets/bars/progress_bar.png?fileID=2800000&amp;guid=be40ff228ca528248b495d5025a1e327&amp;type=3#progress_bar&quot;); position: absolute; width: 400px; height: 100%; overflow: visible; opacity: 1;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
