@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1006218475922500456}
-  - component: {fileID: 4302132438484319185}
+  - component: {fileID: 1412557965343768065}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: game_manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4302132438484319185
+--- !u!114 &1412557965343768065
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7005246431361686388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734585bc1f1925f46b033e46deba4d4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 83070926502aed44fbf4a6fa7369467d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uIDocument: {fileID: 2506787246973407012, guid: 3f8319edcdf36234cbc9c814c50ee225, type: 3}
+  UIDoc: {fileID: 0}
+  temperatureBar: {fileID: 0}
+  barWidth: 6
+  barHeight: 40

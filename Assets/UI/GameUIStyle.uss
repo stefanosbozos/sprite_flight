@@ -1,0 +1,56 @@
+.gameUI {
+}
+
+.button {
+    position: relative;
+    width: 35%;
+    height: 150px;
+    background-image: url("project://database/Assets/Sci-Fi%20UI/_SciFi_GUISkin_/atlas.png?fileID=21300024&guid=56d84991286850f428b4e7df0cca7380&type=3#button_active");
+    background-color: rgba(0, 0, 0, 0);
+    transition-duration: 0.1s;
+    margin-bottom: 15px;
+}
+
+.button:hover {
+    background-image: url("project://database/Assets/Sci-Fi%20UI/_SciFi_GUISkin_/atlas.png?fileID=21300014&guid=56d84991286850f428b4e7df0cca7380&type=3#button1");
+    width: 35%;
+    height: 150px;
+    position: relative;
+}
+
+.header {
+    font-size: 80px;
+    -unity-text-align: upper-center;
+    margin-top: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+}
+
+.modal_dialog {
+    position: absolute;
+}
+
+.game_fonts {
+    font-size: 38px;
+    -unity-font-definition: url("project://database/Assets/Sci-Fi%20UI/_SciFi_GUISkin_/Skin_Assets/font/zekton%20free.ttf?fileID=12800000&guid=8297a2bf97dbbba468bd2518d003a876&type=3#zekton free");
+    -unity-font-style: bold;
+    color: rgb(2, 224, 255);
+}
+
+.modal-btn {
+    width: 35%;
+    height: 70%;
+}
+
+.game_fonts {
+    font-size: 38px;
+    -unity-font-definition: url("project://database/Assets/Sci-Fi%20UI/_SciFi_GUISkin_/Skin_Assets/font/zekton%20free.ttf?fileID=12800000&guid=8297a2bf97dbbba468bd2518d003a876&type=3#zekton free");
+    -unity-font-style: bold;
+    color: rgb(2, 224, 255);
+}
+
+.modal-btn:hover {
+    width: 35%;
+    height: 70%;
+}

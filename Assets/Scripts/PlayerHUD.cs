@@ -4,17 +4,29 @@ using UnityEngine.UIElements;
 public class PlayerHUD : MonoBehaviour
 {
     [SerializeField] private UIDocument UIDoc;
+
+    // This is for gun temperature bar next to the player
     [SerializeField] private RectTransform temperatureBar;
     [SerializeField] private float barWidth, barHeight;
+
+    // The player's stuff
+    private GameObject Player;
     private ShootingSystem PlayerShootingSystem;
     private Label m_LaserTemperature;
     private VisualElement m_LaserTempMask;
+
+    // The HUD items
+    private Label HUD_score;
+    private VisualElement HUD_LaserTempBar;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        PlayerShootingSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<ShootingSystem>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        PlayerShootingSystem = Player.GetComponent<ShootingSystem>();
+
         m_LaserTemperature = UIDoc.rootVisualElement.Q<Label>("LaserTemp");
         m_LaserTempMask = UIDoc.rootVisualElement.Q<VisualElement>("LasertempMask");
 
