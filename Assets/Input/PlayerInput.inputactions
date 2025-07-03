@@ -33,22 +33,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Gamepad_Accelerate",
-                    "type": "Button",
-                    "id": "ff9f097c-b224-4511-b504-621d93aa952f",
-                    "expectedControlType": "",
+                    "name": "Gamepad_Aim",
+                    "type": "Value",
+                    "id": "c6798de7-47c2-4aba-87cc-87dcf6e65295",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Gamepad_Brake",
-                    "type": "Button",
-                    "id": "3fefa9ce-6853-48de-b0a1-d05d96e9dc91",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -109,6 +100,17 @@
                 },
                 {
                     "name": "",
+                    "id": "666ba9fa-03ac-4946-b59b-62202b4f67f8",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4f011239-ff5f-4a64-9969-9242ec812ecf",
                     "path": "<Mouse>/delta",
                     "interactions": "",
@@ -120,12 +122,12 @@
                 },
                 {
                     "name": "",
-                    "id": "7edbbf8d-4609-4a19-a728-340a4bd09285",
-                    "path": "<Gamepad>/leftStick",
+                    "id": "9ebe8c9b-d03f-4471-8cda-f178da6d7f6d",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim",
+                    "action": "Gamepad_Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -143,33 +145,11 @@
                 {
                     "name": "",
                     "id": "fca2dddf-862b-4bd4-873d-fe764061aad9",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "69df4fcb-4f98-459d-9ea6-0772c16d1322",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Gamepad_Accelerate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "53b8a1a9-b351-4b01-b556-ae4e855b01aa",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Gamepad_Brake",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

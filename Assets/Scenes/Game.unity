@@ -890,6 +890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 417424836342865392, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
       propertyPath: Player
       value: 
@@ -950,6 +954,14 @@ PrefabInstance:
     - target: {fileID: 4152517578923950792, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: m_Name
       value: Spaceship
+      objectReference: {fileID: 0}
+    - target: {fileID: 6565024620808225040, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: aimSensitivity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6565024620808225040, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: timeBetweenShots
+      value: 0.08
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

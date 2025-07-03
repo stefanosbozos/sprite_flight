@@ -116,7 +116,6 @@ public class UISystem : MonoBehaviour
             UpdateHighscore();
             restartButton.style.display = DisplayStyle.Flex;
             UnityEngine.Cursor.visible = true;
-            UnityEngine.Cursor.lockState = CursorLockMode.None;
         }
     }
 

@@ -12,11 +12,6 @@ public class PlayerController : MonoBehaviour
     InputAction moveAction;
     Vector2 moveValue;
 
-    // The gamepad control is different than the keyboard
-    InputAction accelerate_gp;
-    InputAction brake_gp;
-
-
     [Header("Particle Effects")]
     [SerializeField] GameObject boosterFlameSprite;
     [SerializeField] private GameObject explosionParticleEffect;
@@ -34,10 +29,6 @@ public class PlayerController : MonoBehaviour
         //Keyboard support input
         moveAction = InputSystem.actions.FindAction("Move");
 
-        // Gamepad support input
-        accelerate_gp = InputSystem.actions.FindAction("Gamepad_Accelerate");
-        brake_gp = InputSystem.actions.FindAction("Gamepad_Brake");
-
         // Player state
         isAlive = true;
     }
@@ -50,23 +41,27 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer()
     {
-        Throttle();
-        BoosterFlames();
-    }
-
-    void Throttle()
-    {
         // Get the direction of the move action and store it to a Vector2
         moveValue = moveAction.ReadValue<Vector2>();
-
-        // Relative force because the "W" is more like throttle
-        if (moveValue.y < 0)
+        if (InputSystem.GetDevice<Gamepad>() == null)
         {
-            rb.AddRelativeForce(-rb.linearVelocity * brakingForce);
+            rb.AddRelativeForce(moveValue * thrustForce);
         }
         else
         {
-            rb.AddRelativeForce(moveValue * thrustForce);
+            // The movement in gamepad does not feel the same with the Relative force.
+            // May change it later.
+            rb.AddForce(moveValue * thrustForce);
+        }
+        
+
+        if (moveAction.inProgress)
+        {
+            boosterFlameSprite.SetActive(true);
+        }
+        else
+        {
+            boosterFlameSprite.SetActive(false);
         }
 
         // This is to stop the player for accelerating if the move button is constantly pressed.
@@ -75,32 +70,6 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
 
-        // Gamepad support contoller
-        if (accelerate_gp.IsPressed())
-        {
-            moveValue = new Vector2(0, 1);
-            rb.AddRelativeForce(moveValue * thrustForce);
-        }
-
-        if (brake_gp.IsPressed())
-        {
-            rb.AddRelativeForce(-rb.linearVelocity * brakingForce);
-        }
-
-    }
-
-    void BoosterFlames()
-    {
-        if (Keyboard.current.wKey.wasPressedThisFrame || accelerate_gp.WasPressedThisFrame())
-        {
-            boosterFlameSprite.SetActive(true);
-        }
-
-        // Stop the thrusters animation if the move is disabled
-        if (Keyboard.current.wKey.wasReleasedThisFrame || accelerate_gp.WasReleasedThisFrame())
-        {
-            boosterFlameSprite.SetActive(false);
-        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)

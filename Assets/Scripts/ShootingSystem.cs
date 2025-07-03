@@ -21,6 +21,18 @@ public class ShootingSystem : MonoBehaviour
     [SerializeField] private float cooldownTime = 3f;
     // The step that the laser coolsdown while not overheated and not fired
     [SerializeField] private float coolingOffStep = 3f;
+    [SerializeField] private float increasingTemperatureStep = 3f;
+
+    [Header("Aiming Sensitivity")]
+    // How quick the player rotates - This will be controlled also in the options menu
+    [SerializeField] private float aimSensitivity = 200f;
+
+    // Firing timing
+    // The time in seconds between the shots
+    [SerializeField] private float timeBetweenShots = 0.05f;
+    // Store the time that passed in second since the last shot.
+    private float timeSinceLastShot = 0f;
+    private bool readyToShoot = true;
 
 
 
@@ -28,7 +40,6 @@ public class ShootingSystem : MonoBehaviour
     Camera mainCam;
     Vector3 mousePos;
     InputAction shoot;
-
     // Aiming system for gamepad only
     InputAction aim_gp;
 
@@ -39,7 +50,8 @@ public class ShootingSystem : MonoBehaviour
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         shoot = InputSystem.actions.FindAction("Shoot");
-        aim_gp = InputSystem.actions.FindAction("Aim");
+        aim_gp = InputSystem.actions.FindAction("Gamepad_Aim");
+        // Debug.Log(InputSystem.GetDevice<Gamepad>());
     }
 
     void Update()
@@ -53,35 +65,54 @@ public class ShootingSystem : MonoBehaviour
     // The aiming system to point the Y axis of the player where the mouse points to.
     void Aim()
     {
-        mousePos = mainCam.ScreenToWorldPoint(Mouse.current.position.value);
-        Vector3 playerRotation = mousePos - transform.position;
-
-        Vector2 playerRotation_gp = aim_gp.ReadValue<Vector2>();
-
-        float rotationZ = Mathf.Atan2(playerRotation.y, playerRotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ - rotationOffset);
-
-        float rotationZ_gp = Mathf.Atan2(playerRotation_gp.y, playerRotation_gp.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ_gp);
-
+        if (InputSystem.GetDevice<Gamepad>() == null)
+        {
+            // Mouse input only
+            mousePos = mainCam.ScreenToWorldPoint(Mouse.current.position.value);
+            Vector3 playerRotation = mousePos - transform.position;
+            float rotationZ = Mathf.Atan2(playerRotation.y, playerRotation.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - rotationOffset), Time.deltaTime * aimSensitivity);
+        }
+        else
+        {
+            // Gamepad and Mobile input
+            Vector2 playerRotation_gp = aim_gp.ReadValue<Vector2>().normalized;
+            if (aim_gp.inProgress)
+            {
+                float rotationZ_gp = Mathf.Atan2(playerRotation_gp.y, playerRotation_gp.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ_gp - rotationOffset), Time.deltaTime * aimSensitivity);
+            }
+        }
     }
 
     // Instantiate a laser PreFab on the screen
     void Shoot()
     {
-        if (shoot.WasPressedThisFrame())
+        timeSinceLastShot += Time.deltaTime;
+        if (shoot.inProgress && readyToShoot)
         {
-            if (!laserOverheated)
+            if (timeSinceLastShot >= timeBetweenShots)
             {
-                // Solution at https://discussions.unity.com/t/spawning-a-projectile-in-front-of-a-player-based-on-player-rotation/165403
-                Instantiate(laserProjectile, transform.Find("LaserSpawn").position, transform.Find("LaserSpawn").rotation);
-                laserTemp += 10;
-                Debug.Log("Laser temp: " + laserTemp);
+                if (!laserOverheated)
+                {
+                    // Solution at https://discussions.unity.com/t/spawning-a-projectile-in-front-of-a-player-based-on-player-rotation/165403
+                    Instantiate(laserProjectile, transform.Find("LaserSpawn").position, transform.Find("LaserSpawn").rotation);
+                    laserTemp += increasingTemperatureStep;
+                    //Debug.Log("Laser temp: " + laserTemp);
+                }
+                else
+                {
+                    Debug.Log("Laser is overheated!!!");
+                }
+                readyToShoot = !readyToShoot;
+                timeSinceLastShot = 0f;
             }
-            else
-            {
-                Debug.Log("Laser is overheated!!!");
-            }
+
+        }
+        // if 0.5s have elapsed since the last shot, the player is ready to shoot.
+        if (timeSinceLastShot >= timeBetweenShots)
+        {
+            readyToShoot = !readyToShoot;
         }
 
     }
