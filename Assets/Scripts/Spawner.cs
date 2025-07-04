@@ -54,8 +54,8 @@ public class Spawner : MonoBehaviour
 
     Vector3 RandomSpawningPosition()
     {
-        float randomX = Random.Range(-12, 13);
-        float randomY = Random.Range(-6.5f, 6.5f);
+        float randomX = Random.Range(-17f, 18f);
+        float randomY = Random.Range(-9.5f, 10.5f);
 
         return new Vector3(randomX, randomY, 0);
     }
