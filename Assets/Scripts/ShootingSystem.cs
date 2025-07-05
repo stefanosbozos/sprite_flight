@@ -16,6 +16,7 @@ public class ShootingSystem : MonoBehaviour
     private float laserTemp = 0;
 
     [Header("Laser System")]
+    [SerializeField] private GameObject gunMuzzle;
     [SerializeField] private GameObject laserProjectile;
     // The amount of heat that the laser can withstand before shutting down to cool off
     [SerializeField] private float cooldownTime = 3f;
@@ -51,6 +52,7 @@ public class ShootingSystem : MonoBehaviour
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         shoot = InputSystem.actions.FindAction("Shoot");
         aim_gp = InputSystem.actions.FindAction("Gamepad_Aim");
+        gunMuzzle.SetActive(false);
         // Debug.Log(InputSystem.GetDevice<Gamepad>());
     }
 
@@ -97,6 +99,7 @@ public class ShootingSystem : MonoBehaviour
                 {
                     // Solution at https://discussions.unity.com/t/spawning-a-projectile-in-front-of-a-player-based-on-player-rotation/165403
                     Instantiate(laserProjectile, transform.Find("LaserSpawn").position, transform.Find("LaserSpawn").rotation);
+                    gunMuzzle.SetActive(true);
                     laserTemp += increasingTemperatureStep;
                     //Debug.Log("Laser temp: " + laserTemp);
                 }
@@ -107,8 +110,13 @@ public class ShootingSystem : MonoBehaviour
                 readyToShoot = !readyToShoot;
                 timeSinceLastShot = 0f;
             }
-
         }
+
+        if (shoot.WasCompletedThisFrame())
+        {
+            gunMuzzle.SetActive(false);
+        }
+
         // if 0.5s have elapsed since the last shot, the player is ready to shoot.
         if (timeSinceLastShot >= timeBetweenShots)
         {
