@@ -6,15 +6,38 @@ public class PlayerController : MonoBehaviour
     // Player thrust force
     [Header("Player movement")]
     [SerializeField] private float thrustForce = 10f;
+    [SerializeField] private float rotationSpeed = 2f;
     [SerializeField] private float maxSpeed = 10f;
 
     // Input system
-    InputAction moveAction;
+    // Move Up Down and Rotate left/right
+    InputAction movePlayer;
     Vector2 moveValue;
+
+    // Move on the relative X axis
+    InputAction strafePlayer;
+    Vector2 strafeValue;
+
+    // Player's firing system
+    [Header("Firing System")]
+    [SerializeField] private GameObject projectilePreFab;
+    InputAction shootLaser;
+    private float HEAT_LIMIT = 100f;
+    private float laserTemperature = 0f;
+    [SerializeField] float timeBetweenShots = 0.01f;
+    private float timeSinceLastShot = 0f;
+    private float laserCooldownTime = 5f;
+    private float laserCooldownDecreatingStep = 3f;
+    private float laserHeatIncreaseStep = 3f;
+    private bool readyToShoot = true;
+
+
 
     [Header("Particle Effects")]
     [SerializeField] GameObject boosterFlameSprite;
     [SerializeField] private GameObject explosionParticleEffect;
+
+    float rotationZ = 0f;
 
     Rigidbody2D rb;
     
@@ -27,7 +50,9 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         //Keyboard support input
-        moveAction = InputSystem.actions.FindAction("Move");
+        movePlayer = InputSystem.actions.FindAction("Move");
+        strafePlayer = InputSystem.actions.FindAction("Strafe");
+        shootLaser = InputSystem.actions.FindAction("Shoot");
 
         // Player state
         isAlive = true;
@@ -36,33 +61,26 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame 
     void Update()
     {
-        MovePlayer();
+        PlayerMovement();
+        playerVisualEffects();
+        Fire();
     }
 
-    void MovePlayer()
+    void PlayerMovement()
     {
-        // Get the direction of the move action and store it to a Vector2
-        moveValue = moveAction.ReadValue<Vector2>();
-        if (InputSystem.GetDevice<Gamepad>() == null)
-        {
-            rb.AddRelativeForce(moveValue * thrustForce);
-        }
-        else
-        {
-            // The movement in gamepad does not feel the same with the Relative force.
-            // May change it later.
-            rb.AddForce(moveValue * thrustForce);
-        }
         
+        moveValue = movePlayer.ReadValue<Vector2>();
+        strafeValue = strafePlayer.ReadValue<Vector2>();
 
-        if (moveAction.inProgress)
-        {
-            boosterFlameSprite.SetActive(true);
-        }
-        else
-        {
-            boosterFlameSprite.SetActive(false);
-        }
+        // Move the player on the X axis only
+        rb.AddRelativeForceX(strafeValue.x * thrustForce);
+
+        // Directional Force of the player
+        rb.AddRelativeForceY(moveValue.y * thrustForce);
+
+        // Rotation of the player
+        rotationZ += moveValue.x * rotationSpeed;
+        transform.rotation = Quaternion.Euler(0f, 0f, -rotationZ);
 
         // This is to stop the player for accelerating if the move button is constantly pressed.
         if (rb.linearVelocity.magnitude > maxSpeed)
@@ -70,6 +88,37 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
 
+    }
+
+    void Fire()
+    {
+        // Keep track of the time that the lasers are not fired.
+        timeSinceLastShot += Time.deltaTime;
+
+        if (shootLaser.inProgress)
+        {
+            if (timeSinceLastShot >= timeBetweenShots)
+            {
+                if (laserTemperature < 100.0f)
+                {
+                    Instantiate(projectilePreFab, transform.Find("LaserSpawn").position, transform.Find("LaserSpawn").rotation);
+                    laserTemperature += laserHeatIncreaseStep;
+                }
+            }
+            timeSinceLastShot = 0f;
+        }
+    }
+
+    void playerVisualEffects()
+    {
+        if (movePlayer.inProgress)
+        {
+            boosterFlameSprite.SetActive(true);
+        }
+        else
+        {
+            boosterFlameSprite.SetActive(false);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)

@@ -254,7 +254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &391486394
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1127,6 +1127,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7005246431361686388, guid: b75bfd5818fdb4b43b352c284a82ad0c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1213,6 +1217,110 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionId
+      value: f528e582-b882-449e-9e0f-fc13453bf87d
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: d6a9c647-a892-4f8b-8117-5c947a531cab
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: f19075e6-8733-4d8c-ae7e-792110fa614c
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: 9c5a7029-9cfe-45d0-ac31-755801681aed
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: cb783c94-723a-4265-9bd7-c6b2f8b8fbdb
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: 9ded0890-e38e-4a2a-ba2f-1c0445d12952
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: 123be400-b9c9-4112-94c5-ac53c66c70cb
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionId
+      value: 7cd2040e-0d6b-4765-855b-49456e361da3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionId
+      value: 71958922-8488-481d-af8c-3cba762fd4c7
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
+      value: dfcf9975-6f39-43a6-9e5c-8520ec09e21f
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
+      value: f2c9dd97-eba6-48dc-99a8-f1e0591e53ee
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_ActionId
+      value: 72ce0e02-178c-49bb-93b3-e3f135a2a76a
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionName
+      value: 'Player Input/Shoot[/Mouse/leftButton]'
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
+      value: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: 'UI/Submit[/Keyboard/enter]'
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: 'UI/Cancel[/Keyboard/escape]'
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: 'UI/Point[/Mouse/position]'
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: 'UI/Click[/Mouse/leftButton]'
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
+      value: 'UI/RightClick[/Mouse/rightButton]'
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionName
+      value: 'UI/MiddleClick[/Mouse/middleButton]'
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionName
+      value: 'UI/ScrollWheel[/Mouse/scroll]'
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
+      value: UI/TrackedDevicePosition
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
+      value: UI/TrackedDeviceOrientation
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_ActionName
+      value: 'Player Input/Strafe[/Keyboard/q,/Keyboard/e]'
+      objectReference: {fileID: 0}
+    - target: {fileID: -4973055002141696020, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4378109832152802, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1257,7 +1365,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spaceship
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: projectilePreFab
+      value: 
+      objectReference: {fileID: 976426763524034030, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: timeBetweenShots
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: timeBetweenFiring
+      value: 0.05
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6565024620808225040, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

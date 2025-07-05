@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Aim",
-                    "type": "Value",
-                    "id": "e6b24456-fac6-457f-b28b-12bf5b201462",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Shoot",
                     "type": "Button",
                     "id": "f528e582-b882-449e-9e0f-fc13453bf87d",
@@ -33,9 +24,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Gamepad_Aim",
+                    "name": "Strafe",
                     "type": "Value",
-                    "id": "c6798de7-47c2-4aba-87cc-87dcf6e65295",
+                    "id": "72ce0e02-178c-49bb-93b3-e3f135a2a76a",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -111,30 +102,8 @@
                 },
                 {
                     "name": "",
-                    "id": "4f011239-ff5f-4a64-9969-9242ec812ecf",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9ebe8c9b-d03f-4471-8cda-f178da6d7f6d",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Gamepad_Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "94c6a022-ed74-46d0-8af0-93e3c999d0cd",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -152,6 +121,72 @@
                     "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Q/E",
+                    "id": "59747128-296c-4621-9c8a-c268da20e540",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Strafe",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "01632204-934d-4024-a8cc-29bfbbae2505",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Strafe",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "d907c5de-8b34-42ab-b553-1d37c88cdfef",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Strafe",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "LB/RB",
+                    "id": "3591c158-0def-471a-abf7-4ba3724a3b78",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Strafe",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "64b6b8d2-452f-481c-afe9-d4dd171e7aeb",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Strafe",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "0609802c-b96b-4f64-85a9-4b28ce6a9705",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Strafe",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
