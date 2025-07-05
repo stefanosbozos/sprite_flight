@@ -10,14 +10,10 @@ public class PlayerHUD : MonoBehaviour
     // [SerializeField] private float barWidth, barHeight;
 
     // The player's stuff
-    private GameObject Player;
-    private ShootingSystem PlayerShootingSystem;
-
-
+    private Player player;
 
     // The HUD items
     private Label HUD_score;
-    
 
     // The laser progress bar
     private VisualElement m_LaserTempMask;
@@ -33,8 +29,7 @@ public class PlayerHUD : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        PlayerShootingSystem = Player.GetComponent<ShootingSystem>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         m_LaserTemperature = UIDoc.rootVisualElement.Q<Label>("HUD_LaserTemp");
         m_LaserTempMask = UIDoc.rootVisualElement.Q<VisualElement>("HUD_LasertempMask");
@@ -52,7 +47,7 @@ public class PlayerHUD : MonoBehaviour
 
     void LaserOverheated()
     {
-        if (PlayerShootingSystem.IsOverheated())
+        if (player.GunsOverheated())
         {
             m_LaserTemperature.style.color = new StyleColor(warning_orange);
             m_LaserTemperature.text = "OVERHEATED!";
@@ -66,6 +61,6 @@ public class PlayerHUD : MonoBehaviour
 
     void LaserTemperatureProgress()
     {
-        m_LaserTempMask.style.width = Length.Percent(PlayerShootingSystem.GetLaserTemp());
+        m_LaserTempMask.style.width = Length.Percent(player.GetGunsTemperature());
     }
 }

@@ -27,7 +27,7 @@ public class UISystem : MonoBehaviour
 
     private VisualElement heatBar;
 
-    private PlayerController player;
+    private Player player;
 
     private ShootingSystem shootingSystem;
 
@@ -51,7 +51,7 @@ public class UISystem : MonoBehaviour
         highScoreText.style.display = DisplayStyle.None;
 
         // To be able to check whether the player is alive or not.
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         shootingSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<ShootingSystem>();
 
         UnityEngine.Cursor.visible = false;

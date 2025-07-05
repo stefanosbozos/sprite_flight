@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
     // Player thrust force
     [Header("Player movement")]
@@ -21,32 +21,33 @@ public class PlayerController : MonoBehaviour
     // Player's firing system
     [Header("Firing System")]
     [SerializeField] private GameObject projectilePreFab;
+    [SerializeField] private GameObject gunMuzzles;
     InputAction shootLaser;
     private float HEAT_LIMIT = 100f;
     private float laserTemperature = 0f;
     [SerializeField] float timeBetweenShots = 0.01f;
     private float timeSinceLastShot = 0f;
-    private float laserCooldownTime = 5f;
+    private float laserCooldownInterval = 5f;
     private float laserCooldownDecreatingStep = 3f;
     private float laserHeatIncreaseStep = 3f;
-    private bool readyToShoot = true;
 
 
-
-    [Header("Particle Effects")]
-    [SerializeField] GameObject boosterFlameSprite;
+    [Header("Player Visual FX")]
+    [SerializeField] private ParticleSystem playerVFX;
+    //[SerializeField] private GameObject thrustersFX;
     [SerializeField] private GameObject explosionParticleEffect;
 
     float rotationZ = 0f;
 
     Rigidbody2D rb;
-    
+
     private bool isAlive;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        boosterFlameSprite.SetActive(false);
+        gunMuzzles.SetActive(false);
+
         rb = GetComponent<Rigidbody2D>();
 
         //Keyboard support input
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
-        
+
         moveValue = movePlayer.ReadValue<Vector2>();
         strafeValue = strafePlayer.ReadValue<Vector2>();
 
@@ -99,25 +100,59 @@ public class PlayerController : MonoBehaviour
         {
             if (timeSinceLastShot >= timeBetweenShots)
             {
-                if (laserTemperature < 100.0f)
+                if (laserTemperature < HEAT_LIMIT)
                 {
                     Instantiate(projectilePreFab, transform.Find("LaserSpawn").position, transform.Find("LaserSpawn").rotation);
                     laserTemperature += laserHeatIncreaseStep;
                 }
+                timeSinceLastShot = 0f;
             }
-            timeSinceLastShot = 0f;
+        }
+        CheckGunsTemperature();
+    }
+
+    void CheckGunsTemperature()
+    {
+        if (laserTemperature >= 0 && laserTemperature < HEAT_LIMIT)
+        {
+            laserTemperature -= Time.deltaTime * laserCooldownDecreatingStep;
+        }
+
+        if (laserTemperature >= HEAT_LIMIT)
+        {
+            CooldownLaser();
+        }
+    }
+
+    void CooldownLaser()
+    {
+        laserCooldownInterval -= Time.deltaTime;
+        if (laserTemperature >= HEAT_LIMIT && laserCooldownInterval <= 0.0f)
+        {
+            laserTemperature = 0f;
+            laserCooldownInterval = 3f;
         }
     }
 
     void playerVisualEffects()
     {
-        if (movePlayer.inProgress)
+
+        if (moveValue.y > 0)
         {
-            boosterFlameSprite.SetActive(true);
+            playerVFX.emissionRate = 30;
         }
         else
         {
-            boosterFlameSprite.SetActive(false);
+            playerVFX.emissionRate = 0;
+        }
+
+        if (shootLaser.inProgress && laserTemperature < HEAT_LIMIT)
+        {   
+            gunMuzzles.SetActive(true);
+        }
+        else
+        {
+            gunMuzzles.SetActive(false);
         }
     }
 
@@ -138,6 +173,15 @@ public class PlayerController : MonoBehaviour
     public bool IsAlive()
     {
         return isAlive;
+    }
+
+    public float GetGunsTemperature()
+    {
+        return laserTemperature;
+    }
+    public bool GunsOverheated()
+    {
+        return laserTemperature >= HEAT_LIMIT ? true : false;
     }
 
 }

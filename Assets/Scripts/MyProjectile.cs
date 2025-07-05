@@ -10,7 +10,6 @@ public class MyProjectile : MonoBehaviour
     void Update()
     {
         projectilePreFab.transform.Translate(direction * projectileSpeed * Time.deltaTime);  
-        //rb.AddForce(transform.up * projectileSpeed);
         Destroy(projectilePreFab, timeToLive);
     }
 
