@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 391486399}
   - component: {fileID: 391486400}
   m_Layer: 0
-  m_Name: Alien
+  m_Name: Alien_Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d29646a6a0c774a8d551ae58c7bd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 976426763524034030, guid: 3840e18450dc82043ae7ffd0f3279167, type: 3}
+  projectile: {fileID: 3439262997926754641, guid: 69791d647ae567548b69d04cfabef369, type: 3}
   timeBetweenShots: 1
   movement_speed: 10
 --- !u!60 &391486399
@@ -1262,8 +1262,24 @@ PrefabInstance:
       value: Spaceship
       objectReference: {fileID: 0}
     - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: shield
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: rotationSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: timeBetweenShots
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: onImpactExplosion
+      value: 
+      objectReference: {fileID: 2378318148097607794, guid: c702891af4e761c44b7c282849f0a789, type: 3}
+    - target: {fileID: 8449979792734676925, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

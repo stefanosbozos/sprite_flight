@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     private GameObject player;
     
@@ -29,9 +29,6 @@ public class EnemyAI : MonoBehaviour
 
     void FollowPlayer()
     {
-
-        Debug.Log(deltaDistance);
-
         // Go to the players position (Lurker's behaviour)
         Vector3 distanceFromThePlayer = new Vector3(transform.position.x, transform.position.y - deltaDistance, transform.position.z);
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position - distanceFromThePlayer, movement_speed * Time.deltaTime);
@@ -39,7 +36,7 @@ public class EnemyAI : MonoBehaviour
         // Change the rotation accoriding to the player's rotation to always face the player
         Vector3 enemyRotation = player.transform.position;
         float rotationZ = Mathf.Atan2(enemyRotation.y, enemyRotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ + 90.0f), 100 * Time.deltaTime);
+        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ + 90.0f);
     }
 
     void Shoot()

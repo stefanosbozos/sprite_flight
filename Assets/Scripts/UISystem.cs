@@ -111,7 +111,7 @@ public class UISystem : MonoBehaviour
 
     void CheckPlayerStatus()
     {
-        if (!player.IsAlive())
+        if (!player.PlayerAlive())
         {
             UpdateHighscore();
             restartButton.style.display = DisplayStyle.Flex;

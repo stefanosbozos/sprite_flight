@@ -14,28 +14,45 @@ public class Player : MonoBehaviour
     InputAction movePlayer;
     Vector2 moveValue;
 
-    // Move on the relative X axis
-    InputAction strafePlayer;
-    Vector2 strafeValue;
+    InputAction aim;
+    Vector2 aimValue;
+
+    [Header("Player Vitals")]
+    [SerializeField]
+    private int heatlh;
+    [SerializeField]
+    private int shield;
+    private bool shieldActive;
 
     // Player's firing system
     [Header("Firing System")]
-    [SerializeField] private GameObject projectilePreFab;
-    [SerializeField] private GameObject gunMuzzles;
+    [SerializeField]
+    private GameObject projectilePreFab;
+    [SerializeField]
+    private GameObject gunMuzzles;
     InputAction shootLaser;
     private float HEAT_LIMIT = 100f;
     private float laserTemperature = 0f;
-    [SerializeField] float timeBetweenShots = 0.01f;
+    [SerializeField]
+    float timeBetweenShots = 0.01f;
     private float timeSinceLastShot = 0f;
+    [SerializeField]
     private float laserCooldownInterval = 5f;
     private float laserCooldownDecreatingStep = 3f;
+    [SerializeField]
     private float laserHeatIncreaseStep = 3f;
 
 
     [Header("Player Visual FX")]
-    [SerializeField] private ParticleSystem playerVFX;
-    //[SerializeField] private GameObject thrustersFX;
-    [SerializeField] private GameObject explosionParticleEffect;
+    [SerializeField]
+    private ParticleSystem playerVFX;
+    [SerializeField]
+    private GameObject explosionParticleEffect;
+    [SerializeField]
+    private GameObject onImpactExplosion;
+    [SerializeField]
+    private ParticleSystem shipSmoke;
+
 
     float rotationZ = 0f;
 
@@ -52,10 +69,12 @@ public class Player : MonoBehaviour
 
         //Keyboard support input
         movePlayer = InputSystem.actions.FindAction("Move");
-        strafePlayer = InputSystem.actions.FindAction("Strafe");
         shootLaser = InputSystem.actions.FindAction("Shoot");
+        aim = InputSystem.actions.FindAction("Aim");
 
         // Player state
+        heatlh = 100;
+        shield = 0;
         isAlive = true;
     }
 
@@ -65,23 +84,14 @@ public class Player : MonoBehaviour
         PlayerMovement();
         playerVisualEffects();
         Fire();
+        Aim();
     }
 
     void PlayerMovement()
     {
-
         moveValue = movePlayer.ReadValue<Vector2>();
-        strafeValue = strafePlayer.ReadValue<Vector2>();
-
         // Move the player on the X axis only
-        rb.AddRelativeForceX(strafeValue.x * thrustForce);
-
-        // Directional Force of the player
-        rb.AddRelativeForceY(moveValue.y * thrustForce);
-
-        // Rotation of the player
-        rotationZ += moveValue.x * rotationSpeed;
-        transform.rotation = Quaternion.Euler(0f, 0f, -rotationZ);
+        rb.AddRelativeForce(moveValue * thrustForce);
 
         // This is to stop the player for accelerating if the move button is constantly pressed.
         if (rb.linearVelocity.magnitude > maxSpeed)
@@ -89,6 +99,14 @@ public class Player : MonoBehaviour
             rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
 
+    }
+
+    void Aim()
+    {
+        // Horizontal Aiming System (X Axis)
+        aimValue = aim.ReadValue<Vector2>().normalized;
+        rotationZ += aimValue.x * rotationSpeed;
+        transform.rotation = Quaternion.Euler(0f, 0f, -rotationZ);
     }
 
     void Fire()
@@ -147,34 +165,74 @@ public class Player : MonoBehaviour
         }
 
         if (shootLaser.inProgress && laserTemperature < HEAT_LIMIT)
-        {   
+        {
             gunMuzzles.SetActive(true);
         }
         else
         {
             gunMuzzles.SetActive(false);
         }
+
+        // Play smoke if player below 20% health
+        if (heatlh <= 20)
+        {
+            shipSmoke.Play();
+        }
+        else
+        {
+            shipSmoke.Stop();
+            shipSmoke.Clear();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "asteroid")
+        if (collision.gameObject.tag == "enemy_fire")
         {
-            // Instantiate the particle when the player collides with any object in the world
-            GameObject explosion = Instantiate(explosionParticleEffect, transform.position, transform.rotation);
+            // Instantiate an explosion where the player got hit
+            Vector2 contactOfImpact = collision.GetContact(0).point;
+            GameObject impactFX = Instantiate(onImpactExplosion, contactOfImpact, Quaternion.identity);
+            if (shieldActive)
+            {
+                shield -= 10;
+            }
+            else
+            {
+                heatlh -= 10;
+            }
+            Destroy(collision.gameObject);
+            Destroy(impactFX, 1f);
 
-            isAlive = false;
-            // When the player collides with any other object the player spaceship is destroyed.
-            Destroy(gameObject);
-            Destroy(explosion, 1f);
+            if (!PlayerAlive())
+            {
+                KillPlayer();
+            }
+
         }
     }
 
-    public bool IsAlive()
+    void ActivateShields()
     {
-        return isAlive;
+        shieldActive = !shieldActive;
+        shield = 100;
     }
 
+    void KillPlayer()
+    {
+        GameObject OnDeathExplosion = Instantiate(explosionParticleEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+        Destroy(OnDeathExplosion, 3f);
+        
+    }
+
+    public bool PlayerAlive()
+    {
+        if (heatlh > 0)
+        {
+            return true;
+        }
+        return false;
+    }
     public float GetGunsTemperature()
     {
         return laserTemperature;
@@ -183,7 +241,6 @@ public class Player : MonoBehaviour
     {
         return laserTemperature >= HEAT_LIMIT ? true : false;
     }
-
 }
 
 

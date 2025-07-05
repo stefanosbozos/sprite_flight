@@ -8,6 +8,7 @@ TagManager:
   - asteroid
   - border
   - game_manager
+  - enemy_fire
   layers:
   - Default
   - TransparentFX
