@@ -9,6 +9,8 @@ TagManager:
   - border
   - game_manager
   - enemy_fire
+  - FxTemporaire
+  - enemy_ship
   layers:
   - Default
   - TransparentFX

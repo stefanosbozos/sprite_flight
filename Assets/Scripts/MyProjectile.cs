@@ -11,7 +11,7 @@ public class MyProjectile : MonoBehaviour
     void Update()
     {
         transform.Translate(direction * projectileSpeed * Time.deltaTime);  
-        Destroy(this, timeToLive);
+        Destroy(gameObject, timeToLive);
     }
 
 }

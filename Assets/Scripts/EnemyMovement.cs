@@ -3,15 +3,25 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private GameObject player;
-    
+
     private Rigidbody2D rb;
 
-    [SerializeField] private GameObject projectile;
-    [SerializeField] private float timeBetweenShots = 1f;
+    [SerializeField]
+    private GameObject projectile;
+    [SerializeField]
+    private float timeBetweenShots = 1f;
     private float deltaDistance;
     private float timer = 0f;
 
-    [SerializeField] private float movement_speed = 0.2f;
+    [SerializeField]
+    private float movement_speed = 0.2f;
+    [SerializeField]
+    private float rotation_speed = 5f;
+
+    [SerializeField]
+    private GameObject deathExplosionFX;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
         // Change the rotation accoriding to the player's rotation to always face the player
         Vector3 enemyRotation = player.transform.position - transform.position;
         float rotationZ = Mathf.Atan2(enemyRotation.y, enemyRotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.LerpUnclamped(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ + 90.0f), 3f * Time.deltaTime);
+        transform.rotation = Quaternion.LerpUnclamped(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ + 90.0f), rotation_speed * Time.deltaTime);
     }
 
     void Shoot()
@@ -47,6 +57,17 @@ public class EnemyMovement : MonoBehaviour
             GameObject spawnedBullet = Instantiate(projectile, transform.Find("ProjectileSpawn").position, transform.Find("ProjectileSpawn").rotation);
             timer = 0;
             Destroy(spawnedBullet, 3f);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "laser_blue")
+        {
+            GameObject explosion = Instantiate(deathExplosionFX, transform.position, transform.rotation);
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            Destroy(explosion, 2f);
         }
     }
 }
