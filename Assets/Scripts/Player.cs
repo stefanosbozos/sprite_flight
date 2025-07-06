@@ -58,8 +58,6 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rb;
 
-    private bool isAlive;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -75,7 +73,6 @@ public class Player : MonoBehaviour
         // Player state
         heatlh = 100;
         shield = 0;
-        isAlive = true;
     }
 
     // Update is called once per frame 
@@ -222,9 +219,7 @@ public class Player : MonoBehaviour
         GameObject OnDeathExplosion = Instantiate(explosionParticleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
         Destroy(OnDeathExplosion, 3f);
-        
     }
-
     public bool PlayerAlive()
     {
         if (heatlh > 0)

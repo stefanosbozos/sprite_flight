@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
     private float deltaDistance;
     private float timer = 0f;
 
-    [SerializeField] private float movement_speed = 1f;
+    [SerializeField] private float movement_speed = 0.2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,9 +34,9 @@ public class EnemyMovement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position - distanceFromThePlayer, movement_speed * Time.deltaTime);
 
         // Change the rotation accoriding to the player's rotation to always face the player
-        Vector3 enemyRotation = player.transform.position;
+        Vector3 enemyRotation = player.transform.position - transform.position;
         float rotationZ = Mathf.Atan2(enemyRotation.y, enemyRotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ + 90.0f);
+        transform.rotation = Quaternion.LerpUnclamped(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ + 90.0f), 3f * Time.deltaTime);
     }
 
     void Shoot()
