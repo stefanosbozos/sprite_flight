@@ -46,13 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
-  - {fileID: 7794888939300605397, guid: 8fd87fae996286b4b889d6eda2154a15, type: 3}
-  timeBetweenSpawns: 1
-  enemyLimitOnScreen: 10
-  min_limit_X: 1
-  max_limit_X: 1
-  min_limit_Y: 1
-  max_limit_Y: 1
+  - {fileID: 3410269031510865162, guid: 90c35e5b64f48fc45aac3e3d3890def0, type: 3}
+  timeBetweenSpawns: 3
+  enemyLimitOnScreen: 5
+  min_limit_X: -20
+  max_limit_X: 20
+  min_limit_Y: -5
+  max_limit_Y: 10
   spawnFX: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
 --- !u!1 &4824654099188362938
 GameObject:
@@ -93,7 +93,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4824654099188362938}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

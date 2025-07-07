@@ -87,7 +87,6 @@ public class Player : MonoBehaviour
     {
         if (!pauseSystem.GameIsPaused())
         {
-            Debug.Log(pauseSystem.GameIsPaused());
             PlayerMovement();
             playerVisualEffects();
             Fire();
