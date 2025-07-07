@@ -7,14 +7,29 @@ public class Spawner : MonoBehaviour
     private GameObject Player;
     private GameObject[] enemiesOnScreen;
     public float timeBetweenSpawns = 2f;
-    [SerializeField] private int enemyLimitOnScreen = 10;
+    [SerializeField]
+    private int enemyLimitOnScreen = 10;
+    [SerializeField]
+    private float min_limit_X = 1f;
+    [SerializeField]
+    private float max_limit_X = 1f;
+    [SerializeField]
+    private float min_limit_Y = 1f;
+    [SerializeField]
+    private float max_limit_Y = 1f;
+
+
     private float timer = 0f;
+
+    Camera m_Camera;
 
     [SerializeField] private GameObject spawnFX;
 
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        m_Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
     }
     // Update is called once per frame
     void Update()
@@ -54,8 +69,9 @@ public class Spawner : MonoBehaviour
 
     Vector3 RandomSpawningPosition()
     {
-        float randomX = Random.Range(-17f, 18f);
-        float randomY = Random.Range(-9.5f, 10.5f);
+
+        float randomX = Random.Range(min_limit_X, max_limit_X + 1);
+        float randomY = Random.Range(min_limit_Y, max_limit_Y + 1);
 
         return new Vector3(randomX, randomY, 0);
     }

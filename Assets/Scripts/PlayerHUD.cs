@@ -3,7 +3,9 @@ using UnityEngine.UIElements;
 
 public class PlayerHUD : MonoBehaviour
 {
-    [SerializeField] private UIDocument UIDoc;
+    [SerializeField]
+    private UIDocument UIDoc;
+    
 
     // // This is for gun temperature bar next to the player
     // [SerializeField] private RectTransform temperatureBar;

@@ -53,10 +53,17 @@ public class Player : MonoBehaviour
     [SerializeField]
     private ParticleSystem shipSmoke;
 
+    // Pause System
+    private PauseSystem pauseSystem;
 
     float rotationZ = 0f;
 
     Rigidbody2D rb;
+
+    void Awake()
+    {
+        pauseSystem = GameObject.FindGameObjectWithTag("game_manager").GetComponent<PauseSystem>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -78,10 +85,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame 
     void Update()
     {
-        PlayerMovement();
-        playerVisualEffects();
-        Fire();
-        Aim();
+        if (!pauseSystem.GameIsPaused())
+        {
+            Debug.Log(pauseSystem.GameIsPaused());
+            PlayerMovement();
+            playerVisualEffects();
+            Fire();
+            Aim();
+        }
     }
 
     void PlayerMovement()
