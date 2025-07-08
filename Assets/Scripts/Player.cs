@@ -60,6 +60,9 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rb;
 
+    // Only for debugging
+    bool godModeOn = true;
+
     void Awake()
     {
         pauseSystem = GameObject.FindGameObjectWithTag("game_manager").GetComponent<PauseSystem>();
@@ -97,7 +100,7 @@ public class Player : MonoBehaviour
     void PlayerMovement()
     {
         moveValue = movePlayer.ReadValue<Vector2>();
-        // Move the player on the X axis only
+
         rb.AddRelativeForce(moveValue * thrustForce);
 
         // This is to stop the player for accelerating if the move button is constantly pressed.
@@ -194,7 +197,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "enemy_fire")
+        if (collision.gameObject.tag == "enemy_fire" && !godModeOn)
         {
             // Instantiate an explosion where the player got hit
             Vector2 contactOfImpact = collision.GetContact(0).point;
@@ -217,6 +220,8 @@ public class Player : MonoBehaviour
 
         }
     }
+
+    
 
     void ActivateShields()
     {

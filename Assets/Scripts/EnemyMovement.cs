@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -5,14 +7,13 @@ public class EnemyMovement : MonoBehaviour
     private GameObject player;
     private GameObject[] EnemiesOnScreen;
 
-    private Rigidbody2D rb;
-
     [Header("Enemy Shooting System")]
     [SerializeField]
     private GameObject projectile;
     [SerializeField]
     private float timeBetweenShots = 1f;
     private float timer = 0f;
+    [SerializeField]
     private bool isAttacking;
 
 
@@ -22,11 +23,19 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float rotation_speed = 5f;
 
+    [Header("Enemy Behaviour")]
     // The distance difference from the player.
-    private float deltaDistance;
-    private Vector3 MAX_DISTANCE_BETWEEN_ENEMIES = new Vector3(4f, 4f, 0f);
+    private float distanceFromThePlayer;
+    [SerializeField]
+    private float limitOfDistanceFromPlayer = 10f;
+
+    private float distanceFromEnemies;
+    [SerializeField]
+    private float distanceBetweenEnemies = 15f;
 
 
+
+    [Header("Enemy VFX")]
     [SerializeField]
     private GameObject deathExplosionFX;
 
@@ -34,9 +43,8 @@ public class EnemyMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
-        deltaDistance = Mathf.FloorToInt(Random.Range(5f, 20f));
+        distanceFromThePlayer = Mathf.FloorToInt(Random.Range(5f, 20f));
         EnemiesOnScreen = GameObject.FindGameObjectsWithTag("enemy_ship");
     }
 
@@ -50,9 +58,16 @@ public class EnemyMovement : MonoBehaviour
 
     void FollowPlayer()
     {
-        // Go to the players position (Lurker's behaviour)
-        Vector3 distanceFromThePlayer = new Vector3(transform.position.x, transform.position.y - deltaDistance, transform.position.z);
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position - distanceFromThePlayer, movement_speed * Time.deltaTime);
+        distanceFromThePlayer = Vector3.Distance(transform.position, player.transform.position);
+        if (distanceFromThePlayer < limitOfDistanceFromPlayer)
+        {
+            Vector3 direction = (transform.position - player.transform.position).normalized;
+            transform.position += direction * movement_speed * Time.deltaTime;
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movement_speed * Time.deltaTime);
+        }
 
         // Change the rotation accoriding to the player's rotation to always face the player
         Vector3 enemyRotation = player.transform.position - transform.position;
@@ -66,19 +81,12 @@ public class EnemyMovement : MonoBehaviour
         {
             if (enemy != null)
             {
-                Vector3 distanceBetweenEnemies = transform.position - enemy.transform.position;
-
-                // Debug.Log("enemy pos: " + transform.position);
-                // Debug.Log("other enemy position: " + enemy.transform.position);
-                // Debug.Log("Distance between them: " + distanceBetweenEnemies);
-
-                // if (
-                //     (distanceBetweenEnemies.x <= MAX_DISTANCE_BETWEEN_ENEMIES.x) &&
-                //     (distanceBetweenEnemies.y <= MAX_DISTANCE_BETWEEN_ENEMIES.y)
-                //     )
-                // {
-                //     transform.position = Vector3.one
-                // }
+                distanceFromEnemies = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distanceFromEnemies < distanceBetweenEnemies)
+                {
+                    Vector3 enemyDirection = (transform.position - enemy.transform.position).normalized;
+                    transform.position += enemyDirection * movement_speed * Time.deltaTime;
+                }
             }
         }
     }

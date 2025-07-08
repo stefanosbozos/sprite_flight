@@ -51,7 +51,7 @@ public class Spawner : MonoBehaviour
         }
         timer += Time.deltaTime;
         // Check the spawning interval and how many enemies are on the screen.
-        if (timer >= timeBetweenSpawns && countEnemiesOnScreen() <= enemyLimitOnScreen)
+        if (timer >= timeBetweenSpawns && countEnemiesOnScreen() < enemyLimitOnScreen)
         {
             Vector3 position = RandomSpawningPosition();
             if (Player != null)
@@ -78,7 +78,7 @@ public class Spawner : MonoBehaviour
 
     int countEnemiesOnScreen()
     {
-        enemiesOnScreen = GameObject.FindGameObjectsWithTag(enemy[0].tag);
+        enemiesOnScreen = GameObject.FindGameObjectsWithTag("enemy_ship");
         return enemiesOnScreen.Length;
     }
 
