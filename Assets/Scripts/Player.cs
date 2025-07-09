@@ -18,50 +18,38 @@ public class Player : MonoBehaviour
     Vector2 aimValue;
 
     [Header("Player Vitals")]
-    [SerializeField]
-    private int heatlh;
-    [SerializeField]
-    private int shield;
+    [SerializeField] private int heatlh;
+    [SerializeField] private int shield;
     private bool shieldActive;
 
     // Player's firing system
     [Header("Firing System")]
-    [SerializeField]
-    private GameObject projectilePreFab;
-    [SerializeField]
-    private GameObject gunMuzzles;
+    [SerializeField] private GameObject projectilePreFab;
+    [SerializeField] private GameObject gunMuzzles;
     InputAction shootLaser;
     private float HEAT_LIMIT = 100f;
     private float laserTemperature = 0f;
-    [SerializeField]
-    float timeBetweenShots = 0.01f;
+    [SerializeField] float timeBetweenShots = 0.01f;
     private float timeSinceLastShot = 0f;
-    [SerializeField]
-    private float laserCooldownInterval = 5f;
+    [SerializeField] private float laserCooldownInterval = 5f;
     private float laserCooldownDecreatingStep = 3f;
-    [SerializeField]
-    private float laserHeatIncreaseStep = 3f;
+    [SerializeField] private float laserHeatIncreaseStep = 3f;
+    private float rotationOffset = 90.0f;
+    private float aimSensitivity = 10.0f;
 
 
     [Header("Player Visual FX")]
-    [SerializeField]
-    private ParticleSystem playerVFX;
-    [SerializeField]
-    private GameObject explosionParticleEffect;
-    [SerializeField]
-    private GameObject onImpactExplosion;
-    [SerializeField]
-    private ParticleSystem shipSmoke;
+    [SerializeField] private ParticleSystem playerVFX;
+    [SerializeField] private GameObject explosionParticleEffect;
+    [SerializeField] private GameObject onImpactExplosion;
+    [SerializeField] private ParticleSystem shipSmoke;
 
     // Pause System
     private PauseSystem pauseSystem;
 
-    float rotationZ = 0f;
+    float rotationZ;
 
     Rigidbody2D rb;
-
-    // Only for debugging
-    bool godModeOn = false;
 
     void Awake()
     {
@@ -92,7 +80,7 @@ public class Player : MonoBehaviour
         {
             PlayerMovement();
             playerVisualEffects();
-            Fire();
+            ShootProjectile();
             Aim();
         }
     }
@@ -113,13 +101,16 @@ public class Player : MonoBehaviour
 
     void Aim()
     {
-        // Horizontal Aiming System (X Axis)
-        aimValue = aim.ReadValue<Vector2>().normalized;
-        rotationZ += aimValue.x * rotationSpeed;
-        transform.rotation = Quaternion.Euler(0f, 0f, -rotationZ);
+        aimValue = aim.ReadValue<Vector2>();
+        if (aimValue.sqrMagnitude > 0.01f)
+        {
+            rotationZ = Mathf.Atan2(aimValue.y, aimValue.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - rotationOffset), Time.deltaTime * aimSensitivity);
+        }
+        
     }
 
-    void Fire()
+    void ShootProjectile()
     {
         // Keep track of the time that the lasers are not fired.
         timeSinceLastShot += Time.deltaTime;
@@ -222,7 +213,6 @@ public class Player : MonoBehaviour
     }
 
     
-
     void ActivateShields()
     {
         shieldActive = !shieldActive;

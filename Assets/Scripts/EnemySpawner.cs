@@ -70,11 +70,11 @@ public class EnemySpawner : MonoBehaviour
 
     void PrepareNextWave()
     {
-        WaveInfo.timeBetweenWaves -= Time.deltaTime;
-        Debug.Log("Next wave in..." + Mathf.FloorToInt(timer));
-        if (WaveInfo.timeBetweenWaves <= 0f)
-        {
-        }
+        // WaveInfo.timeBetweenWaves -= Time.deltaTime;
+        // Debug.Log("Next wave in..." + Mathf.FloorToInt(timer));
+        // if (WaveInfo.timeBetweenWaves <= 0f)
+        // {
+        // }
     }
 
     private bool ReadyToSpawn()
