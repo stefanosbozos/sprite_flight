@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -11,10 +9,12 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private GameObject projectile;
     [SerializeField]
-    private float timeBetweenShots = 1f;
-    private float timer = 0f;
+    private float minTimeToAttack = 1.5f;
     [SerializeField]
-    private bool isAttacking;
+    private float maxTimeToAttack = 5.0f;
+    [SerializeField]
+    private float timeBetweenShots;
+    private float timer = 0f;
 
 
     [Header("Enemy Movement")]
@@ -26,9 +26,13 @@ public class EnemyMovement : MonoBehaviour
     [Header("Enemy Behaviour")]
     // The distance difference from the player.
     private float distanceFromThePlayer;
-    [SerializeField]
-    private float limitOfDistanceFromPlayer = 10f;
 
+    [SerializeField]
+    private float limitOfDistanceFromPlayer;
+    [SerializeField]
+    private float minDistanceFromPlayer = 5f;
+    [SerializeField]
+    private float maxDistanceFromPlayer = 10f;
     private float distanceFromEnemies;
     [SerializeField]
     private float distanceBetweenEnemies = 15f;
@@ -44,7 +48,8 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        distanceFromThePlayer = Mathf.FloorToInt(Random.Range(5f, 20f));
+        limitOfDistanceFromPlayer = Mathf.FloorToInt(Random.Range(minDistanceFromPlayer, maxDistanceFromPlayer));
+        timeBetweenShots = Random.Range(minTimeToAttack, maxTimeToAttack);
         EnemiesOnScreen = GameObject.FindGameObjectsWithTag("enemy_ship");
     }
 
@@ -97,13 +102,10 @@ public class EnemyMovement : MonoBehaviour
         if (timer > timeBetweenShots)
         {
             // Check the state of the enemy. As we do not want more than 3 enemies attach at the same time.
-            isAttacking = !isAttacking;
             GameObject spawnedBullet = Instantiate(projectile, transform.Find("ProjectileSpawn").position, transform.Find("ProjectileSpawn").rotation);
             timer = 0;
             Destroy(spawnedBullet, 3f);
         }
-
-        isAttacking = !isAttacking;
     }
 
     void OnCollisionEnter2D(Collision2D collision)

@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
 
     // Only for debugging
-    bool godModeOn = true;
+    bool godModeOn = false;
 
     void Awake()
     {
@@ -197,7 +197,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "enemy_fire" && !godModeOn)
+        if (collision.gameObject.tag == "enemy_fire")
         {
             // Instantiate an explosion where the player got hit
             Vector2 contactOfImpact = collision.GetContact(0).point;
