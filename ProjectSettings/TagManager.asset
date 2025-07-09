@@ -11,6 +11,7 @@ TagManager:
   - enemy_fire
   - FxTemporaire
   - enemy_ship
+  - enemy_ship2
   layers:
   - Default
   - TransparentFX

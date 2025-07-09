@@ -46,8 +46,8 @@ GameObject:
   - component: {fileID: 7876405911913664006}
   - component: {fileID: -6756094584037500207}
   m_Layer: 0
-  m_Name: Alien_Ship
-  m_TagString: enemy_ship
+  m_Name: Alien_Ship 1
+  m_TagString: enemy_ship2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9ffdeca0da196d44f80ca3e8fdfbf684, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a2c58b97584433418a837b65218a045, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1

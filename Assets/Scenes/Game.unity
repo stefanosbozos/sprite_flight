@@ -906,6 +906,10 @@ PrefabInstance:
       value: -26
       objectReference: {fileID: 0}
     - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
+      propertyPath: waves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
       propertyPath: timeBetweenSpawns
       value: 2
       objectReference: {fileID: 0}
@@ -913,6 +917,38 @@ PrefabInstance:
       propertyPath: enemyLimitOnScreen
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
+      propertyPath: enemyWaves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
+      propertyPath: waves.Array.data[0].waveLength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
+      propertyPath: waves.Array.data[0].enemyToSpawn
+      value: 
+      objectReference: {fileID: 3410269031510865162, guid: 90c35e5b64f48fc45aac3e3d3890def0, type: 3}
+    - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
+      propertyPath: waves.Array.data[0].enemiesPerWave
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
+      propertyPath: waves.Array.data[0].timeBetweenSpawns
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
+      propertyPath: 'waves.Array.data[0].enemiesToSpawn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3410269031510865162, guid: 90c35e5b64f48fc45aac3e3d3890def0, type: 3}
+    - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
+      propertyPath: 'waves.Array.data[0].enemiesToSpawn.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3410269031510865162, guid: bdb875c76de33e64597fcbc578d941a1, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
