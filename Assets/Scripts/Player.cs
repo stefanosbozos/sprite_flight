@@ -1,3 +1,5 @@
+using System;
+using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,11 +13,18 @@ public class Player : MonoBehaviour
 
     // Input system
     // Move Up Down and Rotate left/right
-    InputAction movePlayer;
-    Vector2 moveValue;
+    private InputAction movePlayer;
+    [SerializeField] private Vector2 moveValue;
 
-    InputAction aim;
-    Vector2 aimValue;
+    private InputAction aim;
+    [SerializeField] private Vector2 aimValue;
+
+    // These are the variables for the mouse cursor
+    [Header("Player Cursor")]
+    [SerializeField] private Texture2D cursorTexture;
+    private CursorMode cursorMode = CursorMode.Auto;
+    private Vector2 cursorHotSpot = Vector2.zero;
+
 
     [Header("Player Vitals")]
     [SerializeField] private int heatlh;
@@ -34,7 +43,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float laserCooldownInterval = 5f;
     private float laserCooldownDecreatingStep = 3f;
     [SerializeField] private float laserHeatIncreaseStep = 3f;
-    private float rotationOffset = 90.0f;
+    private int rotationOffset = 90;
     private float aimSensitivity = 10.0f;
 
 
@@ -47,13 +56,14 @@ public class Player : MonoBehaviour
     // Pause System
     private PauseSystem pauseSystem;
 
-    float rotationZ;
+    int rotationZ;
 
     Rigidbody2D rb;
 
     void Awake()
     {
         pauseSystem = GameObject.FindGameObjectWithTag("game_manager").GetComponent<PauseSystem>();
+        Cursor.SetCursor(cursorTexture, cursorHotSpot, cursorMode);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -87,27 +97,61 @@ public class Player : MonoBehaviour
 
     void PlayerMovement()
     {
-        moveValue = movePlayer.ReadValue<Vector2>();
+        moveValue = movePlayer.ReadValue<Vector2>().normalized;
+        
+        //transform.localRotation = Quaternion.Euler(0f, 0f, -90 * moveValue.x);
+        
+        rb.AddForce(moveValue * thrustForce);
 
-        rb.AddRelativeForce(moveValue * thrustForce);
-
+        //PlayerDirection();
+        
         // This is to stop the player for accelerating if the move button is constantly pressed.
-        if (rb.linearVelocity.magnitude > maxSpeed)
-        {
-            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
-        }
+            if (rb.linearVelocity.magnitude > maxSpeed)
+            {
+                rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+            }
 
     }
 
+
+    // void PlayerDirection()
+    // {
+    //     float playerFacingDirection = 0;
+
+    //     if (rb.linearVelocityX > 0)
+    //     {
+    //         playerFacingDirection = 270f;
+    //     }
+    //     else if (rb.linearVelocityX < 0)
+    //     {
+    //         playerFacingDirection = 90f;
+    //     }
+
+    //     if (rb.linearVelocityY > 0)
+    //     {
+    //         playerFacingDirection = 0f;
+    //     }
+    //     else if (rb.linearVelocityY < 0)
+    //     {
+    //         playerFacingDirection = 180f;
+    //     }
+
+    //     transform.localRotation = Quaternion.Euler(0f, 0f, playerFacingDirection);
+    // }
+
     void Aim()
     {
-        aimValue = aim.ReadValue<Vector2>();
-        if (aimValue.sqrMagnitude > 0.01f)
+        Vector3 mouseScreenPos = aim.ReadValue<Vector2>();
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, Camera.main.nearClipPlane));
+
+        Vector3 playerDirection = mouseWorldPos - transform.position;
+        playerDirection.z = 0; // Ensure that the player does not rotate on the Z-axis
+
+        if (playerDirection.sqrMagnitude > 0.01f)
         {
-            rotationZ = Mathf.Atan2(aimValue.y, aimValue.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - rotationOffset), Time.deltaTime * aimSensitivity);
+            float angle = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle - rotationOffset);
         }
-        
     }
 
     void ShootProjectile()
