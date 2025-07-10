@@ -1,5 +1,3 @@
-using System;
-using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,10 +18,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector2 aimValue;
 
     // These are the variables for the mouse cursor
-    [Header("Player Cursor")]
-    [SerializeField] private Texture2D cursorTexture;
-    private CursorMode cursorMode = CursorMode.Auto;
-    private Vector2 cursorHotSpot = Vector2.zero;
+    // [Header("Player Cursor")]
+    // [SerializeField] private Texture2D cursorTexture;
+    // private CursorMode cursorMode = CursorMode.Auto;
+    // private Vector2 cursorHotSpot = Vector2.zero;
 
 
     [Header("Player Vitals")]
@@ -63,7 +61,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         pauseSystem = GameObject.FindGameObjectWithTag("game_manager").GetComponent<PauseSystem>();
-        Cursor.SetCursor(cursorTexture, cursorHotSpot, cursorMode);
+        //Cursor.SetCursor(cursorTexture, cursorHotSpot, cursorMode);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
