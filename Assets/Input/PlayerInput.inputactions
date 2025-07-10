@@ -25,7 +25,7 @@
                 },
                 {
                     "name": "Aim",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "8ae88660-09de-4666-b944-6dac5f22604b",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -144,8 +144,8 @@
                 },
                 {
                     "name": "",
-                    "id": "3a7723e9-e6b8-49b8-8c0a-58685ee47dc1",
-                    "path": "<Gamepad>/rightStick",
+                    "id": "da7db2a5-fb9b-456b-b842-7afe6059fece",
+                    "path": "<VirtualMouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

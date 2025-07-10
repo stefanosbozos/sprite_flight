@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
         // Player state
         heatlh = 100;
         shield = 0;
+
     }
 
     // Update is called once per frame 
@@ -140,6 +141,7 @@ public class Player : MonoBehaviour
     void Aim()
     {
         Vector3 mouseScreenPos = aim.ReadValue<Vector2>();
+        Debug.Log(mouseScreenPos);
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, Camera.main.nearClipPlane));
 
         Vector3 playerDirection = mouseWorldPos - transform.position;

@@ -656,6 +656,7 @@ GameObject:
   - component: {fileID: -4973055002141696020}
   - component: {fileID: 5802271188003381315}
   - component: {fileID: 7891935908401970227}
+  - component: {fileID: 7211746086165913515}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Player
@@ -840,6 +841,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   X_offset: 1
   Y_offset: 3
+--- !u!114 &7211746086165913515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152517578923950792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05d092b8ec73f44a87a0224b5189798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 4378109832152802}
+  aimingSights: {fileID: 589637712425768320}
+  maxOffsetDistance: 5
 --- !u!1 &7254494989809445254
 GameObject:
   m_ObjectHideFlags: 0

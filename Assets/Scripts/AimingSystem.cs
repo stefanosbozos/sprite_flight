@@ -18,9 +18,8 @@ public class AimingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Aim();
-        //transform.RotateAround(target.transform.position, Vector3.forward, 20 * Time.deltaTime);
         Vector3 mouseScreenPos = aim.ReadValue<Vector2>();
+        Debug.Log(mouseScreenPos);
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, Camera.main.nearClipPlane));
 
         Vector3 direction = mouseWorldPos - player.position;
