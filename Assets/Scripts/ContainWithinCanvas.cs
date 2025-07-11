@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ContainWithinCanvas : MonoBehaviour
 {
+    InputAction virtualMouse;
     public RectTransform canvasRect;
     public float min_limit_X, max_limit_X, min_limit_Y, max_limit_Y;
 
@@ -9,6 +11,7 @@ public class ContainWithinCanvas : MonoBehaviour
     void Start()
     {
         canvasRect = GetComponent<RectTransform>();
+        virtualMouse = InputSystem.actions.FindAction("aim");
         min_limit_X = canvasRect.position.x;
     }
 
@@ -16,6 +19,11 @@ public class ContainWithinCanvas : MonoBehaviour
     void Update()
     {
         ClampPositionWithinScreen();
+
+        Vector3 v_mousePos = virtualMouse.ReadValue<Vector2>();
+        Vector3 v_mouseScreenPos = Camera.main.ScreenToWorldPoint(new Vector3(v_mousePos.x, v_mousePos.y, Camera.main.nearClipPlane));
+
+
     }
     
     void ClampPositionWithinScreen()
