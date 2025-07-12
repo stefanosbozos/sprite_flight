@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class AimingSystem : MonoBehaviour
 {
-
     InputAction aim;
     public Transform player;
     public Transform aimingSights;
@@ -19,7 +18,6 @@ public class AimingSystem : MonoBehaviour
     void Update()
     {
         Vector3 mouseScreenPos = aim.ReadValue<Vector2>();
-        Debug.Log(mouseScreenPos);
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, Camera.main.nearClipPlane));
 
         Vector3 direction = mouseWorldPos - player.position;

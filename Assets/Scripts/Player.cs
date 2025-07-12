@@ -17,13 +17,6 @@ public class Player : MonoBehaviour
     private InputAction aim;
     [SerializeField] private Vector2 aimValue;
 
-    // These are the variables for the mouse cursor
-    // [Header("Player Cursor")]
-    // [SerializeField] private Texture2D cursorTexture;
-    // private CursorMode cursorMode = CursorMode.Auto;
-    // private Vector2 cursorHotSpot = Vector2.zero;
-
-
     [Header("Player Vitals")]
     [SerializeField] private int heatlh;
     [SerializeField] private int shield;
@@ -97,51 +90,18 @@ public class Player : MonoBehaviour
     void PlayerMovement()
     {
         moveValue = movePlayer.ReadValue<Vector2>().normalized;
-        
-        //transform.localRotation = Quaternion.Euler(0f, 0f, -90 * moveValue.x);
-        
         rb.AddForce(moveValue * thrustForce);
 
-        //PlayerDirection();
-        
         // This is to stop the player for accelerating if the move button is constantly pressed.
             if (rb.linearVelocity.magnitude > maxSpeed)
             {
                 rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
             }
-
     }
-
-
-    // void PlayerDirection()
-    // {
-    //     float playerFacingDirection = 0;
-
-    //     if (rb.linearVelocityX > 0)
-    //     {
-    //         playerFacingDirection = 270f;
-    //     }
-    //     else if (rb.linearVelocityX < 0)
-    //     {
-    //         playerFacingDirection = 90f;
-    //     }
-
-    //     if (rb.linearVelocityY > 0)
-    //     {
-    //         playerFacingDirection = 0f;
-    //     }
-    //     else if (rb.linearVelocityY < 0)
-    //     {
-    //         playerFacingDirection = 180f;
-    //     }
-
-    //     transform.localRotation = Quaternion.Euler(0f, 0f, playerFacingDirection);
-    // }
 
     void Aim()
     {
-        Vector3 mouseScreenPos = aim.ReadValue<Vector2>();
-        Debug.Log(mouseScreenPos);
+        Vector3 mouseScreenPos = aim.ReadValue<Vector2>();  
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, Camera.main.nearClipPlane));
 
         Vector3 playerDirection = mouseWorldPos - transform.position;

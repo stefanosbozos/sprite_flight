@@ -36,7 +36,7 @@ public class PlayerHUD : MonoBehaviour
         m_LaserTemperature = UIDoc.rootVisualElement.Q<Label>("HUD_LaserTemp");
         m_LaserTempMask = UIDoc.rootVisualElement.Q<VisualElement>("HUD_LasertempMask");
 
-        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.visible = true;
         UnityEngine.Cursor.lockState = CursorLockMode.Confined;
     }
 

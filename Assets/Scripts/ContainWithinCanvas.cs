@@ -1,52 +1,29 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.UI;
 
 public class ContainWithinCanvas : MonoBehaviour
 {
-    InputAction virtualMouse;
-    public RectTransform canvasRect;
-    public float min_limit_X, max_limit_X, min_limit_Y, max_limit_Y;
+    private VirtualMouseInput virtualMouse;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        canvasRect = GetComponent<RectTransform>();
-        virtualMouse = InputSystem.actions.FindAction("aim");
-        min_limit_X = canvasRect.position.x;
+        virtualMouse = GetComponent<VirtualMouseInput>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ClampPositionWithinScreen();
-
-        Vector3 v_mousePos = virtualMouse.ReadValue<Vector2>();
-        Vector3 v_mouseScreenPos = Camera.main.ScreenToWorldPoint(new Vector3(v_mousePos.x, v_mousePos.y, Camera.main.nearClipPlane));
-
-
+        /*
+            Solution at:
+            https://www.youtube.com/watch?v=j2XyzSAD4VU&t=293s
+        */
+        Vector2 virtualMousePosition = virtualMouse.virtualMouse.position.value;
+        virtualMousePosition.x = Mathf.Clamp(virtualMousePosition.x, 0, Screen.width);
+        virtualMousePosition.y = Mathf.Clamp(virtualMousePosition.y, 0, Screen.height);
+        InputState.Change(virtualMouse.virtualMouse.position, virtualMousePosition);
     }
     
-    void ClampPositionWithinScreen()
-    {
-        if (transform.position.x >= max_limit_X)
-        {
-            transform.position = new Vector3(max_limit_X, transform.position.y, transform.position.z);
-        }
-
-        if (transform.position.x <= min_limit_X)
-        {
-            transform.position = new Vector3(min_limit_X, transform.position.y, transform.position.z);
-        }
-
-        if (transform.position.y >= max_limit_Y)
-        {
-            transform.position = new Vector3(transform.position.x, max_limit_Y, transform.position.z);    
-        }
-
-        // This needs refactoring
-        if (transform.position.y <= min_limit_Y)
-        {
-            transform.position = new Vector3(transform.position.x, min_limit_Y, transform.position.z);
-        }
-    }
 }
