@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour
 {
     private GameObject player;
     private GameObject[] EnemiesOnScreen;
+    private Rigidbody2D rb;
 
     [Header("Enemy Shooting System")]
     [SerializeField]
@@ -42,6 +43,8 @@ public class Enemy : MonoBehaviour
     [Header("Enemy VFX")]
     [SerializeField]
     private GameObject deathExplosionFX;
+    [SerializeField]
+    private ParticleSystem enemyThrusterVFX;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,6 +54,7 @@ public class Enemy : MonoBehaviour
         limitOfDistanceFromPlayer = Mathf.FloorToInt(Random.Range(minDistanceFromPlayer, maxDistanceFromPlayer));
         timeBetweenShots = Random.Range(minTimeToAttack, maxTimeToAttack);
         EnemiesOnScreen = GameObject.FindGameObjectsWithTag("enemy_ship");
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -59,6 +63,7 @@ public class Enemy : MonoBehaviour
         FollowPlayer();
         Shoot();
         AvoidOtherEnemies();
+        ThrusterVFX();
     }
 
     void FollowPlayer()
@@ -67,7 +72,7 @@ public class Enemy : MonoBehaviour
         if (distanceFromThePlayer < limitOfDistanceFromPlayer)
         {
             Vector3 direction = (transform.position - player.transform.position).normalized;
-            transform.position += direction * movement_speed * Time.deltaTime;
+            rb.AddForce(direction * movement_speed);
         }
         else
         {
@@ -105,6 +110,18 @@ public class Enemy : MonoBehaviour
             GameObject spawnedBullet = Instantiate(projectile, transform.Find("ProjectileSpawn").position, transform.Find("ProjectileSpawn").rotation);
             timer = 0;
             Destroy(spawnedBullet, 3f);
+        }
+    }
+
+    void ThrusterVFX()
+    {
+        if (rb.linearVelocity.sqrMagnitude > 0.1)
+        {
+            enemyThrusterVFX.emissionRate = 30;
+        }
+        if (rb.linearVelocity.magnitude <= 0)
+        {
+            enemyThrusterVFX.emissionRate = 0;
         }
     }
 

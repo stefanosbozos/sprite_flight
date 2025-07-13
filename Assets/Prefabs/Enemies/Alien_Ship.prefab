@@ -66,6 +66,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6117451200720202094}
+  - {fileID: 8275818267185197097}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8717358096613797168
@@ -293,6 +294,7 @@ MonoBehaviour:
   maxDistanceFromPlayer: 15
   distanceBetweenEnemies: 20
   deathExplosionFX: {fileID: 2378318148097607794, guid: c702891af4e761c44b7c282849f0a789, type: 3}
+  enemyThrusterVFX: {fileID: 4502550197988101056}
 --- !u!114 &-6756094584037500207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,3 +309,118 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   X_offset: 1
   Y_offset: 3
+--- !u!1001 &3094065207998700605
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7158822617300335750}
+    m_Modifications:
+    - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 36237
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime2
+      value: 61873
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0.3716884
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0.11072969
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0.082352914
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.b
+      value: 0.48435578
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.g
+      value: 0.95202744
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.r
+      value: 0.99371064
+      objectReference: {fileID: 0}
+    - target: {fileID: 4045634960564977108, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: m_Name
+      value: ThrusterParticles_Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352836571828022292, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352836571828022292, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352836571828022292, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352836571828022292, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352836571828022292, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352836571828022292, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352836571828022292, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352836571828022292, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352836571828022292, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352836571828022292, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493171679710625190, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+--- !u!198 &4502550197988101056 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+  m_PrefabInstance: {fileID: 3094065207998700605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8275818267185197097 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6352836571828022292, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+  m_PrefabInstance: {fileID: 3094065207998700605}
+  m_PrefabAsset: {fileID: 0}

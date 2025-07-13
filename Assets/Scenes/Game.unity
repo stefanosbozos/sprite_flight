@@ -545,7 +545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1071230541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,7 +911,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1530879819
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1176921062, guid: 1d78ea13ed0615c4996735add71cbd43, type: 3}
+  m_Sprite: {fileID: 1656553703, guid: 97480a0ea3806104e9ed74d319505013, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1163,6 +1163,10 @@ PrefabInstance:
       propertyPath: UIDoc
       value: 
       objectReference: {fileID: 1162062629}
+    - target: {fileID: 680146801013433276, guid: b75bfd5818fdb4b43b352c284a82ad0c, type: 3}
+      propertyPath: virtualCursor
+      value: 
+      objectReference: {fileID: 1530879817}
     - target: {fileID: 1006218475922500456, guid: b75bfd5818fdb4b43b352c284a82ad0c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.51048094
@@ -1270,7 +1274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 417424836342865392, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
       propertyPath: max_limit_X

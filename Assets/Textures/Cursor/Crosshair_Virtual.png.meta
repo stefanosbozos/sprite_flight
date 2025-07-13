@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: e7e80d39e3e102147a3be13caa7cd3d7
-AssetOrigin:
-  serializedVersion: 1
-  productId: 216732
-  packageName: Crosshairs | 25+ Free Crosshairs Pack
-  packageVersion: 1.1.1
-  assetPath: Assets/OccaSoftware/Crosshairs/Art/Textures/Crosshair_23.png
-  uploadId: 586051
+guid: 97480a0ea3806104e9ed74d319505013
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -50,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -61,7 +54,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 7
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -154,12 +147,34 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Crosshair_Virtual_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70c0bb2c9a35b174ea3cddf63f592647
+      internalID: 1656553703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 532fc4db9ab0da746a35ab4dd22e4fd3
     internalID: 0
     vertices: []
     indices: 
@@ -168,7 +183,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crosshair_Virtual_0: 1656553703
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

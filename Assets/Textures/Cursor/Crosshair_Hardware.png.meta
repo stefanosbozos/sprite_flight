@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: e7e80d39e3e102147a3be13caa7cd3d7
-AssetOrigin:
-  serializedVersion: 1
-  productId: 216732
-  packageName: Crosshairs | 25+ Free Crosshairs Pack
-  packageVersion: 1.1.1
-  assetPath: Assets/OccaSoftware/Crosshairs/Art/Textures/Crosshair_23.png
-  uploadId: 586051
+guid: 19971ac4cc65aa44bb2144f429ab3c08
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
