@@ -115,11 +115,11 @@ public class Enemy : MonoBehaviour
 
     void ThrusterVFX()
     {
-        if (rb.linearVelocity.sqrMagnitude > 0.1)
+        if (rb.linearVelocity.x > 0.1)
         {
             enemyThrusterVFX.emissionRate = 30;
         }
-        if (rb.linearVelocity.magnitude <= 0)
+        if (rb.linearVelocity.x <= 0)
         {
             enemyThrusterVFX.emissionRate = 0;
         }
