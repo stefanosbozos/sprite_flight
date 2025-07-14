@@ -9,13 +9,13 @@ public class EnemySpawner : MonoBehaviour
     private int enemyToSpawn;
     private int waveIndex = 0;
 
-
+    private Camera m_Camera;
+    private float cameraSizeX;
+    private float cameraSizeY;
     // The spawning position limits on screen
-    [SerializeField] private float min_limit_X = 1f;
-    [SerializeField] private float max_limit_X = 1f;
-    [SerializeField] private float min_limit_Y = 1f;
-    [SerializeField] private float max_limit_Y = 1f;
-
+    private float limit_X, limit_Y;
+    [SerializeField] float X_offset = 1f;
+    [SerializeField] float Y_offset = 3f;
 
     private float timer = 0f;
 
@@ -24,6 +24,15 @@ public class EnemySpawner : MonoBehaviour
     void Awake()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        m_Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
+
+    void Start()
+    {
+        cameraSizeX = m_Camera.orthographicSize * 16 / 9;
+        cameraSizeY = m_Camera.orthographicSize;
+        limit_X = cameraSizeX - X_offset;
+        limit_Y = cameraSizeY - Y_offset;
     }
 
     // Update is called once per frame
@@ -101,8 +110,8 @@ public class EnemySpawner : MonoBehaviour
     Vector3 RandomSpawningPosition()
     {
 
-        float randomX = Random.Range(min_limit_X, max_limit_X + 1);
-        float randomY = Random.Range(min_limit_Y, max_limit_Y + 1);
+        float randomX = Random.Range(-limit_X, limit_X + 1);
+        float randomY = Random.Range(-limit_Y, limit_Y + 1);
 
         return new Vector3(randomX, randomY, 0);
     }

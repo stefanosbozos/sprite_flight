@@ -12,6 +12,7 @@ TagManager:
   - FxTemporaire
   - enemy_ship
   - enemy_ship2
+  - virtual_mouse
   layers:
   - Default
   - TransparentFX

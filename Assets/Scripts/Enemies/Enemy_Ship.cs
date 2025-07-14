@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy_Ship : MonoBehaviour
 {
     private GameObject player;
     private GameObject[] EnemiesOnScreen;
@@ -46,15 +46,18 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private ParticleSystem enemyThrusterVFX;
 
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        rb = GetComponent<Rigidbody2D>();
+        EnemiesOnScreen = GameObject.FindGameObjectsWithTag("enemy_ship");
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         limitOfDistanceFromPlayer = Mathf.FloorToInt(Random.Range(minDistanceFromPlayer, maxDistanceFromPlayer));
         timeBetweenShots = Random.Range(minTimeToAttack, maxTimeToAttack);
-        EnemiesOnScreen = GameObject.FindGameObjectsWithTag("enemy_ship");
-        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -72,7 +75,7 @@ public class Enemy : MonoBehaviour
         if (distanceFromThePlayer < limitOfDistanceFromPlayer)
         {
             Vector3 direction = (transform.position - player.transform.position).normalized;
-            rb.AddForce(direction * movement_speed);
+            //rb.AddForce(direction * movement_speed);
         }
         else
         {

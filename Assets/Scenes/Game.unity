@@ -452,7 +452,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -545,7 +545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1071230541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -890,7 +890,7 @@ GameObject:
   - component: {fileID: 1530879822}
   m_Layer: 5
   m_Name: Cursor
-  m_TagString: Untagged
+  m_TagString: virtual_mouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1164,6 +1164,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1162062629}
     - target: {fileID: 680146801013433276, guid: b75bfd5818fdb4b43b352c284a82ad0c, type: 3}
+      propertyPath: virtualMouse
+      value: 
+      objectReference: {fileID: 1530879817}
+    - target: {fileID: 680146801013433276, guid: b75bfd5818fdb4b43b352c284a82ad0c, type: 3}
       propertyPath: virtualCursor
       value: 
       objectReference: {fileID: 1530879817}
@@ -1318,7 +1322,7 @@ PrefabInstance:
       objectReference: {fileID: 3410269031510865162, guid: 90c35e5b64f48fc45aac3e3d3890def0, type: 3}
     - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
       propertyPath: waves.Array.data[0].enemiesPerWave
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
       propertyPath: waves.Array.data[0].timeBetweenSpawns
@@ -1355,7 +1359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4378109832152802, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12
+      value: -7.4
       objectReference: {fileID: 0}
     - target: {fileID: 4378109832152802, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1396,6 +1400,18 @@ PrefabInstance:
     - target: {fileID: 4152517578923950792, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: m_Name
       value: Spaceship
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: maxSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: thrustForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: rotationSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7211746086165913515, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: m_Enabled
