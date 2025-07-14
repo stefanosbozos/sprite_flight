@@ -1322,7 +1322,7 @@ PrefabInstance:
       objectReference: {fileID: 3410269031510865162, guid: 90c35e5b64f48fc45aac3e3d3890def0, type: 3}
     - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
       propertyPath: waves.Array.data[0].enemiesPerWave
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
       propertyPath: waves.Array.data[0].timeBetweenSpawns
@@ -1359,7 +1359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4378109832152802, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.4
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 4378109832152802, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: m_LocalPosition.z

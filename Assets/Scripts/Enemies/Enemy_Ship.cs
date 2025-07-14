@@ -7,44 +7,31 @@ public class Enemy_Ship : MonoBehaviour
     private Rigidbody2D rb;
 
     [Header("Enemy Shooting System")]
-    [SerializeField]
-    private GameObject projectile;
-    [SerializeField]
-    private float minTimeToAttack = 1.5f;
-    [SerializeField]
-    private float maxTimeToAttack = 5.0f;
-    [SerializeField]
-    private float timeBetweenShots;
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private float minTimeToAttack = 1.5f;
+    [SerializeField] private float maxTimeToAttack = 5.0f;
+    [SerializeField] private float timeBetweenShots;
     private float timer = 0f;
 
 
     [Header("Enemy Movement")]
-    [SerializeField]
-    private float movement_speed = 0.2f;
-    [SerializeField]
-    private float rotation_speed = 5f;
+    [SerializeField] private float movement_speed = 3f;
+    [SerializeField] private float rotation_speed = 5f;
 
     [Header("Enemy Behaviour")]
     // The distance difference from the player.
     private float distanceFromThePlayer;
 
-    [SerializeField]
-    private float limitOfDistanceFromPlayer;
-    [SerializeField]
-    private float minDistanceFromPlayer = 5f;
-    [SerializeField]
-    private float maxDistanceFromPlayer = 10f;
+    [SerializeField] private float limitOfDistanceFromPlayer;
+    private float minDistanceFromPlayer = 5.0f;
+    private float maxDistanceFromPlayer = 15.0f;
     private float distanceFromEnemies;
-    [SerializeField]
-    private float distanceBetweenEnemies = 15f;
-
+    [SerializeField] private float distanceBetweenEnemies = 5.0f;
 
 
     [Header("Enemy VFX")]
-    [SerializeField]
-    private GameObject deathExplosionFX;
-    [SerializeField]
-    private ParticleSystem enemyThrusterVFX;
+    [SerializeField] private GameObject deathExplosionFX;
+    [SerializeField] private ParticleSystem enemyThrusterVFX;
 
     void Awake()
     {
@@ -64,7 +51,7 @@ public class Enemy_Ship : MonoBehaviour
     void Update()
     {
         FollowPlayer();
-        Shoot();
+        //Shoot();
         AvoidOtherEnemies();
         ThrusterVFX();
     }
@@ -72,14 +59,21 @@ public class Enemy_Ship : MonoBehaviour
     void FollowPlayer()
     {
         distanceFromThePlayer = Vector3.Distance(transform.position, player.transform.position);
+        Vector3 direction = (transform.position - player.transform.position).normalized;
         if (distanceFromThePlayer < limitOfDistanceFromPlayer)
         {
-            Vector3 direction = (transform.position - player.transform.position).normalized;
-            //rb.AddForce(direction * movement_speed);
+            // Get away from the player
+            rb.AddForce(direction * movement_speed,ForceMode2D.Force);
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movement_speed * Time.deltaTime);
+            // Go to the player's position
+            rb.AddForceAtPosition(-direction * movement_speed, player.transform.position);
+        }
+
+        if (rb.linearVelocity.magnitude > movement_speed)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * movement_speed;
         }
 
         // Change the rotation accoriding to the player's rotation to always face the player
@@ -97,8 +91,9 @@ public class Enemy_Ship : MonoBehaviour
                 distanceFromEnemies = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distanceFromEnemies < distanceBetweenEnemies)
                 {
+                    // Stay away from other enemies
                     Vector3 enemyDirection = (transform.position - enemy.transform.position).normalized;
-                    transform.position += enemyDirection * movement_speed * Time.deltaTime;
+                    rb.AddForce(enemyDirection * movement_speed);
                 }
             }
         }
