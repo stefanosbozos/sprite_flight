@@ -5,17 +5,9 @@ public class PlayerHUD : MonoBehaviour
 {
     [SerializeField]
     private UIDocument UIDoc;
-    
-
-    // // This is for gun temperature bar next to the player
-    // [SerializeField] private RectTransform temperatureBar;
-    // [SerializeField] private float barWidth, barHeight;
 
     // The player's stuff
     private Player player;
-
-    // The HUD items
-    private Label HUD_score;
 
     // The laser progress bar
     private VisualElement m_LaserTempMask;
@@ -36,7 +28,7 @@ public class PlayerHUD : MonoBehaviour
         m_LaserTemperature = UIDoc.rootVisualElement.Q<Label>("HUD_LaserTemp");
         m_LaserTempMask = UIDoc.rootVisualElement.Q<VisualElement>("HUD_LasertempMask");
 
-        UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Confined;
     }
 

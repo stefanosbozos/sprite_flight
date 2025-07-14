@@ -10,6 +10,7 @@ public class CursorBehaviour : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        Cursor.visible = false;
         Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         virtualMouse = GameObject.FindGameObjectWithTag("virtual_mouse");
         ShowVirtualMouse();

@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     [SerializeField] float timeBetweenShots = 0.01f;
     private float timeSinceLastShot = 0f;
     [SerializeField] private float laserCooldownInterval = 5f;
-    private float laserCooldownDecreatingStep = 3f;
+    [SerializeField] private float laserCooldownDecreatingStep = 3f;
     [SerializeField] private float laserHeatIncreaseStep = 3f;
     private int rotationOffset = 90;
     private float aimSensitivity = 10.0f;
@@ -47,14 +47,16 @@ public class Player : MonoBehaviour
     // Pause System
     private PauseSystem pauseSystem;
 
-    int rotationZ;
-
     Rigidbody2D rb;
+
+    [SerializeField] StatusBar heatBar;
 
     void Awake()
     {
         pauseSystem = GameObject.FindGameObjectWithTag("game_manager").GetComponent<PauseSystem>();
         //Cursor.SetCursor(cursorTexture, cursorHotSpot, cursorMode);
+
+        heatBar = GetComponentInChildren<StatusBar>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -139,12 +141,15 @@ public class Player : MonoBehaviour
         if (laserTemperature >= 0 && laserTemperature < HEAT_LIMIT)
         {
             laserTemperature -= Time.deltaTime * laserCooldownDecreatingStep;
+
         }
 
         if (laserTemperature >= HEAT_LIMIT)
         {
             CooldownLaser();
         }
+
+        heatBar.UpdateStatusBar(laserTemperature, 100f);
     }
 
     void CooldownLaser()
@@ -160,7 +165,7 @@ public class Player : MonoBehaviour
     void playerVisualEffects()
     {
 
-        if (moveValue.y > 0)
+        if (moveValue.sqrMagnitude > 0)
         {
             playerVFX.emissionRate = 30;
         }
