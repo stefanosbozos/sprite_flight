@@ -13,7 +13,7 @@ public class CursorBehaviour : MonoBehaviour
         Cursor.visible = false;
         Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         virtualMouse = GameObject.FindGameObjectWithTag("virtual_mouse");
-        ShowVirtualMouse();
+        // ShowVirtualMouse();
     }
 
     void ShowVirtualMouse()

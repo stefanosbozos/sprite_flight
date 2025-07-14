@@ -929,7 +929,7 @@ MonoBehaviour:
   m_CursorMode: 0
   m_CursorGraphic: {fileID: 1530879820}
   m_CursorTransform: {fileID: 1530879818}
-  m_CursorSpeed: 2000
+  m_CursorSpeed: 5000
   m_ScrollSpeed: 45
   m_StickAction:
     m_UseReference: 0
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530879817}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1322,7 +1322,7 @@ PrefabInstance:
       objectReference: {fileID: 3410269031510865162, guid: 90c35e5b64f48fc45aac3e3d3890def0, type: 3}
     - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
       propertyPath: waves.Array.data[0].enemiesPerWave
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1034244031261034641, guid: e2a70071ecbd4484187af147fcdba452, type: 3}
       propertyPath: waves.Array.data[0].timeBetweenSpawns
@@ -1393,37 +1393,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 589637712425768320, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.3
+    - target: {fileID: 1622936531678798512, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622936531678798512, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720732789058999329, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720732789058999329, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809251937063177222, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809251937063177222, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4152517578923950792, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
       propertyPath: m_Name
       value: Spaceship
-      objectReference: {fileID: 0}
-    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
-      propertyPath: maxSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
-      propertyPath: thrustForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
-      propertyPath: rotationSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7211746086165913515, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7211746086165913515, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
-      propertyPath: maxOffsetDistance
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638802228479962976, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

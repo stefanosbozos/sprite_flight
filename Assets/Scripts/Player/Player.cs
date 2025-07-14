@@ -18,8 +18,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector2 aimValue;
 
     [Header("Player Vitals")]
-    [SerializeField] private int heatlh;
-    [SerializeField] private int shield;
+    [SerializeField] private float currentHealth;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float maxShield;
+    [SerializeField] private float shield;
     private bool shieldActive;
 
     // Player's firing system
@@ -41,22 +43,25 @@ public class Player : MonoBehaviour
     [Header("Player Visual FX")]
     [SerializeField] private ParticleSystem playerVFX;
     [SerializeField] private GameObject explosionParticleEffect;
-    [SerializeField] private GameObject onImpactExplosion;
+    [SerializeField] private GameObject takeDamageFX;
     [SerializeField] private ParticleSystem shipSmoke;
 
     // Pause System
     private PauseSystem pauseSystem;
 
     Rigidbody2D rb;
-
-    [SerializeField] StatusBar heatBar;
+    HeatBar heatBar;
+    HealthBar healthBar;
+    ShieldBar shieldBar;
 
     void Awake()
     {
         pauseSystem = GameObject.FindGameObjectWithTag("game_manager").GetComponent<PauseSystem>();
         //Cursor.SetCursor(cursorTexture, cursorHotSpot, cursorMode);
 
-        heatBar = GetComponentInChildren<StatusBar>();
+        heatBar = GetComponentInChildren<HeatBar>();
+        healthBar = GetComponentInChildren<HealthBar>();
+        shieldBar = GetComponentInChildren<ShieldBar>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -71,9 +76,15 @@ public class Player : MonoBehaviour
         shootLaser = InputSystem.actions.FindAction("Shoot");
         aim = InputSystem.actions.FindAction("Aim");
 
+        heatBar = GetComponentInChildren<HeatBar>();
+        healthBar = GetComponentInChildren<HealthBar>();
+        shieldBar = GetComponentInChildren<ShieldBar>();
+
         // Player state
-        heatlh = 100;
-        shield = 0;
+        maxHealth = 100;
+        currentHealth = 100;
+        shield = 100;
+        maxShield = 100;
 
     }
 
@@ -184,7 +195,7 @@ public class Player : MonoBehaviour
         }
 
         // Play smoke if player below 20% health
-        if (heatlh <= 20)
+        if (currentHealth <= 20)
         {
             shipSmoke.Play();
         }
@@ -201,14 +212,14 @@ public class Player : MonoBehaviour
         {
             // Instantiate an explosion where the player got hit
             Vector2 contactOfImpact = collision.GetContact(0).point;
-            GameObject impactFX = Instantiate(onImpactExplosion, contactOfImpact, Quaternion.identity);
+            GameObject impactFX = Instantiate(takeDamageFX, contactOfImpact, Quaternion.identity);
             if (shieldActive)
             {
                 shield -= 10;
             }
             else
             {
-                heatlh -= 10;
+                TakeDamage(10, collision);
             }
             Destroy(collision.gameObject);
             Destroy(impactFX, 1f);
@@ -221,6 +232,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    void TakeDamage(float damageAmount, Collision2D collision)
+    {
+        currentHealth -= damageAmount;
+        healthBar.UpdateStatusBar(currentHealth, maxHealth);
+
+        Vector2 contactOfdamage = collision.GetContact(0).point;
+        GameObject damageEffect = Instantiate(takeDamageFX, contactOfdamage, Quaternion.identity);
+
+        Destroy(damageEffect, 0.5f);
+
+        if (currentHealth <= 0)
+        {
+            KillPlayer();
+        }
+    }
     
     void ActivateShields()
     {
@@ -236,7 +262,7 @@ public class Player : MonoBehaviour
     }
     public bool PlayerAlive()
     {
-        if (heatlh > 0)
+        if (currentHealth > 0)
         {
             return true;
         }

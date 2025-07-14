@@ -398,7 +398,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 1
-  m_AngularDamping: 0.05
+  m_AngularDamping: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -425,13 +425,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingHealthBar: {fileID: 0}
   projectile: {fileID: 3439262997926754641, guid: 69791d647ae567548b69d04cfabef369, type: 3}
-  minTimeToAttack: 1
-  maxTimeToAttack: 5
+  minTimeToAttack: 2
+  maxTimeToAttack: 7
   timeBetweenShots: 0
-  movement_speed: 10
-  rotation_speed: 10
-  limitOfDistanceFromPlayer: 20
-  distanceBetweenEnemies: 20
+  movement_speed: 5
+  rotation_speed: 5
+  limitOfDistanceFromPlayer: 10
+  distanceBetweenEnemies: 10
   deathExplosionFX: {fileID: 2378318148097607794, guid: c702891af4e761c44b7c282849f0a789, type: 3}
   enemyThrusterVFX: {fileID: 4502550197988101056}
   takeDamageFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}

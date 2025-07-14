@@ -9,7 +9,7 @@ public class Enemy_Ship : MonoBehaviour
     [Header("Enemy Vitals")]
     private float currentHealth = 100f;
     private float maxHealth = 100f;
-    [SerializeField] StatusBar floatingHealthBar;
+    HealthBar floatingHealthBar;
 
 
     [Header("Enemy Shooting System")]
@@ -45,7 +45,7 @@ public class Enemy_Ship : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         EnemiesOnScreen = GameObject.FindGameObjectsWithTag("enemy_ship");
-        floatingHealthBar = GetComponentInChildren<StatusBar>();
+        floatingHealthBar = GetComponentInChildren<HealthBar>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
