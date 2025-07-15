@@ -210,9 +210,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "enemy_fire")
         {
-            // Instantiate an explosion where the player got hit
-            Vector2 contactOfImpact = collision.GetContact(0).point;
-            GameObject impactFX = Instantiate(takeDamageFX, contactOfImpact, Quaternion.identity);
             if (shieldActive)
             {
                 shield -= 10;
@@ -222,7 +219,6 @@ public class Player : MonoBehaviour
                 TakeDamage(10, collision);
             }
             Destroy(collision.gameObject);
-            Destroy(impactFX, 1f);
 
             if (!PlayerAlive())
             {

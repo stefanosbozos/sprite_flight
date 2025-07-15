@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 7876405911913664006}
   - component: {fileID: -6756094584037500207}
   - component: {fileID: 3382631582969193736}
+  - component: {fileID: 4702092133432559229}
   m_Layer: 0
   m_Name: Alien_Ship
   m_TagString: enemy_ship
@@ -423,18 +424,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d29646a6a0c774a8d551ae58c7bd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatingHealthBar: {fileID: 0}
+  m_enemyStats: {fileID: 11400000, guid: 1ebfbeee12d502540905085b530a276f, type: 2}
   projectile: {fileID: 3439262997926754641, guid: 69791d647ae567548b69d04cfabef369, type: 3}
   minTimeToAttack: 2
   maxTimeToAttack: 7
   timeBetweenShots: 0
-  movement_speed: 5
-  rotation_speed: 5
   limitOfDistanceFromPlayer: 10
-  distanceBetweenEnemies: 10
-  deathExplosionFX: {fileID: 2378318148097607794, guid: c702891af4e761c44b7c282849f0a789, type: 3}
   enemyThrusterVFX: {fileID: 4502550197988101056}
-  takeDamageFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}
 --- !u!114 &-6756094584037500207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,6 +458,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 3546362577382079938}
+--- !u!114 &4702092133432559229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3410269031510865162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd325841419c5c499de2d12519cbedb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStats: {fileID: 11400000, guid: 1ebfbeee12d502540905085b530a276f, type: 2}
+  m_distanceBetweenEnemies: 8
 --- !u!1 &3622275103253320328
 GameObject:
   m_ObjectHideFlags: 0

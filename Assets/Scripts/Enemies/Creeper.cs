@@ -62,7 +62,6 @@ public class Creeper : MonoBehaviour
         {
             player.TakeDamage(enemyStats.damage_rate, collision);
         }
-
     }
     
     void TakeDamage(float damageAmount, Collision2D collision)
