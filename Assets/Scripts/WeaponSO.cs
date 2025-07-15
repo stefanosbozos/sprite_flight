@@ -7,5 +7,4 @@ public class WeaponSO : ScriptableObject
     public float damage_amount;
     public Vector3 projectile_direction;
     public float projectile_speed;
-
 }

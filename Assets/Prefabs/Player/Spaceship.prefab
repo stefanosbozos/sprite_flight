@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8209724612017901199}
   m_Layer: 0
-  m_Name: LaserSpawn
+  m_Name: ProjectileSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1249,6 +1249,7 @@ GameObject:
   - component: {fileID: 7720500636042657164}
   - component: {fileID: 3372327928293621499}
   - component: {fileID: 8035932754624923191}
+  - component: {fileID: 7431842874672389038}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Player
@@ -1413,7 +1414,6 @@ MonoBehaviour:
   maxHealth: 100
   maxShield: 100
   shield: 100
-  projectilePreFab: {fileID: 976426763524034030, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
   gunMuzzles: {fileID: 7523905511126667713}
   timeBetweenShots: 0.1
   laserCooldownInterval: 5
@@ -1491,6 +1491,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 2435364544282362646}
+--- !u!114 &7431842874672389038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152517578923950792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae8e01f82d504474f87fcfa5d4cb947c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_weapon: {fileID: 11400000, guid: 12da64bd71c77214d95588e5e1236798, type: 2}
 --- !u!1 &4959855563730260755
 GameObject:
   m_ObjectHideFlags: 0

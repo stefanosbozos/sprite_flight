@@ -5,12 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - laser_blue
-  - asteroid
-  - border
   - game_manager
   - enemy_fire
-  - FxTemporaire
-  - enemy_ship
   - virtual_mouse
   - enemy
   layers:

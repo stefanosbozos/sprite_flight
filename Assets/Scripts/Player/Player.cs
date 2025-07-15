@@ -26,10 +26,11 @@ public class Player : MonoBehaviour
 
     // Player's firing system
     [Header("Firing System")]
-    [SerializeField] private GameObject projectilePreFab;
+    public Projectile projectile;
+
     [SerializeField] private GameObject gunMuzzles;
     InputAction shootLaser;
-    private float HEAT_LIMIT = 100f;
+    const float k_heat_limit = 100f;
     private float laserTemperature = 0f;
     [SerializeField] float timeBetweenShots = 0.01f;
     private float timeSinceLastShot = 0f;
@@ -37,7 +38,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float laserCooldownDecreatingStep = 3f;
     [SerializeField] private float laserHeatIncreaseStep = 3f;
     private int rotationOffset = 90;
-    private float aimSensitivity = 10.0f;
 
 
     [Header("Player Visual FX")]
@@ -57,11 +57,12 @@ public class Player : MonoBehaviour
     void Awake()
     {
         pauseSystem = GameObject.FindGameObjectWithTag("game_manager").GetComponent<PauseSystem>();
-        //Cursor.SetCursor(cursorTexture, cursorHotSpot, cursorMode);
 
         heatBar = GetComponentInChildren<HeatBar>();
         healthBar = GetComponentInChildren<HealthBar>();
         shieldBar = GetComponentInChildren<ShieldBar>();
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -69,7 +70,6 @@ public class Player : MonoBehaviour
     {
         gunMuzzles.SetActive(false);
 
-        rb = GetComponent<Rigidbody2D>();
 
         //Keyboard support input
         movePlayer = InputSystem.actions.FindAction("Move");
@@ -136,9 +136,9 @@ public class Player : MonoBehaviour
         {
             if (timeSinceLastShot >= timeBetweenShots)
             {
-                if (laserTemperature < HEAT_LIMIT)
+                if (laserTemperature < k_heat_limit)
                 {
-                    Instantiate(projectilePreFab, transform.Find("LaserSpawn").position, transform.Find("LaserSpawn").rotation);
+                    projectile.FireProjectileAt(transform.Find("ProjectileSpawn").position, transform.Find("ProjectileSpawn").rotation);
                     laserTemperature += laserHeatIncreaseStep;
                 }
                 timeSinceLastShot = 0f;
@@ -149,13 +149,13 @@ public class Player : MonoBehaviour
 
     void CheckGunsTemperature()
     {
-        if (laserTemperature >= 0 && laserTemperature < HEAT_LIMIT)
+        if (laserTemperature >= 0 && laserTemperature < k_heat_limit)
         {
             laserTemperature -= Time.deltaTime * laserCooldownDecreatingStep;
 
         }
 
-        if (laserTemperature >= HEAT_LIMIT)
+        if (laserTemperature >= k_heat_limit)
         {
             CooldownLaser();
         }
@@ -166,7 +166,7 @@ public class Player : MonoBehaviour
     void CooldownLaser()
     {
         laserCooldownInterval -= Time.deltaTime;
-        if (laserTemperature >= HEAT_LIMIT && laserCooldownInterval <= 0.0f)
+        if (laserTemperature >= k_heat_limit && laserCooldownInterval <= 0.0f)
         {
             laserTemperature = 0f;
             laserCooldownInterval = 3f;
@@ -185,7 +185,7 @@ public class Player : MonoBehaviour
             playerVFX.emissionRate = 0;
         }
 
-        if (shootLaser.inProgress && laserTemperature < HEAT_LIMIT)
+        if (shootLaser.inProgress && laserTemperature < k_heat_limit)
         {
             gunMuzzles.SetActive(true);
         }
@@ -271,7 +271,7 @@ public class Player : MonoBehaviour
     }
     public bool GunsOverheated()
     {
-        return laserTemperature >= HEAT_LIMIT ? true : false;
+        return laserTemperature >= k_heat_limit ? true : false;
     }
 }
 

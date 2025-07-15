@@ -73,18 +73,10 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            PrepareNextWave();
+            //PrepareNextWave();
         }
     }
 
-    void PrepareNextWave()
-    {
-        // WaveInfo.timeBetweenWaves -= Time.deltaTime;
-        // Debug.Log("Next wave in..." + Mathf.FloorToInt(timer));
-        // if (WaveInfo.timeBetweenWaves <= 0f)
-        // {
-        // }
-    }
 
     private bool ReadyToSpawn()
     {

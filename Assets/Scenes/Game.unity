@@ -1352,7 +1352,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spaceship
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5802271188003381315, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 8158747000278187019, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+    m_RemovedComponents:
+    - {fileID: 7431842874672389038, guid: 53760d50c1a6e484d88a32d2ddb99006, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
