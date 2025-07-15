@@ -11,8 +11,8 @@ TagManager:
   - enemy_fire
   - FxTemporaire
   - enemy_ship
-  - enemy_ship2
   - virtual_mouse
+  - enemy
   layers:
   - Default
   - TransparentFX

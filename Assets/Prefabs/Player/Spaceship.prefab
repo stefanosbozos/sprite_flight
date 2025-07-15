@@ -475,8 +475,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2957887144481884672}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.25, y: 0}
-  m_AnchorMax: {x: 0.75, y: 1}
+  m_AnchorMin: {x: 0, y: 0.25}
+  m_AnchorMax: {x: 1, y: 0.75}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -660,7 +660,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 10}
+  m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4305588078253097894
 CanvasRenderer:
@@ -1042,7 +1042,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3102873233352760995}
-  m_LocalRotation: {x: -0, y: -0, z: -0.17364825, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0, z: -0.17364825, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.010000002, y: 0.010000002, z: 0.010000001}
   m_ConstrainProportionsScale: 0
@@ -1053,8 +1053,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -20}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -961.1399, y: -540.4805}
-  m_SizeDelta: {x: 39.807, y: 89.09}
+  m_AnchoredPosition: {x: -961.07166, y: -540.4177}
+  m_SizeDelta: {x: 52.515, y: 103.9886}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &441304970822953198
 MonoBehaviour:
@@ -1103,7 +1103,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.516
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1138,10 +1138,10 @@ RectTransform:
   - {fileID: 1622936531678798512}
   m_Father: {fileID: 2957887144481884672}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.25, y: 0}
-  m_AnchorMax: {x: 0.75, y: 1}
-  m_AnchoredPosition: {x: 0, y: -5}
-  m_SizeDelta: {x: 0, y: -20}
+  m_AnchorMin: {x: 0, y: 0.25}
+  m_AnchorMax: {x: 1, y: 0.75}
+  m_AnchoredPosition: {x: -0.16, y: 0}
+  m_SizeDelta: {x: -10.33, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3859043041057457452
 GameObject:
@@ -1178,8 +1178,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -958.888, y: -540.4567}
-  m_SizeDelta: {x: 38.3919, y: 89.09}
+  m_AnchoredPosition: {x: -958.92175, y: -540.41626}
+  m_SizeDelta: {x: 53.8977, y: 101.2001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2435364544282362646
 MonoBehaviour:
@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.516
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1409,9 +1409,9 @@ MonoBehaviour:
   maxSpeed: 20
   moveValue: {x: 0, y: 0}
   aimValue: {x: 0, y: 0}
-  currentHealth: 0
-  maxHealth: 0
-  maxShield: 0
+  currentHealth: 100
+  maxHealth: 100
+  maxShield: 100
   shield: 100
   projectilePreFab: {fileID: 976426763524034030, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
   gunMuzzles: {fileID: 7523905511126667713}
@@ -1989,8 +1989,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25, y: 0}
   m_AnchorMax: {x: 0.75, y: 1}
-  m_AnchoredPosition: {x: 0, y: -5}
-  m_SizeDelta: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: 0.049999237}
+  m_SizeDelta: {x: 0, y: -9.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8305455803206451319
 GameObject:
@@ -2025,8 +2025,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25, y: 0}
   m_AnchorMax: {x: 0.75, y: 1}
-  m_AnchoredPosition: {x: 0, y: -5}
-  m_SizeDelta: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: -0.019996643}
+  m_SizeDelta: {x: 0, y: -10.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8638802228479962976
 GameObject:
@@ -2240,7 +2240,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.01, y: 0}
-  m_SizeDelta: {x: 58.607, y: 99.09}
+  m_SizeDelta: {x: 99.09, y: 58.607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6341424984682840687
 MonoBehaviour:
@@ -2285,11 +2285,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1622936531678798512}
   m_HandleRect: {fileID: 0}
-  m_Direction: 2
+  m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.516
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -44,7 +44,7 @@ public class Enemy_Ship : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-        EnemiesOnScreen = GameObject.FindGameObjectsWithTag("enemy_ship");
+        EnemiesOnScreen = GameObject.FindGameObjectsWithTag("enemy");
         floatingHealthBar = GetComponentInChildren<HealthBar>();
     }
 

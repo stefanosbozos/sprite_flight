@@ -232,15 +232,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    void TakeDamage(float damageAmount, Collision2D collision)
+    public void TakeDamage(float damageAmount, Collision2D collision=null)
     {
         currentHealth -= damageAmount;
         healthBar.UpdateStatusBar(currentHealth, maxHealth);
-
-        Vector2 contactOfdamage = collision.GetContact(0).point;
-        GameObject damageEffect = Instantiate(takeDamageFX, contactOfdamage, Quaternion.identity);
-
-        Destroy(damageEffect, 0.5f);
+        if (collision != null)
+        {
+            Vector2 contactOfdamage = collision.GetContact(0).point;
+            GameObject damageEffect = Instantiate(takeDamageFX, contactOfdamage, Quaternion.identity);
+            Destroy(damageEffect, 0.5f);
+        }
 
         if (currentHealth <= 0)
         {
