@@ -812,12 +812,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerStats: {fileID: 11400000, guid: f8b24b3051e9ff046ae4ac7a71062237, type: 2}
   Projectile: {fileID: 8158747000278187019, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
-  m_damageMultiplier: 1
   gunMuzzles: {fileID: 7523905511126667713}
-  timeBetweenShots: 0.1
-  laserCooldownInterval: 5
-  laserCooldownDecreatingStep: 10
-  laserHeatIncreaseStep: 5
+  TimeBetweenShots: 0.5
+  LaserCooldownInterval: 5
+  LaserCooldownDecreatingStep: 3
+  LaserHeatIncreaseStep: 3
   ThrustersFX: {fileID: 6040192229343400470}
   shipSmoke: {fileID: 1340619589019415127}
 --- !u!114 &7891935908401970227

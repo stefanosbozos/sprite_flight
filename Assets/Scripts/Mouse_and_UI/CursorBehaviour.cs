@@ -13,18 +13,5 @@ public class CursorBehaviour : MonoBehaviour
         Cursor.visible = false;
         Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         virtualMouse = GameObject.FindGameObjectWithTag("virtual_mouse");
-        // ShowVirtualMouse();
-    }
-
-    void ShowVirtualMouse()
-    {
-        if (Gamepad.current != null)
-        {
-            virtualMouse.SetActive(true);
-        }
-        else
-        {
-            virtualMouse.SetActive(false);
-        }
     }
 }

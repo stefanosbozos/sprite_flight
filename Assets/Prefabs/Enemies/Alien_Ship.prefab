@@ -399,7 +399,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 1
-  m_AngularDamping: 1
+  m_AngularDamping: 1.5
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -425,7 +425,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyStats: {fileID: 11400000, guid: 1ebfbeee12d502540905085b530a276f, type: 2}
-  projectile: {fileID: 3439262997926754641, guid: 69791d647ae567548b69d04cfabef369, type: 3}
   minTimeToAttack: 2
   maxTimeToAttack: 7
   timeBetweenShots: 0

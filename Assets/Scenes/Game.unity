@@ -185,14 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1390ad762765bd1448771e223c4d7c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves:
-  - enemiesToSpawn:
-    - {fileID: 3410269031510865162, guid: 90c35e5b64f48fc45aac3e3d3890def0, type: 3}
-    enemiesPerWave: 1
-    timeBetweenSpawns: 2
-  X_offset: 1
-  Y_offset: 3
-  spawnFX: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
+  EnemyWave:
+  - {fileID: 11400000, guid: c1a07ba1277e2564eb1236fd945ff91a, type: 2}
+  SpawingAreaOffsetX: 1
+  SpawningAreaOffsetY: 3
+  SpawnEnemyVFX: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
 --- !u!4 &1015223026
 Transform:
   m_ObjectHideFlags: 0

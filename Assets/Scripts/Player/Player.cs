@@ -14,8 +14,10 @@ public class Player : MonoBehaviour
     private InputAction m_shootLaser;
     private InputAction m_aim;
 
+    // Physics and Movement
     private Vector2 m_moveValue;
     private int rotationOffset = 90;
+    private Rigidbody2D rb;
 
 
     // Player Vitals
@@ -37,37 +39,38 @@ public class Player : MonoBehaviour
     private float m_laserTemperature = 0f;
     private const float k_laserHeatLimit = 100f;
 
-
-    [Header("Player Visual FX")]
+    
+    // Player Particle System
     public ParticleSystem ThrustersFX;
     public ParticleSystem shipSmoke;
+
 
     // Pause System
     private PauseSystem pauseSystem;
 
-    private Rigidbody2D rb;
 
     void Awake()
     {
         pauseSystem = GameObject.FindGameObjectWithTag("game_manager").GetComponent<PauseSystem>();
+        
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        gunMuzzles.SetActive(false);
-
+        
         //Keyboard support input
         m_movePlayer = InputSystem.actions.FindAction("Move");
         m_shootLaser = InputSystem.actions.FindAction("Shoot");
         m_aim = InputSystem.actions.FindAction("Aim");
+    }
 
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
         // Player state
         m_currentHealth = 100;
         m_currentShieldAmount = 0;
-
+        gunMuzzles.SetActive(false);
     }
+
 
     // Update is called once per frame 
     void Update()
@@ -81,17 +84,19 @@ public class Player : MonoBehaviour
         }
     }
 
+
     void PlayerMovement()
     {
         m_moveValue = m_movePlayer.ReadValue<Vector2>().normalized;
         rb.AddForce(m_moveValue * PlayerStats.ThrustForce);
 
         // This is to stop the player for accelerating if the move button is constantly pressed.
-        if (rb.linearVelocity.magnitude > PlayerStatsSO.k_MaxSpeed)
+        if ( rb.linearVelocity.magnitude > PlayerStatsSO.k_MaxSpeed )
         {
             rb.linearVelocity = rb.linearVelocity.normalized * PlayerStatsSO.k_MaxSpeed;
         }
     }
+
 
     void Aim()
     {
@@ -101,7 +106,7 @@ public class Player : MonoBehaviour
         Vector3 playerDirection = mouseWorldPos - transform.position;
         playerDirection.z = 0; // Ensure that the player does not rotate on the Z-axis
 
-        if (playerDirection.sqrMagnitude > 0.01f)
+        if ( playerDirection.sqrMagnitude > 0.01f )
         {
             float angle = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle - rotationOffset);

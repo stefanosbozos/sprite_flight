@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   ThrustForce: 10
-  RotationSpeed: 5
+  RotationSpeed: 10
   DeathFX: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
   TakeDamageFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}
