@@ -34,6 +34,7 @@ public class EnemySpawner : MonoBehaviour
     private float m_timer = 0f;
 
     private bool m_gameOver;
+    private bool m_waveIsFinished;
 
 
     void Awake()
@@ -53,21 +54,26 @@ public class EnemySpawner : MonoBehaviour
         m_spawningPositionLimitY = m_cameraSizeY - SpawningAreaOffsetY;
 
         m_waveIndex = 0;
+        m_gameOver = false;
     }
 
 
     void Update()
     {
-        if ( m_player == null )
+        if (m_player == null)
         {
             DestroyAllEnemiesOnScreen();
             m_gameOver = !m_gameOver;
         }
         else
         {
-            if (m_gameOver)
+            if (!m_waveIsFinished)
             {
                 SpawnEnemy();
+            }
+            else
+            {
+                SpawnNextWave();
             }
         }
     }
@@ -77,7 +83,7 @@ public class EnemySpawner : MonoBehaviour
     {
         m_timer += Time.deltaTime;
         // Check the spawning interval and how many enemies are on the screen.
-        if (IsReadyToSpawn() && !AreEnemiesLeftInWave())
+        if (IsReadyToSpawn() && EnemiesLeftInWave())
         {
 
             m_enemyToSpawnIndex = Random.Range(0, EnemyWave[m_waveIndex].EnemyType.Count);
@@ -96,13 +102,14 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        if (AreEnemiesLeftInWave() && CountEnemiesOnScreen() <= 0 )
+        if (!EnemiesLeftInWave())
         {
-            Debug.Log("Preparing Next Wave...");
-            SpawnNextWave();
+            m_waveIsFinished = !m_waveIsFinished;
+            Debug.Log("Wave is finished: " + m_waveIsFinished);
         }
 
     }
+
 
 
     private bool IsReadyToSpawn()
@@ -114,9 +121,9 @@ public class EnemySpawner : MonoBehaviour
     }
 
 
-    private bool AreEnemiesLeftInWave()
+    private bool EnemiesLeftInWave()
     {
-        return EnemyWave[m_waveIndex].EnemiesPerWave <= m_totalEnemiesSpawned;
+        return EnemyWave[m_waveIndex].EnemiesPerWave > m_totalEnemiesSpawned;
     }
 
     private void SpawnNextWave()
@@ -128,6 +135,7 @@ public class EnemySpawner : MonoBehaviour
             if (m_waveIndex < EnemyWave.Count)
             {
                 m_waveIndex++;
+                Debug.Log("Wave Index: " + m_waveIndex);
             }
             else
             {

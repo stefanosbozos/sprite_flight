@@ -12,5 +12,5 @@ public class EnemyWaveSO : ScriptableObject
     // How many enemies will be spawned on screen (spawn in batches)
     public int EnemiesOnScreen;
     public float EnemySpawningInterval;
-    public static float m_TimeBetweenEachWave = 3f;
+    public static float m_TimeBetweenEachWave = 1f;
 }
