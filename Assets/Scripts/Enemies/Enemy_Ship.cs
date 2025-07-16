@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class Enemy_Ship : MonoBehaviour
 {
-    [SerializeField] private EnemyStatsSO m_enemyStats;
-    private Transform player;
-    private Rigidbody2D rb;
+    public EnemyStatsSO EnemyStats;
 
-    [Header("Enemy Vitals")]
-    private float currentHealth = 100f;
+
+    private Transform m_player;
+    private Projectile m_projectile;
+    private Rigidbody2D m_rb;
+    private float m_currentHealth = 100f;
     HealthBar floatingHealthBar;
 
 
     [Header("Enemy Shooting System")]
-    [SerializeField] private GameObject projectile;
     [SerializeField] private float minTimeToAttack = 1.5f;
     [SerializeField] private float maxTimeToAttack = 5.0f;
     [SerializeField] private float timeBetweenShots;
@@ -29,12 +29,14 @@ public class Enemy_Ship : MonoBehaviour
 
 
     [Header("Enemy VFX")]
-    [SerializeField] private ParticleSystem enemyThrusterVFX;
+    [SerializeField] private ParticleSystem ThrusterVFX;
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        rb = GetComponent<Rigidbody2D>();
+        m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        m_rb = GetComponent<Rigidbody2D>();
+        m_projectile = EnemyStats.ProjectilePreFab.GetComponent<Projectile>();
+
         floatingHealthBar = GetComponentInChildren<HealthBar>();
     }
 
@@ -43,7 +45,7 @@ public class Enemy_Ship : MonoBehaviour
     {
         limitOfDistanceFromPlayer = Mathf.FloorToInt(Random.Range(minDistanceFromPlayer, maxDistanceFromPlayer));
         timeBetweenShots = Random.Range(minTimeToAttack, maxTimeToAttack);
-        floatingHealthBar.UpdateStatusBar(currentHealth, m_enemyStats.maxHealth);
+        floatingHealthBar.UpdateStatusBar(m_currentHealth, EnemyStats.maxHealth);
     }
 
     // Update is called once per frame
@@ -51,35 +53,35 @@ public class Enemy_Ship : MonoBehaviour
     {
         ChasePlayer();
         Shoot();
-        ThrusterVFX();
+        ThrusterEmission();
     }
 
     void ChasePlayer()
     {
-        if (player != null)
+        if (m_player != null)
         {
-            distanceFromThePlayer = Vector3.Distance(transform.position, player.transform.position);
-            Vector3 direction = (transform.position - player.transform.position).normalized;
+            distanceFromThePlayer = Vector3.Distance(transform.position, m_player.transform.position);
+            Vector3 direction = (transform.position - m_player.transform.position).normalized;
             if (distanceFromThePlayer < limitOfDistanceFromPlayer)
             {
                 // Get away from the player
-                rb.AddForce(direction * m_enemyStats.movement_speed, ForceMode2D.Force);
+                m_rb.AddForce(direction * EnemyStats.movement_speed, ForceMode2D.Force);
             }
             else
             {
                 // Go to the player's position
-                rb.AddForceAtPosition(-direction * m_enemyStats.movement_speed, player.transform.position);
+                m_rb.AddForceAtPosition(-direction * EnemyStats.movement_speed, m_player.transform.position);
             }
 
-            if (rb.linearVelocity.magnitude > m_enemyStats.movement_speed)
+            if (m_rb.linearVelocity.magnitude > EnemyStats.movement_speed)
             {
-                rb.linearVelocity = rb.linearVelocity.normalized * m_enemyStats.movement_speed;
+                m_rb.linearVelocity = m_rb.linearVelocity.normalized * EnemyStats.movement_speed;
             }
 
             // Change the rotation accoriding to the player's rotation to always face the player
-            Vector3 enemyRotation = player.transform.position - transform.position;
+            Vector3 enemyRotation = m_player.transform.position - transform.position;
             float rotationZ = Mathf.Atan2(enemyRotation.y, enemyRotation.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ + 90.0f), m_enemyStats.rotation_speed * Time.deltaTime);
+            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ + 90.0f), EnemyStats.rotation_speed * Time.deltaTime);
         }
         
     }
@@ -90,46 +92,55 @@ public class Enemy_Ship : MonoBehaviour
         if (timer > timeBetweenShots)
         {
             // Check the state of the enemy. As we do not want more than 3 enemies attach at the same time.
-            GameObject spawnedBullet = Instantiate(projectile, transform.Find("ProjectileSpawn").position, transform.Find("ProjectileSpawn").rotation);
+            m_projectile.FireProjectileAt( transform.Find("ProjectileSpawn").position, transform.Find("ProjectileSpawn").rotation );
             timer = 0;
-            Destroy(spawnedBullet, 3f);
         }
     }
 
-    void ThrusterVFX()
+    void ThrusterEmission()
     {
-        if (rb.linearVelocity.sqrMagnitude > 0.01)
+        if (m_rb.linearVelocity.sqrMagnitude > 0.01)
         {
-            enemyThrusterVFX.emissionRate = 30;
+            var emission = ThrusterVFX.emission;
+            emission.rateOverTime = 30;
         }
-        if (rb.linearVelocity.sqrMagnitude <= 0)
+        if (m_rb.linearVelocity.sqrMagnitude <= 0)
         {
-            enemyThrusterVFX.emissionRate = 0;
+            var emission = ThrusterVFX.emission;
+            emission.rateOverTime = 0;
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.tag == "laser_blue")
         {
-            Destroy(collision.gameObject);
-            TakeDamage(25.0f, collision);
+
+            Projectile projectile = collision.gameObject.GetComponentInParent<Projectile>();
+
+            if (projectile != null)
+            {
+                Destroy(collision.gameObject);
+                TakeDamage(projectile.GetDamageAmount, collision);
+            }
+
         }
     }
 
     void TakeDamage(float damageAmount, Collision2D collision)
     {
-        currentHealth -= damageAmount;
-        floatingHealthBar.UpdateStatusBar(currentHealth, m_enemyStats.maxHealth);
+        m_currentHealth -= damageAmount;
+        floatingHealthBar.UpdateStatusBar(m_currentHealth, EnemyStats.maxHealth);
 
         Vector2 contactOfdamage = collision.GetContact(0).point;
-        GameObject damageEffect = Instantiate(m_enemyStats.taking_damage_VFX, contactOfdamage, Quaternion.identity);
+        GameObject damageEffect = Instantiate(EnemyStats.taking_damage_VFX, contactOfdamage, Quaternion.identity);
 
         Destroy(damageEffect, 0.5f);
 
-        if (currentHealth <= 0)
+        if (m_currentHealth <= 0)
         {
-            GameObject explosion = Instantiate(m_enemyStats.death_explosion_VFX, transform.position, transform.rotation);
+            GameObject explosion = Instantiate(EnemyStats.death_explosion_VFX, transform.position, transform.rotation);
             Destroy(gameObject);
             Destroy(explosion, 2f);
         }

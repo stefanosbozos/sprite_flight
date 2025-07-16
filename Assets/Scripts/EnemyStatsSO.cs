@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyStatsSO", menuName = "Enemy Stats")]
 public class EnemyStatsSO : ScriptableObject
 {
+    // The type of projectile the enemy has, if non leave null.
+    public GameObject ProjectilePreFab;
+
     // Enemy Vitals
     public float maxHealth = 100f;
 

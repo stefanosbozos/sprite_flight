@@ -1,67 +1,55 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    // Player thrust force
-    [Header("Player movement")]
-    [SerializeField] private float thrustForce = 10f;
-    [SerializeField] private float rotationSpeed = 2f;
-    [SerializeField] private float maxSpeed = 10f;
+    public PlayerStatsSO PlayerStats;
+    public Projectile Projectile;
+    public GameObject gunMuzzles;
+    
 
-    // Input system
-    // Move Up Down and Rotate left/right
-    private InputAction movePlayer;
-    [SerializeField] private Vector2 moveValue;
+    // Player Input
+    private InputAction m_movePlayer;
+    private InputAction m_shootLaser;
+    private InputAction m_aim;
 
-    private InputAction aim;
-    [SerializeField] private Vector2 aimValue;
-
-    [Header("Player Vitals")]
-    [SerializeField] private float currentHealth;
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float maxShield;
-    [SerializeField] private float shield;
-    private bool shieldActive;
-
-    // Player's firing system
-    [Header("Firing System")]
-    public Projectile projectile;
-
-    [SerializeField] private GameObject gunMuzzles;
-    InputAction shootLaser;
-    const float k_heat_limit = 100f;
-    private float laserTemperature = 0f;
-    [SerializeField] float timeBetweenShots = 0.01f;
-    private float timeSinceLastShot = 0f;
-    [SerializeField] private float laserCooldownInterval = 5f;
-    [SerializeField] private float laserCooldownDecreatingStep = 3f;
-    [SerializeField] private float laserHeatIncreaseStep = 3f;
+    private Vector2 m_moveValue;
     private int rotationOffset = 90;
 
 
+    // Player Vitals
+    private float m_currentHealth;
+    private float m_currentShieldAmount;
+    private bool isShieldActive;
+
+
+    // Player's firing system
+    public float TimeBetweenShots;
+    private float m_timeSinceLastShot = 0f;
+
+
+    // Laser Heating Mechanic
+    public float LaserCooldownInterval = 5f;
+    public float LaserCooldownDecreatingStep = 3f;
+    public float LaserHeatIncreaseStep = 3f;
+
+    private float m_laserTemperature = 0f;
+    private const float k_laserHeatLimit = 100f;
+
+
     [Header("Player Visual FX")]
-    [SerializeField] private ParticleSystem playerVFX;
-    [SerializeField] private GameObject explosionParticleEffect;
-    [SerializeField] private GameObject takeDamageFX;
-    [SerializeField] private ParticleSystem shipSmoke;
+    public ParticleSystem ThrustersFX;
+    public ParticleSystem shipSmoke;
 
     // Pause System
     private PauseSystem pauseSystem;
 
-    Rigidbody2D rb;
-    HeatBar heatBar;
-    HealthBar healthBar;
-    ShieldBar shieldBar;
+    private Rigidbody2D rb;
 
     void Awake()
     {
         pauseSystem = GameObject.FindGameObjectWithTag("game_manager").GetComponent<PauseSystem>();
-
-        heatBar = GetComponentInChildren<HeatBar>();
-        healthBar = GetComponentInChildren<HealthBar>();
-        shieldBar = GetComponentInChildren<ShieldBar>();
-
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -70,21 +58,14 @@ public class Player : MonoBehaviour
     {
         gunMuzzles.SetActive(false);
 
-
         //Keyboard support input
-        movePlayer = InputSystem.actions.FindAction("Move");
-        shootLaser = InputSystem.actions.FindAction("Shoot");
-        aim = InputSystem.actions.FindAction("Aim");
-
-        heatBar = GetComponentInChildren<HeatBar>();
-        healthBar = GetComponentInChildren<HealthBar>();
-        shieldBar = GetComponentInChildren<ShieldBar>();
+        m_movePlayer = InputSystem.actions.FindAction("Move");
+        m_shootLaser = InputSystem.actions.FindAction("Shoot");
+        m_aim = InputSystem.actions.FindAction("Aim");
 
         // Player state
-        maxHealth = 100;
-        currentHealth = 100;
-        shield = 100;
-        maxShield = 100;
+        m_currentHealth = 100;
+        m_currentShieldAmount = 0;
 
     }
 
@@ -102,19 +83,19 @@ public class Player : MonoBehaviour
 
     void PlayerMovement()
     {
-        moveValue = movePlayer.ReadValue<Vector2>().normalized;
-        rb.AddForce(moveValue * thrustForce);
+        m_moveValue = m_movePlayer.ReadValue<Vector2>().normalized;
+        rb.AddForce(m_moveValue * PlayerStats.ThrustForce);
 
         // This is to stop the player for accelerating if the move button is constantly pressed.
-            if (rb.linearVelocity.magnitude > maxSpeed)
-            {
-                rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
-            }
+        if (rb.linearVelocity.magnitude > PlayerStatsSO.k_MaxSpeed)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * PlayerStatsSO.k_MaxSpeed;
+        }
     }
 
     void Aim()
     {
-        Vector3 mouseScreenPos = aim.ReadValue<Vector2>();  
+        Vector3 mouseScreenPos = m_aim.ReadValue<Vector2>();  
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, Camera.main.nearClipPlane));
 
         Vector3 playerDirection = mouseWorldPos - transform.position;
@@ -130,62 +111,63 @@ public class Player : MonoBehaviour
     void ShootProjectile()
     {
         // Keep track of the time that the lasers are not fired.
-        timeSinceLastShot += Time.deltaTime;
+        m_timeSinceLastShot += Time.deltaTime;
 
-        if (shootLaser.inProgress)
+        if ( m_shootLaser.inProgress )
         {
-            if (timeSinceLastShot >= timeBetweenShots)
+            if ( m_timeSinceLastShot >= TimeBetweenShots )
             {
-                if (laserTemperature < k_heat_limit)
+                if ( m_laserTemperature < k_laserHeatLimit )
                 {
-                    projectile.FireProjectileAt(transform.Find("ProjectileSpawn").position, transform.Find("ProjectileSpawn").rotation);
-                    laserTemperature += laserHeatIncreaseStep;
+                    Projectile.FireProjectileAt( transform.Find("ProjectileSpawn").position, transform.Find("ProjectileSpawn").rotation );
+                    m_laserTemperature += LaserHeatIncreaseStep;
                 }
-                timeSinceLastShot = 0f;
+                m_timeSinceLastShot = 0f;
             }
         }
+
         CheckGunsTemperature();
     }
 
     void CheckGunsTemperature()
     {
-        if (laserTemperature >= 0 && laserTemperature < k_heat_limit)
+        if ( m_laserTemperature >= 0 && m_laserTemperature < k_laserHeatLimit )
         {
-            laserTemperature -= Time.deltaTime * laserCooldownDecreatingStep;
-
+            m_laserTemperature -= Time.deltaTime * LaserCooldownDecreatingStep;
         }
 
-        if (laserTemperature >= k_heat_limit)
+        if ( m_laserTemperature >= k_laserHeatLimit )
         {
             CooldownLaser();
         }
-
-        heatBar.UpdateStatusBar(laserTemperature, 100f);
     }
 
     void CooldownLaser()
     {
-        laserCooldownInterval -= Time.deltaTime;
-        if (laserTemperature >= k_heat_limit && laserCooldownInterval <= 0.0f)
+        LaserCooldownInterval -= Time.deltaTime;
+
+        if ( m_laserTemperature >= k_laserHeatLimit && LaserCooldownInterval <= 0.0f )
         {
-            laserTemperature = 0f;
-            laserCooldownInterval = 3f;
+            m_laserTemperature = 0f;
+            LaserCooldownInterval = 3f;
         }
     }
 
     void playerVisualEffects()
     {
 
-        if (moveValue.sqrMagnitude > 0)
+        if ( m_moveValue.sqrMagnitude > 0 )
         {
-            playerVFX.emissionRate = 30;
+            var emission = ThrustersFX.emission;
+            emission.rateOverTime = 30;
         }
         else
         {
-            playerVFX.emissionRate = 0;
+            var emission = ThrustersFX.emission;
+            emission.rateOverTime = 0;
         }
 
-        if (shootLaser.inProgress && laserTemperature < k_heat_limit)
+        if ( m_shootLaser.inProgress && m_laserTemperature < k_laserHeatLimit )
         {
             gunMuzzles.SetActive(true);
         }
@@ -195,7 +177,7 @@ public class Player : MonoBehaviour
         }
 
         // Play smoke if player below 20% health
-        if (currentHealth <= 20)
+        if ( m_currentHealth <= 20 )
         {
             shipSmoke.Play();
         }
@@ -208,38 +190,34 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.tag == "enemy_fire")
         {
-            if (shieldActive)
-            {
-                shield -= 10;
-            }
-            else
-            {
-                TakeDamage(10, collision);
-            }
-            Destroy(collision.gameObject);
+            Projectile enemyProjectile = collision.gameObject.GetComponent<Projectile>();
 
-            if (!PlayerAlive())
+            if (enemyProjectile != null)
             {
-                KillPlayer();
+                TakeDamage(enemyProjectile.GetDamageAmount, collision);
+                Destroy(collision.gameObject);
             }
 
         }
+        
     }
 
     public void TakeDamage(float damageAmount, Collision2D collision=null)
     {
-        currentHealth -= damageAmount;
-        healthBar.UpdateStatusBar(currentHealth, maxHealth);
-        if (collision != null)
+        m_currentHealth -= damageAmount;
+
+        if ( collision != null )
         {
             Vector2 contactOfdamage = collision.GetContact(0).point;
-            GameObject damageEffect = Instantiate(takeDamageFX, contactOfdamage, Quaternion.identity);
+            GameObject damageEffect = Instantiate(PlayerStats.TakeDamageFX, contactOfdamage, Quaternion.identity);
             Destroy(damageEffect, 0.5f);
         }
 
-        if (currentHealth <= 0)
+        // Player's is dead.
+        if ( m_currentHealth <= 0 )
         {
             KillPlayer();
         }
@@ -247,32 +225,24 @@ public class Player : MonoBehaviour
     
     void ActivateShields()
     {
-        shieldActive = !shieldActive;
-        shield = 100;
+        isShieldActive = !isShieldActive;
+        m_currentShieldAmount = 100;
     }
 
     void KillPlayer()
     {
-        GameObject OnDeathExplosion = Instantiate(explosionParticleEffect, transform.position, Quaternion.identity);
+        GameObject OnDeathExplosion = Instantiate(PlayerStats.DeathFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
         Destroy(OnDeathExplosion, 3f);
     }
-    public bool PlayerAlive()
-    {
-        if (currentHealth > 0)
-        {
-            return true;
-        }
-        return false;
-    }
-    public float GetGunsTemperature()
-    {
-        return laserTemperature;
-    }
+
     public bool GunsOverheated()
     {
-        return laserTemperature >= k_heat_limit ? true : false;
+        return m_laserTemperature >= k_laserHeatLimit ? true : false;
     }
+
+    public float GunsTemperature => m_laserTemperature;
+    
 }
 
 

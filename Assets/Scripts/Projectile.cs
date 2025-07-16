@@ -2,29 +2,30 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private WeaponSO m_weapon;
+    [SerializeField] private float m_damageAmount;
+    [SerializeField] private Vector3 m_rojectileDirection;
+    [SerializeField] private float m_projectileSpeed;
 
+    private float m_damageMultiplier;
     private float timeToLive = 1.5f;
 
-    void Update()
-    {
-        MoveToTarget();
-    }
 
     public void FireProjectileAt(Vector3 spawn_position, Quaternion spawn_rotation)
     {
         Instantiate(gameObject, spawn_position, spawn_rotation);
     }
 
-    void MoveToTarget()
+    void MoveToDirection()
     {
-        transform.Translate(m_weapon.projectile_direction * m_weapon.projectile_speed * Time.deltaTime);
+        transform.Translate(m_rojectileDirection * m_projectileSpeed * Time.deltaTime);
         Destroy(gameObject, timeToLive);
     }
 
-    public float GetDamageAmount()
+    public float GetDamageAmount => m_damageAmount;
+    public void SetDamageMultiplier(float multiplierValue) => m_damageMultiplier = multiplierValue;
+    
+    void Update()
     {
-        return m_weapon.damage_amount;
+        MoveToDirection();
     }
-
 }

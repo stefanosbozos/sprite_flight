@@ -424,13 +424,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d29646a6a0c774a8d551ae58c7bd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_enemyStats: {fileID: 11400000, guid: 1ebfbeee12d502540905085b530a276f, type: 2}
+  EnemyStats: {fileID: 11400000, guid: 1ebfbeee12d502540905085b530a276f, type: 2}
   projectile: {fileID: 3439262997926754641, guid: 69791d647ae567548b69d04cfabef369, type: 3}
   minTimeToAttack: 2
   maxTimeToAttack: 7
   timeBetweenShots: 0
   limitOfDistanceFromPlayer: 10
-  enemyThrusterVFX: {fileID: 4502550197988101056}
+  ThrusterVFX: {fileID: 4502550197988101056}
 --- !u!114 &-6756094584037500207
 MonoBehaviour:
   m_ObjectHideFlags: 0

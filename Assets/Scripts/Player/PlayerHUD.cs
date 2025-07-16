@@ -55,6 +55,6 @@ public class PlayerHUD : MonoBehaviour
 
     void LaserTemperatureProgress()
     {
-        m_LaserTempMask.style.width = Length.Percent(player.GetGunsTemperature());
+        m_LaserTempMask.style.width = Length.Percent(player.GunsTemperature);
     }
 }

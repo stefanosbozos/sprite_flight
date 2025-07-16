@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb2089be223c7143be96b5c670a2693, type: 3}
   m_Name: Enemy_Ship
   m_EditorClassIdentifier: 
+  ProjectilePreFab: {fileID: 3439262997926754641, guid: 69791d647ae567548b69d04cfabef369, type: 3}
   maxHealth: 100
   movement_speed: 5
   rotation_speed: 5
