@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37e7e59a02bf79e40a2f4c133108312b, type: 3}
-  m_Name: Wave0
+  m_Name: Wave1
   m_EditorClassIdentifier: 
   EnemyType:
   - {fileID: 3410269031510865162, guid: 90c35e5b64f48fc45aac3e3d3890def0, type: 3}
-  EnemiesPerWave: 1
-  EnemiesOnScreen: 1
+  - {fileID: 8676113999607285523, guid: eef505d421c4b0d4bba6d43ff0531a5f, type: 3}
+  EnemiesPerWave: 3
+  EnemiesOnScreen: 2
   EnemySpawningInterval: 1

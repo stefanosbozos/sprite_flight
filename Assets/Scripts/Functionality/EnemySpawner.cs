@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -32,6 +33,8 @@ public class EnemySpawner : MonoBehaviour
     // The timer that updates from the deltaTime
     private float m_timer = 0f;
 
+    private bool m_gameOver;
+
 
     void Awake()
     {
@@ -55,27 +58,28 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        SpawnEnemy();
-    }
-
-    void SpawnEnemy()
-    {
-        if (m_player == null)
+        if ( m_player == null )
         {
             DestroyAllEnemiesOnScreen();
+            m_gameOver = !m_gameOver;
         }
         else
         {
-            InstantiateEnemy();
+            if (m_gameOver)
+            {
+                SpawnEnemy();
+            }
         }
     }
 
-    private void InstantiateEnemy()
+
+    private void SpawnEnemy()
     {
         m_timer += Time.deltaTime;
         // Check the spawning interval and how many enemies are on the screen.
-        if ( IsReadyToSpawn() )
+        if (IsReadyToSpawn() && !AreEnemiesLeftInWave())
         {
+
             m_enemyToSpawnIndex = Random.Range(0, EnemyWave[m_waveIndex].EnemyType.Count);
             Vector3 position = GetRandomSpawnPosition();
             GameObject enemyTypeToSpawn = EnemyWave[m_waveIndex].EnemyType[m_enemyToSpawnIndex];
@@ -92,17 +96,47 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
+        if (AreEnemiesLeftInWave() && CountEnemiesOnScreen() <= 0 )
+        {
+            Debug.Log("Preparing Next Wave...");
+            SpawnNextWave();
+        }
+
     }
 
 
     private bool IsReadyToSpawn()
     {
-        bool spawnIntervalComplete = m_timer >= EnemyWave[m_waveIndex].TimeBetweenEachWave;
-        bool doesNotExceedEnemiesOnScreen = CountEnemiesOnScreen() <= EnemyWave[m_waveIndex].EnemiesOnScreen;
+        bool spawnIntervalComplete = m_timer >= EnemyWave[m_waveIndex].EnemySpawningInterval;
+        bool doesNotExceedEnemiesOnScreen = CountEnemiesOnScreen() < EnemyWave[m_waveIndex].EnemiesOnScreen;
 
         return spawnIntervalComplete && doesNotExceedEnemiesOnScreen;
     }
 
+
+    private bool AreEnemiesLeftInWave()
+    {
+        return EnemyWave[m_waveIndex].EnemiesPerWave <= m_totalEnemiesSpawned;
+    }
+
+    private void SpawnNextWave()
+    {
+        m_timer += Time.deltaTime;
+
+        if (m_timer > EnemyWaveSO.m_TimeBetweenEachWave)
+        {
+            if (m_waveIndex < EnemyWave.Count)
+            {
+                m_waveIndex++;
+            }
+            else
+            {
+                m_gameOver = !m_gameOver;
+                Debug.Log("All waves have been cleared! Game Over!");
+            }
+        }
+        
+    }
 
     private int CountEnemiesOnScreen()
     {
