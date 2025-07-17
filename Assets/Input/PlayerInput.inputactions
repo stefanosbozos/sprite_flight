@@ -24,15 +24,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Aim",
-                    "type": "PassThrough",
-                    "id": "8ae88660-09de-4666-b944-6dac5f22604b",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "PauseGame",
                     "type": "Button",
                     "id": "284dde2f-f441-4dab-842f-08c126ae2268",
@@ -40,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "cc475191-18e4-4bd3-96a3-ffea64c2651e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -133,28 +133,6 @@
                 },
                 {
                     "name": "",
-                    "id": "b25c89d9-cdd7-4ef2-acc9-5200ffaa09d4",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2db43d40-8f42-419a-8a05-521c823d5e87",
-                    "path": "<VirtualMouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "6c3386a4-9b1f-4059-9490-0c9488013cf6",
                     "path": "<Gamepad>/start",
                     "interactions": "",
@@ -172,6 +150,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92c3c662-d9c6-4543-b9e9-8b7f72384727",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2a3ef62-6946-459a-817b-24d6cf0b4fe7",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

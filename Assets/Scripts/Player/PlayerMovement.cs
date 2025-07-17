@@ -3,12 +3,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public PlayerStatsSO PlayerStats;
-
+    public float ThrustForce;
     private InputAction m_moveAction;
     private Vector2 m_moveValue;
     private Rigidbody2D m_rb;
     private PlayerVFX m_playerVFX;
+
+    private const float k_MaxSpeed = 20;
+
 
     void Awake()
     {
@@ -21,15 +23,14 @@ public class PlayerMovement : MonoBehaviour
     {
         m_moveValue = m_moveAction.ReadValue<Vector2>().normalized;
 
-        float thrusterEmmissionRate = Mathf.Abs(m_moveValue.x * 30);
-        m_playerVFX.ThrustersEmitFire(thrusterEmmissionRate);
+        m_playerVFX.ThrustersEmitFire(m_rb.linearVelocity.sqrMagnitude);
 
-        m_rb.AddForce(m_moveValue * PlayerStats.ThrustForce);
+        m_rb.AddForce(m_moveValue * ThrustForce);
 
         // This is to stop the player for accelerating if the move button is constantly pressed.
-        if (m_rb.linearVelocity.magnitude > PlayerStatsSO.k_MaxSpeed)
+        if (m_rb.linearVelocity.magnitude > k_MaxSpeed)
         {
-            m_rb.linearVelocity = m_rb.linearVelocity.normalized * PlayerStatsSO.k_MaxSpeed;
+            m_rb.linearVelocity = m_rb.linearVelocity.normalized * k_MaxSpeed;
         }
     }
 

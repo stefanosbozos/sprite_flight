@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class Player1 : MonoBehaviour
 {
-    public PlayerStatsSO PlayerStats;
-
-
     private PlayerMovement m_playerMovement;
     private PlayerAiming m_playerAiming;
     private PlayerShooting m_playerShooting;
@@ -13,6 +10,7 @@ public class Player1 : MonoBehaviour
 
 
     private float m_currentHealth;
+    public const float k_MaxHealth = 100;
 
     private PlayerVFX m_playerVFX;
 
@@ -20,7 +18,7 @@ public class Player1 : MonoBehaviour
     void Awake()
     {
         m_gameManager = GameObject.FindGameObjectWithTag("game_manager");
-        m_pauseSystem = m_gameManager.GetComponent<PauseSystem>();
+        //m_pauseSystem = m_gameManager.GetComponent<PauseSystem>();
 
         m_playerMovement = GetComponent<PlayerMovement>();
         m_playerAiming = GetComponent<PlayerAiming>();
@@ -36,12 +34,13 @@ public class Player1 : MonoBehaviour
 
     void Update()
     {
-        if (!m_pauseSystem.GameIsPaused())
-        {
-            m_playerMovement.Move();
-            m_playerAiming.Aim();
-            m_playerShooting.Shoot();
-        }
+        // if (!m_pauseSystem.GameIsPaused())
+        // {
+
+        // }
+        m_playerMovement.Move();
+        m_playerAiming.Aim();
+        m_playerShooting.Shoot();
     }
     
     void OnCollisionEnter2D(Collision2D collision)
@@ -69,8 +68,7 @@ public class Player1 : MonoBehaviour
         if (collision != null)
         {
             Vector2 contactOfdamage = collision.GetContact(0).point;
-            GameObject damageEffect = Instantiate(PlayerStats.TakeDamageFX, contactOfdamage, Quaternion.identity);
-            Destroy(damageEffect, 0.5f);
+            m_playerVFX.SparksVFX(contactOfdamage, Quaternion.identity);
         }
 
         // Player's is dead.
@@ -82,9 +80,8 @@ public class Player1 : MonoBehaviour
 
     void KillPlayer()
     {
-        GameObject OnDeathExplosion = Instantiate(PlayerStats.DeathFX, transform.position, Quaternion.identity);
+        m_playerVFX.ExplodeVFX(transform.position, Quaternion.identity);
         Destroy(gameObject);
-        Destroy(OnDeathExplosion, 3f);
     }
 
 }

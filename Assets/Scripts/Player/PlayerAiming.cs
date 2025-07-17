@@ -3,7 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerAiming : MonoBehaviour
 {
+    public float RotationSpeed;
+
     private InputAction m_aim;
+    private Vector3 aimValue;
     private int rotationOffset = 90;
 
     void Awake()
@@ -13,16 +16,13 @@ public class PlayerAiming : MonoBehaviour
 
     public void Aim()
     {
-        Vector3 mouseScreenPos = m_aim.ReadValue<Vector2>();
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, Camera.main.nearClipPlane));
+        aimValue = m_aim.ReadValue<Vector2>();
 
-        Vector3 playerDirection = mouseWorldPos - transform.position;
-        playerDirection.z = 0; // Ensure that the player does not rotate on the Z-axis
-
-        if (playerDirection.sqrMagnitude > 0.01f)
+        if (aimValue.sqrMagnitude > 0.01f)
         {
-            float angle = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, angle - rotationOffset);
+            float angle = Mathf.Atan2(aimValue.y, aimValue.x) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - rotationOffset);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * RotationSpeed);
         }
     }
 }

@@ -5,6 +5,8 @@ public class PlayerVFX : MonoBehaviour
     public ParticleSystem ThrustersFX;
     public ParticleSystem ShipSmoke;
     public GameObject GunMuzzles;
+    public GameObject DeathFX;
+    public GameObject TakeDamageFX;
 
     void Start()
     {
@@ -35,6 +37,18 @@ public class PlayerVFX : MonoBehaviour
             ShipSmoke.Stop();
             ShipSmoke.Clear();
         }
+    }
+
+    public void ExplodeVFX(Vector3 position, Quaternion rotation)
+    {
+        GameObject explosion = Instantiate(DeathFX, position, rotation);
+        Destroy(explosion, 0.5f);
+    }
+
+    public void SparksVFX(Vector2 pointOfcontact, Quaternion rotation)
+    {
+        GameObject damageEffect = Instantiate(TakeDamageFX, pointOfcontact, rotation);
+        Destroy(damageEffect, 3f);
     }
 
 }
