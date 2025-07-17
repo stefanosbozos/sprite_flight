@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -164,7 +163,7 @@ public class Player : MonoBehaviour
         if ( m_moveValue.sqrMagnitude > 0 )
         {
             var emission = ThrustersFX.emission;
-            emission.rateOverTime = 30;
+            emission.rateOverTime = 100;
         }
         else
         {

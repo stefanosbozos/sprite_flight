@@ -16,3 +16,5 @@ MonoBehaviour:
   RotationSpeed: 10
   DeathFX: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
   TakeDamageFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}
+  ThrustersFX: {fileID: 1480583001834936317, guid: 80bf23c0592f3e246b6c9cfc38865846, type: 3}
+  ShipSmokeFX: {fileID: 2437489493237807301, guid: bd25695f506f75c45b16659df728079d, type: 3}

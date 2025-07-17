@@ -15,4 +15,6 @@ public class PlayerStatsSO : ScriptableObject
     // Player VFX
     public GameObject DeathFX;
     public GameObject TakeDamageFX;
+    public ParticleSystem ThrustersFX;
+    public ParticleSystem ShipSmokeFX;
 }

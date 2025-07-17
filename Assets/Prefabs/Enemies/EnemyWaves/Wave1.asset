@@ -15,6 +15,6 @@ MonoBehaviour:
   EnemyType:
   - {fileID: 3410269031510865162, guid: 90c35e5b64f48fc45aac3e3d3890def0, type: 3}
   - {fileID: 8676113999607285523, guid: eef505d421c4b0d4bba6d43ff0531a5f, type: 3}
-  EnemiesPerWave: 3
-  EnemiesOnScreen: 2
+  EnemiesPerWave: 16
+  EnemiesOnScreen: 4
   EnemySpawningInterval: 1

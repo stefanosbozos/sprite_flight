@@ -138,6 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8e01f82d504474f87fcfa5d4cb947c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_damageAmount: 2
+  m_damageAmount: 10
   m_rojectileDirection: {x: 0, y: -1, z: 0}
   m_projectileSpeed: 30

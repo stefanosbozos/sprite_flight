@@ -718,10 +718,14 @@ GameObject:
   - component: {fileID: 4378109832152802}
   - component: {fileID: 2156119352659199959}
   - component: {fileID: -4973055002141696020}
-  - component: {fileID: 5802271188003381315}
   - component: {fileID: 7891935908401970227}
+  - component: {fileID: 3837625557845477515}
+  - component: {fileID: 766114808005026999}
+  - component: {fileID: 7645449674001415049}
+  - component: {fileID: 136950591078803588}
+  - component: {fileID: 4984918959469129394}
   m_Layer: 0
-  m_Name: Spaceship
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -862,27 +866,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player Input
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5802271188003381315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4152517578923950792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7beba31cb92de5d4f8322b279415872f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerStats: {fileID: 11400000, guid: f8b24b3051e9ff046ae4ac7a71062237, type: 2}
-  Projectile: {fileID: 8158747000278187019, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
-  gunMuzzles: {fileID: 7523905511126667713}
-  TimeBetweenShots: 0.1
-  LaserCooldownInterval: 5
-  LaserCooldownDecreatingStep: 4
-  LaserHeatIncreaseStep: 1
-  ThrustersFX: {fileID: 3303902704251940539}
-  shipSmoke: {fileID: 6933094571657861663}
 --- !u!114 &7891935908401970227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,6 +880,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   X_offset: 1
   Y_offset: 3
+--- !u!114 &3837625557845477515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152517578923950792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f824da1de2a7dd49aeddda8449c121e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerStats: {fileID: 11400000, guid: f8b24b3051e9ff046ae4ac7a71062237, type: 2}
+--- !u!114 &766114808005026999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152517578923950792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c273d2c8bd4414f854f333c23f23e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerStats: {fileID: 11400000, guid: f8b24b3051e9ff046ae4ac7a71062237, type: 2}
+--- !u!114 &7645449674001415049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152517578923950792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6642752731ab5d945ae62714af065d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &136950591078803588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152517578923950792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc63c86dbf9b87468950c78a3671eb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerStats: {fileID: 11400000, guid: f8b24b3051e9ff046ae4ac7a71062237, type: 2}
+  LaserSystem: {fileID: 11400000, guid: 7c2acaccb46157f4f82ae523bceb2da6, type: 2}
+  BulletSpawnPosition: {fileID: 8209724612017901199}
+  TimeBetweenShots: 0.5
+  LaserCooldownInterval: 3
+--- !u!114 &4984918959469129394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152517578923950792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07d9ce72b1418a4cbe5d177ce0632fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThrustersFX: {fileID: 1480583001834936317, guid: 80bf23c0592f3e246b6c9cfc38865846, type: 3}
+  ShipSmoke: {fileID: 2437489493237807301, guid: bd25695f506f75c45b16659df728079d, type: 3}
+  GunMuzzles: {fileID: 7523905511126667713}
 --- !u!1 &7254494989809445254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,11 +1371,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80bf23c0592f3e246b6c9cfc38865846, type: 3}
---- !u!198 &3303902704251940539 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1480583001834936317, guid: 80bf23c0592f3e246b6c9cfc38865846, type: 3}
-  m_PrefabInstance: {fileID: 4131424169100966214}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7024501958967989586 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6352836571828022292, guid: 80bf23c0592f3e246b6c9cfc38865846, type: 3}
@@ -1392,10 +1440,5 @@ PrefabInstance:
 --- !u!4 &1291122058551937981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5768552209178192231, guid: bd25695f506f75c45b16659df728079d, type: 3}
-  m_PrefabInstance: {fileID: 4748200283659870938}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &6933094571657861663 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2437489493237807301, guid: bd25695f506f75c45b16659df728079d, type: 3}
   m_PrefabInstance: {fileID: 4748200283659870938}
   m_PrefabAsset: {fileID: 0}
