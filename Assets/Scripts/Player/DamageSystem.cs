@@ -1,23 +1,16 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DamageSystem : MonoBehaviour
 {
     [SerializeField] private PlayerStatsSO m_playerStats;
-    private float m_currentHealth;
-
-    private PlayerVFX m_playerVFX;
+    private VisualEffects m_playerVFX;
 
     void Awake()
     {
-        m_playerVFX = GetComponent<PlayerVFX>();
+        m_playerVFX = GetComponent<VisualEffects>();
     }
 
-    void Start()
-    {
-        m_currentHealth = 100;
-    }
-
-    
     void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -32,13 +25,23 @@ public class DamageSystem : MonoBehaviour
             }
 
         }
-        
+
     }
 
     public void TakeDamage(float damageAmount, Collision2D collision=null)
     {
-        m_currentHealth -= damageAmount;
-        m_playerVFX.EmitSmoke(m_currentHealth <= 20);
+        if (m_playerStats.ShieldActive())
+        {
+            m_playerStats.DamageToShield(damageAmount);
+            Debug.Log(m_playerStats.Shield);
+        }
+        else
+        {
+            m_playerStats.DamageToHealth(damageAmount);
+            Debug.Log(m_playerStats.Health);
+        }
+
+        m_playerVFX.EmitSmoke(m_playerStats.InCriticalState());
         
         if (collision != null)
         {
@@ -47,7 +50,7 @@ public class DamageSystem : MonoBehaviour
         }
 
         // Player's is dead.
-        if (m_currentHealth <= 0)
+        if (m_playerStats.IsDead())
         {
             KillPlayer();
         }

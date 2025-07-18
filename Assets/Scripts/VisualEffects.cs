@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class PlayerVFX : MonoBehaviour
+public class VisualEffects : MonoBehaviour
 {
     [SerializeField] private PlayerStatsSO m_playerStats;
     [SerializeField] private ParticleSystem m_thrusterVFX;
     [SerializeField] private ParticleSystem m_smokeVFX;
-
-    void Start()
-    {
-        // Just to make sure that they will not appear when the game starts.
-        ThrustersEmitFire(0);
-    }
+    [SerializeField] private GameObject m_takeDamageVFX;
+    [SerializeField] private GameObject m_explosionVFX;
 
     public void ThrustersEmitFire(float emissionRate)
     {
@@ -33,13 +29,13 @@ public class PlayerVFX : MonoBehaviour
 
     public void ExplodeVFX(Vector3 position, Quaternion rotation)
     {
-        GameObject explosion = Instantiate(m_playerStats.ExplodeFX, position, rotation);
+        GameObject explosion = Instantiate(m_explosionVFX, position, rotation);
         Destroy(explosion, 0.5f);
     }
 
     public void SparksVFX(Vector2 pointOfcontact, Quaternion rotation)
     {
-        GameObject damageEffect = Instantiate(m_playerStats.TakeDamageFX, pointOfcontact, rotation);
+        GameObject damageEffect = Instantiate(m_takeDamageVFX, pointOfcontact, rotation);
         Destroy(damageEffect, 3f);
     }
 

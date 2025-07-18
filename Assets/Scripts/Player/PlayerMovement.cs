@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction m_moveAction;
     private Vector2 m_moveValue;
     private Rigidbody2D m_rb;
-    private PlayerVFX m_playerVFX;
+    private VisualEffects m_playerVFX;
 
     private const float k_MaxSpeed = 20;
 
@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         m_rb = GetComponent<Rigidbody2D>();
-        m_playerVFX = GetComponent<PlayerVFX>();
+        m_playerVFX = GetComponent<VisualEffects>();
         m_moveAction = InputSystem.actions.FindAction("Move");
     }
 

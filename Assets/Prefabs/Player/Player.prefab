@@ -424,12 +424,13 @@ GameObject:
   - component: {fileID: 4378109832152802}
   - component: {fileID: 2156119352659199959}
   - component: {fileID: -4973055002141696020}
+  - component: {fileID: 261773395901310954}
   - component: {fileID: 6349384168176940331}
   - component: {fileID: 7033410972420185814}
   - component: {fileID: 4908332904402889354}
   - component: {fileID: 6556123861634823245}
-  - component: {fileID: 4590368412186747206}
   - component: {fileID: 2073211790125924746}
+  - component: {fileID: 8666015988711107089}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -571,6 +572,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player Input
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &261773395901310954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152517578923950792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4c046bb1c72e646a4a291d0b6a3f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerStats: {fileID: 11400000, guid: 317cb079afa35c447a3004705bd7f103, type: 2}
 --- !u!114 &6349384168176940331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,21 +641,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 11400000, guid: 317cb079afa35c447a3004705bd7f103, type: 2}
---- !u!114 &4590368412186747206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4152517578923950792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e07d9ce72b1418a4cbe5d177ce0632fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_playerStats: {fileID: 11400000, guid: 317cb079afa35c447a3004705bd7f103, type: 2}
-  m_thrusterVFX: {fileID: 6451985547371713868}
-  m_smokeVFX: {fileID: 6933094571657861663}
 --- !u!114 &2073211790125924746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,6 +655,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   X_offset: 1
   Y_offset: 3
+--- !u!114 &8666015988711107089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152517578923950792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07d9ce72b1418a4cbe5d177ce0632fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerStats: {fileID: 11400000, guid: 317cb079afa35c447a3004705bd7f103, type: 2}
+  m_thrusterVFX: {fileID: 6451985547371713868}
+  m_smokeVFX: {fileID: 6933094571657861663}
+  m_takeDamageVFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}
+  m_explosionVFX: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
 --- !u!1 &7254494989809445254
 GameObject:
   m_ObjectHideFlags: 0
