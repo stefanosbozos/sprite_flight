@@ -13,11 +13,11 @@ public class PauseSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        isPaused = false;
-        pauseGame = InputSystem.actions.FindAction("PauseGame");
+        // isPaused = false;
+        // pauseGame = InputSystem.actions.FindAction("PauseGame");
 
-        pauseMenu = UIDoc.rootVisualElement.Q<VisualElement>("PauseMenu");
-        pauseMenu.style.display = DisplayStyle.None;
+        // pauseMenu = UIDoc.rootVisualElement.Q<VisualElement>("PauseMenu");
+        // pauseMenu.style.display = DisplayStyle.None;
     }
 
     // Update is called once per frame
