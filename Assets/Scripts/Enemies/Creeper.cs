@@ -3,7 +3,7 @@ using UnityEngine;
 public class Creeper : MonoBehaviour
 {
     public EnemyStatsSO enemyStats;
-    private Player player;
+    private Transform player;
     private Rigidbody2D rb;
 
     private float currentHealth = 100f;
@@ -11,7 +11,7 @@ public class Creeper : MonoBehaviour
     
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         floatingHealthBar = GetComponentInChildren<HealthBar>();
     }
@@ -58,10 +58,10 @@ public class Creeper : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            player.TakeDamage(enemyStats.damage_rate, collision);
-        }
+        // if (collision.gameObject.tag == "Player")
+        // {
+        //     player.TakeDamage(enemyStats.damage_rate, collision);
+        // }
     }
     
     void TakeDamage(float damageAmount, Collision2D collision)

@@ -75,13 +75,15 @@ public class EnemySpawner : MonoBehaviour
         if (IsReadyToSpawn())
         {
             Vector3 randomSpawnPosition = GetRandomSpawnPosition();
-
-            if (randomSpawnPosition != m_player.transform.position)
+            if (PlayerIsAlive())
             {
-                PlaySpawnVFX(randomSpawnPosition);
-                Instantiate(GetRandomEnemyType(), randomSpawnPosition, Quaternion.identity);
+                if (randomSpawnPosition != m_player.transform.position)
+                {
+                    PlaySpawnVFX(randomSpawnPosition);
+                    Instantiate(GetRandomEnemyType(), randomSpawnPosition, Quaternion.identity);
+                }
             }
-
+            
             m_totalEnemiesSpawned++;
             m_timer = 0f;
 

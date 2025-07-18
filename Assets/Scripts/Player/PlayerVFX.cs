@@ -2,52 +2,44 @@ using UnityEngine;
 
 public class PlayerVFX : MonoBehaviour
 {
-    public ParticleSystem ThrustersFX;
-    public ParticleSystem ShipSmoke;
-    public GameObject GunMuzzles;
-    public GameObject DeathFX;
-    public GameObject TakeDamageFX;
+    [SerializeField] private PlayerStatsSO m_playerStats;
+    [SerializeField] private ParticleSystem m_thrusterVFX;
+    [SerializeField] private ParticleSystem m_smokeVFX;
 
     void Start()
     {
         // Just to make sure that they will not appear when the game starts.
-        GunMuzzleFlash(false);
         ThrustersEmitFire(0);
     }
 
     public void ThrustersEmitFire(float emissionRate)
     {
-        var emission = ThrustersFX.emission;
+        var emission = m_thrusterVFX.emission;
         emission.rateOverTime = emissionRate;
-    }
-
-    public void GunMuzzleFlash(bool activate)
-    {
-        GunMuzzles.SetActive(activate);
     }
 
     public void EmitSmoke(bool emit)
     {
         if (emit)
         {
-            ShipSmoke.Play();
+            m_smokeVFX.Play();
         }
         else
         {
-            ShipSmoke.Stop();
-            ShipSmoke.Clear();
+            m_smokeVFX.Stop();
+            m_smokeVFX.Clear();
         }
     }
 
     public void ExplodeVFX(Vector3 position, Quaternion rotation)
     {
-        GameObject explosion = Instantiate(DeathFX, position, rotation);
+        GameObject explosion = Instantiate(m_playerStats.ExplodeFX, position, rotation);
         Destroy(explosion, 0.5f);
     }
 
     public void SparksVFX(Vector2 pointOfcontact, Quaternion rotation)
     {
-        GameObject damageEffect = Instantiate(TakeDamageFX, pointOfcontact, rotation);
+        GameObject damageEffect = Instantiate(m_playerStats.TakeDamageFX, pointOfcontact, rotation);
         Destroy(damageEffect, 3f);
     }
 

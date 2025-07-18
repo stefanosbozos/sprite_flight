@@ -28,20 +28,20 @@ public class PauseSystem : MonoBehaviour
 
     void Pause()
     {
-        if (pauseGame.WasPressedThisFrame())
-        {
-            //Change the pause state, set timescale and show the menu.
-            isPaused = !isPaused;
-            Time.timeScale = isPaused ? 0 : 1;
-            if (isPaused)
-            {
-                pauseMenu.style.display = DisplayStyle.Flex;
-            }
-            else
-            {
-                pauseMenu.style.display = DisplayStyle.None;
-            }
-        }
+        // if (pauseGame.WasPressedThisFrame())
+        // {
+        //     //Change the pause state, set timescale and show the menu.
+        //     isPaused = !isPaused;
+        //     Time.timeScale = isPaused ? 0 : 1;
+        //     if (isPaused)
+        //     {
+        //         pauseMenu.style.display = DisplayStyle.Flex;
+        //     }
+        //     else
+        //     {
+        //         pauseMenu.style.display = DisplayStyle.None;
+        //     }
+        // }
     }
 
     public bool GameIsPaused()

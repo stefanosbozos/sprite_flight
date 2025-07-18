@@ -7,4 +7,5 @@ public class LaserSystemSO : ScriptableObject
     public float LaserHeatIncreaseStep;
     public float laserHeatLimit;
     public Projectile projectile;
+    
 }

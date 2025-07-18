@@ -7,7 +7,7 @@ public class PlayerHUD : MonoBehaviour
     private UIDocument UIDoc;
 
     // The player's stuff
-    private Player player;
+    //private Player player;
 
     // The laser progress bar
     private VisualElement m_LaserTempMask;
@@ -23,7 +23,7 @@ public class PlayerHUD : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         m_LaserTemperature = UIDoc.rootVisualElement.Q<Label>("HUD_LaserTemp");
         m_LaserTempMask = UIDoc.rootVisualElement.Q<VisualElement>("HUD_LasertempMask");
@@ -41,20 +41,20 @@ public class PlayerHUD : MonoBehaviour
 
     void LaserOverheated()
     {
-        if (player.GunsOverheated())
-        {
-            m_LaserTemperature.style.color = new StyleColor(warning_orange);
-            m_LaserTemperature.text = "OVERHEATED!";
-        }
-        else
-        {
-            m_LaserTemperature.style.color = new StyleColor(standard_lightBlue);
-            m_LaserTemperature.text = "Laser Temperature";
-        }
+        // if (player.GunsOverheated())
+        // {
+        //     m_LaserTemperature.style.color = new StyleColor(warning_orange);
+        //     m_LaserTemperature.text = "OVERHEATED!";
+        // }
+        // else
+        // {
+        //     m_LaserTemperature.style.color = new StyleColor(standard_lightBlue);
+        //     m_LaserTemperature.text = "Laser Temperature";
+        // }
     }
 
     void LaserTemperatureProgress()
     {
-        m_LaserTempMask.style.width = Length.Percent(player.GunsTemperature);
+        //m_LaserTempMask.style.width = Length.Percent(player.GunsTemperature);
     }
 }

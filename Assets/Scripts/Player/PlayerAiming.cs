@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAiming : MonoBehaviour
 {
-    public float RotationSpeed;
+    [SerializeField] private PlayerStatsSO m_playerStats;
 
     private InputAction m_aim;
     private Vector3 aimValue;
@@ -14,7 +14,12 @@ public class PlayerAiming : MonoBehaviour
         m_aim = InputSystem.actions.FindAction("Aim");
     }
 
-    public void Aim()
+    void Update()
+    {
+        Aim();
+    }
+
+    private void Aim()
     {
         aimValue = m_aim.ReadValue<Vector2>();
 
@@ -22,7 +27,7 @@ public class PlayerAiming : MonoBehaviour
         {
             float angle = Mathf.Atan2(aimValue.y, aimValue.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - rotationOffset);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * RotationSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * m_playerStats.RotationSpeed);
         }
     }
 }

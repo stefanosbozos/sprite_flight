@@ -3,26 +3,28 @@ using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public PlayerStatsSO PlayerStats;
-    public LaserSystemSO LaserSystem;
-    public Transform BulletSpawnPosition;
-    public float TimeBetweenShots;
-    public float LaserCooldownInterval = 5f;
+    [SerializeField] private PlayerStatsSO m_playerStats;
+    [SerializeField] private LaserSystemSO m_laserSystem;
+    [SerializeField] private Transform m_bulletSpawnPosition;
+    [SerializeField] private float m_timeBetweenShots;
+    [SerializeField] private float m_laserCooldownInterval = 5f;
 
     private InputAction m_shootLaser;
     private float m_timeSinceLastShot;
     private float m_laserTemperature;
 
-    private PlayerVFX m_playerVFX;
-
 
     void Awake()
     {
         m_shootLaser = InputSystem.actions.FindAction("Shoot");
-        m_playerVFX = GetComponent<PlayerVFX>();
     }
 
-    public void Shoot()
+    void Update()
+    {
+        Shoot();
+    }
+
+    private void Shoot()
     {
         // Keep track of the time that the lasers are not fired.
         m_timeSinceLastShot += Time.deltaTime;
@@ -30,53 +32,51 @@ public class PlayerShooting : MonoBehaviour
         if (m_shootLaser.inProgress)
         {
 
-            if (m_timeSinceLastShot >= TimeBetweenShots)
+            if (m_timeSinceLastShot >= m_timeBetweenShots)
             {
 
-                if (m_laserTemperature < LaserSystem.laserHeatLimit)
+                if (m_laserTemperature < m_laserSystem.laserHeatLimit)
                 {
-                    m_playerVFX.GunMuzzleFlash(true);
                     FireLaser();
                 }
                 m_timeSinceLastShot = 0f;
-                
+
             }
 
         }
 
-        m_playerVFX.GunMuzzleFlash(false);
         CheckGunsTemperature();
     }
 
-    void CheckGunsTemperature()
+    private void CheckGunsTemperature()
     {
-        if (m_laserTemperature >= 0 && m_laserTemperature < LaserSystem.laserHeatLimit)
+        if (m_laserTemperature >= 0 && m_laserTemperature < m_laserSystem.laserHeatLimit)
         {
-            m_laserTemperature -= Time.deltaTime * LaserSystem.LaserCooldownDecreatingStep;
+            m_laserTemperature -= Time.deltaTime * m_laserSystem.LaserCooldownDecreatingStep;
         }
 
-        if (m_laserTemperature >= LaserSystem.laserHeatLimit)
+        if (m_laserTemperature >= m_laserSystem.laserHeatLimit)
         {
             CooldownLaser();
         }
     }
 
-    void CooldownLaser()
+    private void CooldownLaser()
     {
-        LaserCooldownInterval -= Time.deltaTime;
+        m_laserCooldownInterval -= Time.deltaTime;
 
-        if (m_laserTemperature >= LaserSystem.laserHeatLimit && LaserCooldownInterval <= 0.0f)
+        if (m_laserTemperature >= m_laserSystem.laserHeatLimit && m_laserCooldownInterval <= 0.0f)
         {
             m_laserTemperature = 0f;
-            LaserCooldownInterval = 3f;
+            m_laserCooldownInterval = 3f;
         }
 
     }
 
-    void FireLaser()
+    private void FireLaser()
     {
-        LaserSystem.projectile.FireProjectileAt(BulletSpawnPosition.position, BulletSpawnPosition.rotation);
-        m_laserTemperature += LaserSystem.LaserHeatIncreaseStep;
+        m_laserSystem.projectile.FireProjectileAt(m_bulletSpawnPosition.position, m_bulletSpawnPosition.rotation);
+        m_laserTemperature += m_laserSystem.LaserHeatIncreaseStep;
     }
     
     public float GunsTemperature => m_laserTemperature;

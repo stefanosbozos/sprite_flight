@@ -6,7 +6,7 @@ public class Charger : MonoBehaviour
     //Enemy Vitals
     private float m_health = 100f;
 
-    private Player m_player;
+    private Transform m_player;
 
     private Rigidbody2D m_rb;
 
@@ -15,7 +15,7 @@ public class Charger : MonoBehaviour
     void Awake()
     {
         m_rb = GetComponent<Rigidbody2D>();
-        m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         m_health_bar = GetComponentInChildren<HealthBar>();
     }
 
@@ -35,7 +35,7 @@ public class Charger : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            m_player.TakeDamage(enemyStats.damage_rate, collision);
+            //m_player.TakeDamage(enemyStats.damage_rate, collision);
         }
 
     }
