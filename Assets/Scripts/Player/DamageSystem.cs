@@ -20,7 +20,7 @@ public class DamageSystem : MonoBehaviour
 
             if (enemyProjectile != null)
             {
-                TakeDamage(enemyProjectile.GetDamageAmount, collision);
+                TakeDamage(enemyProjectile.GetDamage(), collision);
                 Destroy(collision.gameObject);
             }
 

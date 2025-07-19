@@ -9,8 +9,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D m_rb;
     private VisualEffects m_playerVFX;
 
-    private const float k_MaxSpeed = 20;
-
 
     void Awake()
     {
@@ -33,9 +31,9 @@ public class PlayerMovement : MonoBehaviour
         m_rb.AddForce(m_moveValue * m_playerStats.ThrustForce);
 
         // This is to stop the player for accelerating if the move button is constantly pressed.
-        if (m_rb.linearVelocity.magnitude > k_MaxSpeed)
+        if (m_rb.linearVelocity.magnitude > m_playerStats.MaxSpeed)
         {
-            m_rb.linearVelocity = m_rb.linearVelocity.normalized * k_MaxSpeed;
+            m_rb.linearVelocity = m_rb.linearVelocity.normalized * m_playerStats.MaxSpeed;
         }
     }
 

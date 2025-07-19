@@ -6,13 +6,9 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private PlayerStatsSO m_playerStats;
     [SerializeField] private LaserSystemSO m_laserSystem;
     [SerializeField] private Transform m_bulletSpawnPosition;
-    [SerializeField] private float m_timeBetweenShots;
-    [SerializeField] private float m_laserCooldownInterval = 5f;
 
     private InputAction m_shootLaser;
     private float m_timeSinceLastShot;
-    private float m_laserTemperature;
-
 
     void Awake()
     {
@@ -32,10 +28,10 @@ public class PlayerShooting : MonoBehaviour
         if (m_shootLaser.inProgress)
         {
 
-            if (m_timeSinceLastShot >= m_timeBetweenShots)
+            if (m_laserSystem.IsLaserReady(m_timeSinceLastShot))
             {
 
-                if (m_laserTemperature < m_laserSystem.laserHeatLimit)
+                if (m_laserSystem.IsLaserCool())
                 {
                     FireLaser();
                 }
@@ -50,34 +46,31 @@ public class PlayerShooting : MonoBehaviour
 
     private void CheckGunsTemperature()
     {
-        if (m_laserTemperature >= 0 && m_laserTemperature < m_laserSystem.laserHeatLimit)
+        if (m_laserSystem.IsLaserWithinHeatLimit())
         {
-            m_laserTemperature -= Time.deltaTime * m_laserSystem.LaserCooldownDecreatingStep;
+            m_laserSystem.DecreaseLaserTemperature(Time.deltaTime);
         }
-
-        if (m_laserTemperature >= m_laserSystem.laserHeatLimit)
+        else
         {
-            CooldownLaser();
+            m_laserSystem.CooldownLaser(Time.deltaTime);
         }
     }
 
-    private void CooldownLaser()
-    {
-        m_laserCooldownInterval -= Time.deltaTime;
+    // private void CooldownLaser()
+    // {
+    //     m_laserCooldownInterval -= Time.deltaTime;
 
-        if (m_laserTemperature >= m_laserSystem.laserHeatLimit && m_laserCooldownInterval <= 0.0f)
-        {
-            m_laserTemperature = 0f;
-            m_laserCooldownInterval = 3f;
-        }
+    //     if (m_laserTemperature >= m_laserSystem.laserHeatLimit && m_laserCooldownInterval <= 0.0f)
+    //     {
+    //         m_laserTemperature = 0f;
+    //         m_laserCooldownInterval = 3f;
+    //     }
 
-    }
+    // }
 
     private void FireLaser()
     {
-        m_laserSystem.projectile.FireProjectileAt(m_bulletSpawnPosition.position, m_bulletSpawnPosition.rotation);
-        m_laserTemperature += m_laserSystem.LaserHeatIncreaseStep;
+        m_laserSystem.GetProjectile.FireProjectileAt(m_bulletSpawnPosition.position, m_bulletSpawnPosition.rotation);
+        m_laserSystem.IncreaseLaserTemperature();
     }
-    
-    public float GunsTemperature => m_laserTemperature;
 }

@@ -36,20 +36,20 @@ public class GameHUD : MonoBehaviour
 
     void UpdateHealthBar()
     {
-        m_healthBar.style.width = Length.Percent(m_playerStats.Health);
+        m_healthBar.style.width = Length.Percent(Mathf.FloorToInt(m_playerStats.Health));
         m_healthPercentage.text = m_playerStats.Health + "/" + m_playerStats.MaxHealth;
     }
 
     void UpdateShieldBar()
     {
-        m_shieldBar.style.width = Length.Percent(m_playerStats.Shield);
+        m_shieldBar.style.width = Length.Percent(Mathf.FloorToInt(m_playerStats.Shield));
         m_shieldPercentage.text = m_playerStats.Shield + "/" + m_playerStats.MaxShield;
     }
 
     void UpdateLaserBar()
     {
-        // m_laserBar.style.width = Length.Percent();
-        // m_shieldPercentage.text = "";
+        m_laserBar.style.width = Mathf.FloorToInt(m_playerStats.LaserSystem.LaserTemperature);
+        m_laserPercentage.text = m_playerStats.LaserSystem.LaserTemperature + "/" + m_playerStats.LaserSystem.laserHeatLimit;
     }
 
     void UpdateResources()

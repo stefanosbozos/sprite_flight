@@ -3,8 +3,7 @@ using UnityEngine;
 public class Enemy_Ship : MonoBehaviour
 {
     public EnemyStatsSO EnemyStats;
-
-
+    
     private Transform m_player;
     private Projectile m_projectile;
     private Rigidbody2D m_rb;
@@ -122,7 +121,7 @@ public class Enemy_Ship : MonoBehaviour
             if (projectile != null)
             {
                 Destroy(collision.gameObject);
-                TakeDamage(projectile.GetDamageAmount, collision);
+                TakeDamage(projectile.GetDamage(), collision);
             }
 
         }

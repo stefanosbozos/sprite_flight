@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_thrustForce: 10
   m_rotationSpeed: 10
+  m_laserSystem: {fileID: 11400000, guid: 7c2acaccb46157f4f82ae523bceb2da6, type: 2}

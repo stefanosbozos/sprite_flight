@@ -10,9 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72d215921a3881f41b72cbdf4e12258e, type: 3}
-  m_Name: BasicLaser
+  m_Name: EnemyLaserSystem
   m_EditorClassIdentifier: 
-  LaserCooldownDecreatingStep: 5
-  LaserHeatIncreaseStep: 5
-  laserHeatLimit: 100
-  projectile: {fileID: 8158747000278187019, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
+  projectile: {fileID: 5471034891812468259, guid: 69791d647ae567548b69d04cfabef369, type: 3}
+  m_projectileDirection: {x: 0, y: -1, z: 0}
+  m_projectileSpeed: 30
+  m_timeBetweenShots: 0
+  m_damageAmount: 3
+  m_damageMultiplier: 1
+  m_laserHeatDecreaseStep: 0
+  m_laserHeatIncreaseStep: 0
+  m_laserTemperature: 0
