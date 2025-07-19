@@ -512,6 +512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1162062630}
   - component: {fileID: 1162062629}
+  - component: {fileID: 1162062631}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -553,6 +554,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1162062631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162062628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83070926502aed44fbf4a6fa7369467d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIDoc: {fileID: 1162062629}
+  m_playerStats: {fileID: 11400000, guid: 317cb079afa35c447a3004705bd7f103, type: 2}
 --- !u!1 &1262222403
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,10 +942,6 @@ PrefabInstance:
       propertyPath: virtualMouse
       value: 
       objectReference: {fileID: 1530879817}
-    - target: {fileID: 680146801013433276, guid: b75bfd5818fdb4b43b352c284a82ad0c, type: 3}
-      propertyPath: virtualCursor
-      value: 
-      objectReference: {fileID: 1530879817}
     - target: {fileID: 1006218475922500456, guid: b75bfd5818fdb4b43b352c284a82ad0c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.51048094
@@ -969,14 +980,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1006218475922500456, guid: b75bfd5818fdb4b43b352c284a82ad0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5338523041382898271, guid: b75bfd5818fdb4b43b352c284a82ad0c, type: 3}
-      propertyPath: UIDoc
-      value: 
-      objectReference: {fileID: 1162062629}
-    - target: {fileID: 5338523041382898271, guid: b75bfd5818fdb4b43b352c284a82ad0c, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7005246431361686388, guid: b75bfd5818fdb4b43b352c284a82ad0c, type: 3}

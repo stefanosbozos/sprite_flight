@@ -16,6 +16,6 @@ MonoBehaviour:
   maxHealth: 100
   movement_speed: 5
   rotation_speed: 10
-  damage_rate: 15
+  damage_rate: 3
   taking_damage_VFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}
   death_explosion_VFX: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}

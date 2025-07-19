@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 1ebfbeee12d502540905085b530a276f, type: 2}
-  m_distanceBetweenEnemies: 8
+  m_distanceBetweenEnemies: 15
 --- !u!1 &3622275103253320328
 GameObject:
   m_ObjectHideFlags: 0
