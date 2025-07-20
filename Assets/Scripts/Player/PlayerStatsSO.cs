@@ -12,14 +12,14 @@ public class PlayerStatsSO : ScriptableObject
     // Player Vitals
     private float m_health;
     private float m_shield;
-    private float m_maxHealth = 100;
-    private float m_maxShield = 50;
+    private int m_maxHealth = 100;
+    private int m_maxShield = 50;
 
     // Shooting System
     [SerializeField] private LaserSystemSO m_laserSystem;
 
     // Member Methods
-    public bool InCriticalState()
+    public bool IsInCriticalState()
     {
         return m_health <= 20;
     }
@@ -49,8 +49,8 @@ public class PlayerStatsSO : ScriptableObject
     public float RotationSpeed => m_rotationSpeed;
     public float Health => m_health;
     public float Shield => m_shield;
-    public float MaxHealth => m_maxHealth;
-    public float MaxShield => m_maxShield;
+    public int MaxHealth => m_maxHealth;
+    public int MaxShield => m_maxShield;
     public float MaxSpeed => k_MaxSpeed;
     public LaserSystemSO LaserSystem => m_laserSystem;
 
@@ -66,12 +66,12 @@ public class PlayerStatsSO : ScriptableObject
         m_shield = shieldValue;
     }
 
-    public void SetMaxHealth(float newMaxHealth)
+    public void SetMaxHealth(int newMaxHealth)
     {
         m_maxHealth = newMaxHealth;
     }
 
-    public void SetMaxShield(float newMaxShield)
+    public void SetMaxShield(int newMaxShield)
     {
         m_maxHealth = newMaxShield;
     }

@@ -7,9 +7,6 @@ public class LaserSystemSO : ScriptableObject
     [SerializeField] private Vector3 m_projectileDirection;
     [SerializeField] private float m_projectileSpeed;
 
-    [SerializeField] private float m_timeBetweenShots;
-    private float m_laserCooldownTimer = k_LaserHeatLimit;
-
     [SerializeField] private float m_damageAmount;
     [SerializeField] private int m_damageMultiplier;
 
@@ -17,7 +14,9 @@ public class LaserSystemSO : ScriptableObject
     [SerializeField] private float m_laserHeatIncreaseStep;
     public float m_laserTemperature;
 
-    private const float k_LaserCooldownInterval = 2f;
+    [SerializeField] private float m_timeBetweenShots;
+    private float m_cooldownTimer;
+    public const float k_LaserCooldownInterval = 4f;
     private const float k_LaserHeatLimit = 100f;
     private const float k_TimeToLive = 1.5f;
 
@@ -25,27 +24,6 @@ public class LaserSystemSO : ScriptableObject
     public Vector3 LaserMovement()
     {
         return m_projectileDirection * m_projectileSpeed;
-    }
-
-    public void IncreaseLaserTemperature()
-    {
-        m_laserTemperature += m_laserHeatIncreaseStep;
-    }
-
-    public void DecreaseLaserTemperature(float deltaTime)
-    {
-        m_laserTemperature -= m_laserHeatDecreaseStep * deltaTime;
-    }
-
-    public void CooldownLaser(float deltaTime)
-    {
-        m_laserCooldownTimer -= deltaTime;
-
-        if (m_laserTemperature >= k_LaserHeatLimit && m_laserCooldownTimer <= 0.0f)
-        {
-            m_laserTemperature = 0f;
-            m_laserCooldownTimer = k_LaserCooldownInterval;
-        }
     }
 
     public float GetLaserDamage()
@@ -73,7 +51,20 @@ public class LaserSystemSO : ScriptableObject
     public Vector3 ProjectileDirection => m_projectileDirection;
     public float ProjectileSpeed => m_projectileSpeed;
     public float LaserTemperature => m_laserTemperature;
+    public float HeatDecreaseStep => m_laserHeatDecreaseStep;
+    public float HeatIncreaseStep => m_laserHeatIncreaseStep;
+    public float LaserCooldownInterval => k_LaserCooldownInterval;
     public float laserHeatLimit => k_LaserHeatLimit;
     public float ProjectileTTL => k_TimeToLive;
+
+    public float CooldownTimer()
+    {
+        return (float)System.Math.Round(m_cooldownTimer, 2);
+    }
+
+    public void UpdateCooldownTimer(float time)
+    {
+        m_cooldownTimer = time;
+    }
     
 }

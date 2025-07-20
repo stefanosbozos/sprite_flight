@@ -15,8 +15,9 @@ MonoBehaviour:
   projectile: {fileID: 8158747000278187019, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
   m_projectileDirection: {x: 0, y: 1, z: 0}
   m_projectileSpeed: 50
-  m_timeBetweenShots: 0.3
   m_damageAmount: 25
   m_damageMultiplier: 1
-  m_laserHeatDecreaseStep: 5
-  m_laserHeatIncreaseStep: 2
+  m_laserHeatDecreaseStep: 8
+  m_laserHeatIncreaseStep: 10
+  m_laserTemperature: -0.009936601
+  m_timeBetweenShots: 0.3

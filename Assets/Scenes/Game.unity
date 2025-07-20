@@ -243,8 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyWave:
-  - {fileID: 11400000, guid: c1a07ba1277e2564eb1236fd945ff91a, type: 2}
-  - {fileID: 11400000, guid: c26376963e943c449b015f4a8ce1966e, type: 2}
+  - {fileID: 11400000, guid: d6a85181dde8de446bc1eb2c8d76414f, type: 2}
   SpawingAreaOffsetX: 1
   SpawningAreaOffsetY: 3
   SpawnEnemyVFX: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}

@@ -9,10 +9,18 @@ public class PlayerShooting : MonoBehaviour
 
     private InputAction m_shootLaser;
     private float m_timeSinceLastShot;
+    private float m_laserCooldDownTimer;
+
 
     void Awake()
     {
         m_shootLaser = InputSystem.actions.FindAction("Shoot");
+    }
+
+    void Start()
+    {
+        m_laserCooldDownTimer = m_laserSystem.LaserCooldownInterval;
+        m_laserSystem.m_laserTemperature = 0;
     }
 
     void Update()
@@ -48,29 +56,32 @@ public class PlayerShooting : MonoBehaviour
     {
         if (m_laserSystem.IsLaserWithinHeatLimit())
         {
-            m_laserSystem.DecreaseLaserTemperature(Time.deltaTime);
+            m_laserSystem.m_laserTemperature -= m_laserSystem.HeatDecreaseStep * Time.deltaTime;
         }
         else
         {
-            m_laserSystem.CooldownLaser(Time.deltaTime);
+            CooldownLaser();
         }
     }
 
-    // private void CooldownLaser()
-    // {
-    //     m_laserCooldownInterval -= Time.deltaTime;
+    private void CooldownLaser()
+    {
+        m_laserCooldDownTimer -= Time.smoothDeltaTime;
+        m_laserSystem.UpdateCooldownTimer(m_laserCooldDownTimer);
 
-    //     if (m_laserTemperature >= m_laserSystem.laserHeatLimit && m_laserCooldownInterval <= 0.0f)
-    //     {
-    //         m_laserTemperature = 0f;
-    //         m_laserCooldownInterval = 3f;
-    //     }
+        if (m_laserSystem.m_laserTemperature >= m_laserSystem.laserHeatLimit && m_laserCooldDownTimer <= 0.0f)
+        {
+            m_laserSystem.m_laserTemperature = 0f;
+            m_laserCooldDownTimer = m_laserSystem.LaserCooldownInterval;
+        }
 
-    // }
+    }
 
     private void FireLaser()
     {
         m_laserSystem.GetProjectile.FireProjectileAt(m_bulletSpawnPosition.position, m_bulletSpawnPosition.rotation);
-        m_laserSystem.IncreaseLaserTemperature();
+        m_laserSystem.m_laserTemperature += m_laserSystem.HeatIncreaseStep;
     }
+
+    public float CooldownTimer => m_laserCooldDownTimer;
 }

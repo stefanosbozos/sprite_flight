@@ -41,7 +41,7 @@ public class DamageSystem : MonoBehaviour
             Debug.Log(m_playerStats.Health);
         }
 
-        m_playerVFX.EmitSmoke(m_playerStats.InCriticalState());
+        m_playerVFX.EmitSmoke(m_playerStats.IsInCriticalState());
         
         if (collision != null)
         {

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -36,20 +37,28 @@ public class GameHUD : MonoBehaviour
 
     void UpdateHealthBar()
     {
-        m_healthBar.style.width = Length.Percent(Mathf.FloorToInt(m_playerStats.Health));
-        m_healthPercentage.text = m_playerStats.Health + "/" + m_playerStats.MaxHealth;
+        int healthValue = Mathf.Clamp(Mathf.FloorToInt(m_playerStats.Health), 0, m_playerStats.MaxHealth);
+        m_healthBar.style.width = Length.Percent(healthValue);
+        m_healthPercentage.text = healthValue + "/" + m_playerStats.MaxHealth;
     }
 
     void UpdateShieldBar()
     {
-        m_shieldBar.style.width = Length.Percent(Mathf.FloorToInt(m_playerStats.Shield));
-        m_shieldPercentage.text = m_playerStats.Shield + "/" + m_playerStats.MaxShield;
+        int shieldValue = Mathf.Clamp(Mathf.FloorToInt(m_playerStats.Shield), 0, m_playerStats.MaxShield);
+        m_shieldBar.style.width = Length.Percent(shieldValue);
+        m_shieldPercentage.text = shieldValue + "/" + m_playerStats.MaxShield;
     }
 
     void UpdateLaserBar()
     {
-        m_laserBar.style.width = Mathf.FloorToInt(m_playerStats.LaserSystem.LaserTemperature);
-        m_laserPercentage.text = m_playerStats.LaserSystem.LaserTemperature + "/" + m_playerStats.LaserSystem.laserHeatLimit;
+        int laserValue = Mathf.Clamp(Mathf.FloorToInt(m_playerStats.LaserSystem.LaserTemperature), 0, 100);
+        m_laserBar.style.width = Length.Percent(laserValue);
+        m_laserPercentage.text = laserValue + "/" + m_playerStats.LaserSystem.laserHeatLimit;
+
+        if (laserValue >= 100)
+        {
+            m_laserPercentage.text = m_playerStats.LaserSystem.CooldownTimer() + "s";
+        }
     }
 
     void UpdateResources()
