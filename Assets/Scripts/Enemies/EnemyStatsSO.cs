@@ -7,6 +7,7 @@ public class EnemyStatsSO : ScriptableObject
     public GameObject ProjectilePreFab;
 
     // Enemy Vitals
+    private float health;
     public float maxHealth = 100f;
 
     // Movement
@@ -14,7 +15,20 @@ public class EnemyStatsSO : ScriptableObject
     public float rotation_speed;
     public float damage_rate;
 
-    // VFX
-    public GameObject taking_damage_VFX;
-    public GameObject death_explosion_VFX;
+    public void DecreaseHealth(float damageAmount)
+    {
+        health -= damageAmount;
+    }
+
+    public bool IsDead()
+    {
+        return health <= 0;
+    }
+
+    public float GetHealth => health;
+
+    public void SetHealth(float healthAmount)
+    {
+        health = healthAmount;
+    }
 }

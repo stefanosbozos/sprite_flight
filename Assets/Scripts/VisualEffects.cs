@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class VisualEffects : MonoBehaviour
 {
-    [SerializeField] private PlayerStatsSO m_playerStats;
     [SerializeField] private ParticleSystem m_thrusterVFX;
     [SerializeField] private ParticleSystem m_smokeVFX;
     [SerializeField] private GameObject m_takeDamageVFX;
@@ -33,7 +32,7 @@ public class VisualEffects : MonoBehaviour
         Destroy(explosion, 0.5f);
     }
 
-    public void SparksVFX(Vector2 pointOfcontact, Quaternion rotation)
+    public void TakeDamageVFX(Vector2 pointOfcontact, Quaternion rotation)
     {
         GameObject damageEffect = Instantiate(m_takeDamageVFX, pointOfcontact, rotation);
         Destroy(damageEffect, 3f);

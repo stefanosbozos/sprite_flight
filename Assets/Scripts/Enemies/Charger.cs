@@ -25,36 +25,5 @@ public class Charger : MonoBehaviour
         m_health_bar.UpdateStatusBar(m_health, enemyStats.maxHealth);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "laser_blue")
-        {
-            Destroy(collision.gameObject);
-            TakeDamage(5.0f, collision);
-        }
-
-        if (collision.gameObject.tag == "Player")
-        {
-            //m_player.TakeDamage(enemyStats.damage_rate, collision);
-        }
-
-    }
     
-    void TakeDamage(float damageAmount, Collision2D collision)
-    {
-        m_health -= damageAmount;
-        m_health_bar.UpdateStatusBar(m_health, enemyStats.maxHealth);
-
-        Vector2 contactOfdamage = collision.GetContact(0).point;
-        GameObject damageEffect = Instantiate(enemyStats.taking_damage_VFX, contactOfdamage, Quaternion.identity);
-
-        Destroy(damageEffect, 0.5f);
-
-        if (m_health <= 0)
-        {
-            GameObject explosion = Instantiate(enemyStats.death_explosion_VFX, transform.position, transform.rotation);
-            Destroy(gameObject);
-            Destroy(explosion, 2f);
-        }
-    }
 }

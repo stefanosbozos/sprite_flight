@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyType:
   - {fileID: 3410269031510865162, guid: 90c35e5b64f48fc45aac3e3d3890def0, type: 3}
-  EnemiesPerWave: 20
-  EnemiesOnScreen: 20
+  EnemiesPerWave: 4
+  EnemiesOnScreen: 2
   EnemySpawningInterval: 1

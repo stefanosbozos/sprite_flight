@@ -46,16 +46,6 @@ public class Creeper : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "laser_blue")
-        {
-            Destroy(collision.gameObject);
-            TakeDamage(5.0f, collision);
-        }
-
-    }
-
     void OnCollisionStay2D(Collision2D collision)
     {
         // if (collision.gameObject.tag == "Player")
@@ -64,21 +54,4 @@ public class Creeper : MonoBehaviour
         // }
     }
     
-    void TakeDamage(float damageAmount, Collision2D collision)
-    {
-        currentHealth -= damageAmount;
-        floatingHealthBar.UpdateStatusBar(currentHealth, enemyStats.maxHealth);
-
-        Vector2 contactOfdamage = collision.GetContact(0).point;
-        GameObject damageEffect = Instantiate(enemyStats.taking_damage_VFX, contactOfdamage, Quaternion.identity);
-
-        Destroy(damageEffect, 0.5f);
-
-        if (currentHealth <= 0)
-        {
-            GameObject explosion = Instantiate(enemyStats.death_explosion_VFX, transform.position, transform.rotation);
-            Destroy(gameObject);
-            Destroy(explosion, 2f);
-        }
-    }
 }

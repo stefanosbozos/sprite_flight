@@ -46,7 +46,7 @@ public class DamageSystem : MonoBehaviour
         if (collision != null)
         {
             Vector2 contactOfdamage = collision.GetContact(0).point;
-            m_playerVFX.SparksVFX(contactOfdamage, Quaternion.identity);
+            m_playerVFX.TakeDamageVFX(contactOfdamage, Quaternion.identity);
         }
 
         // Player's is dead.
