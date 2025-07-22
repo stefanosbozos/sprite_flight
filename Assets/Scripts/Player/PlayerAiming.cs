@@ -40,7 +40,7 @@ public class PlayerAiming : MonoBehaviour
             RotatePlayer(aimValue.y, aimValue.x);
         }
     }
-    
+
     private void MouseAim()
     {
         aimValue = m_mouseAim.ReadValue<Vector2>();
