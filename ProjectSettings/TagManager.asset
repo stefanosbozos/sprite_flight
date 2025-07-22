@@ -9,6 +9,7 @@ TagManager:
   - enemy_fire
   - virtual_mouse
   - enemy
+  - player_fire
   layers:
   - Default
   - TransparentFX

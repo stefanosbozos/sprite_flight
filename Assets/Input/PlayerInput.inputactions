@@ -33,9 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Aim",
+                    "name": "GamepadAim",
                     "type": "Value",
                     "id": "cc475191-18e4-4bd3-96a3-ffea64c2651e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MouseAim",
+                    "type": "Value",
+                    "id": "d572b50f-d061-4971-abad-ebe06fad6151",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -160,18 +169,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim",
+                    "action": "GamepadAim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "e2a3ef62-6946-459a-817b-24d6cf0b4fe7",
-                    "path": "<Mouse>/delta",
+                    "id": "fd091bdb-8420-48c7-a3bc-04cd0f91ef52",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim",
+                    "action": "MouseAim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

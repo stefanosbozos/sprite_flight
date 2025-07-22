@@ -14,8 +14,6 @@ public class PlayerManager : MonoBehaviour
     {
         m_playerStats.SetCurrentHealth(100);
         m_playerStats.SetCurrentShield(50);
-
-        Cursor.lockState = CursorLockMode.Confined;
     }
 
 }

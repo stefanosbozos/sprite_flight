@@ -28,11 +28,15 @@ public class EnemyShootingSystem : MonoBehaviour
     void Shoot()
     {
         timer += Time.deltaTime;
-        if (timer > timeBetweenShots)
+        if (IsReadyToShoot())
         {
-            // Check the state of the enemy. As we do not want more than 3 enemies attach at the same time.
-            m_projectile.FireProjectileAt( transform.Find("ProjectileSpawn").position, transform.Find("ProjectileSpawn").rotation );
+            m_projectile.FireProjectileAt(transform.Find("ProjectileSpawn").position, transform.Find("ProjectileSpawn").rotation);
             timer = 0;
         }
+    }
+
+    bool IsReadyToShoot()
+    {
+        return timer > timeBetweenShots;
     }
 }

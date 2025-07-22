@@ -12,10 +12,15 @@ public class EnemyCollisionSystem : MonoBehaviour
         floatingHealthBar = GetComponentInChildren<HealthBar>();
     }
 
+    void Start()
+    {
+        floatingHealthBar.UpdateStatusBar(EnemyStats.GetHealth, EnemyStats.maxHealth);
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "laser_blue")
+        if (collision.gameObject.tag == "player_fire")
         {
 
             Projectile projectile = collision.gameObject.GetComponentInParent<Projectile>();

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LaserBarOverheated_0: 4119021497295478671
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

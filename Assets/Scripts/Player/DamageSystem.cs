@@ -33,12 +33,12 @@ public class DamageSystem : MonoBehaviour
         if (m_playerStats.ShieldActive())
         {
             m_playerStats.DamageToShield(damageAmount);
-            Debug.Log(m_playerStats.Shield);
+            // Debug.Log(m_playerStats.Shield);
         }
         else
         {
             m_playerStats.DamageToHealth(damageAmount);
-            Debug.Log(m_playerStats.Health);
+            // Debug.Log(m_playerStats.Health);
         }
 
         m_playerVFX.EmitSmoke(m_playerStats.IsInCriticalState());

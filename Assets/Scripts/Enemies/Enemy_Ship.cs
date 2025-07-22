@@ -22,7 +22,6 @@ public class Enemy_Ship : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         m_playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Vfx = GetComponent<VisualEffects>();
-        
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,6 +29,7 @@ public class Enemy_Ship : MonoBehaviour
     {
         // Get a random original distance from the player.
         distanceFromThePlayer = GenerateDistanceFromPlayerLimit();
+        EnemyStats.SetHealth(100);
     }
 
     // Update is called once per frame

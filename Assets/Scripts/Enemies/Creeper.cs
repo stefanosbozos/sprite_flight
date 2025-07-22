@@ -5,20 +5,16 @@ public class Creeper : MonoBehaviour
     public EnemyStatsSO enemyStats;
     private Transform player;
     private Rigidbody2D rb;
-
-    private float currentHealth = 100f;
-    HealthBar floatingHealthBar;
     
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
-        floatingHealthBar = GetComponentInChildren<HealthBar>();
     }
 
     void Start()
     {
-        floatingHealthBar.UpdateStatusBar(currentHealth, enemyStats.maxHealth);
+        
     }
     // Update is called once per frame
     void Update()
