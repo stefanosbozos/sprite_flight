@@ -29,7 +29,6 @@ public class Enemy_Ship : MonoBehaviour
     {
         // Get a random original distance from the player.
         limitOfDistanceFromPlayer = GenerateDistanceFromPlayerLimit();
-        EnemyStats.SetHealth(100);
     }
 
     // Update is called once per frame

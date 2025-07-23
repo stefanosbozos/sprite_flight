@@ -3,18 +3,13 @@ using UnityEngine;
 public class EnemyCollisionSystem : MonoBehaviour
 {
     public EnemyStatsSO EnemyStats;
+    public GameHUD GameHud;
     private VisualEffects Vfx;
-    private HealthBar floatingHealthBar;
 
     void Awake()
     {
+        GameHud = GetComponentInChildren<GameHUD>();
         Vfx = GetComponent<VisualEffects>();
-        floatingHealthBar = GetComponentInChildren<HealthBar>();
-    }
-
-    void Start()
-    {
-        floatingHealthBar.UpdateStatusBar(EnemyStats.GetHealth, EnemyStats.maxHealth);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -27,25 +22,12 @@ public class EnemyCollisionSystem : MonoBehaviour
 
             if (projectile != null)
             {
+                GameHud.UpdateScore(EnemyStats.m_scoreValue);
                 Destroy(collision.gameObject);
-                TakeDamage(projectile.GetDamage(), collision);
+                Vfx.ExplodeVFX(transform.position, transform.rotation);
+                Destroy(gameObject);
             }
 
-        }
-    }
-
-    void TakeDamage(float damageAmount, Collision2D collision)
-    {
-        EnemyStats.DecreaseHealth(damageAmount);
-        floatingHealthBar.UpdateStatusBar(EnemyStats.GetHealth, EnemyStats.maxHealth);     
-
-        Vector2 contactOfdamage = collision.GetContact(0).point;
-        Vfx.TakeDamageVFX(contactOfdamage, Quaternion.identity);
-
-        if (EnemyStats.IsDead())
-        {
-            Vfx.ExplodeVFX(transform.position, transform.rotation);
-            Destroy(gameObject);
         }
     }
 
