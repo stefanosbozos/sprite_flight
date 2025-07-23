@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
     private int m_waveIndex;
     private int m_totalEnemiesSpawned;
     private GameObject[] m_enemiesOnScreen;
+    public EnemyRuntimeSetSO EnemiesOnScreenList;
 
     private float m_timer = 0f;
     private bool m_prepareNextWave;
@@ -63,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (!PlayerIsAlive())
         {
-            DestroyAllEnemiesOnScreen();
+            EnemiesOnScreenList.KillAll();
         }
 
     }
@@ -80,7 +81,8 @@ public class EnemySpawner : MonoBehaviour
                 if (randomSpawnPosition != m_player.transform.position)
                 {
                     PlaySpawnVFX(randomSpawnPosition);
-                    Instantiate(GetRandomEnemyType(), randomSpawnPosition, Quaternion.identity);
+                    GameObject enemy = Instantiate(GetRandomEnemyType(), randomSpawnPosition, Quaternion.identity);
+                    EnemiesOnScreenList.Add(enemy);
                 }
             }
             
@@ -93,7 +95,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void PrepareNextWave()
     {
-        if (CountEnemiesOnScreen() <= 0 && !m_prepareNextWave)
+        if (EnemiesOnScreenList.Size() <= 0 && !m_prepareNextWave)
         {
             m_prepareNextWave = true;
             StartCoroutine(SpawnNextWave());
@@ -112,36 +114,10 @@ public class EnemySpawner : MonoBehaviour
         Debug.Log("Next Wave is ready.");
     }
 
-    private void DestroyAllEnemiesOnScreen()
-    {
-        for (int i = 0; i < EnemyWave[m_waveIndex].EnemyType.Length; i++)
-        {
-            string currentEnemyTag = EnemyWave[m_waveIndex].EnemyType[i].tag;
-            GameObject[] enemiesOnScreen = GameObject.FindGameObjectsWithTag(currentEnemyTag);
-
-            foreach (var enemyOnScreen in enemiesOnScreen)
-            {
-                Destroy(enemyOnScreen);
-            }
-        }
-    }
-
-    private int CountEnemiesOnScreen()
-    {
-
-        for (int i = 0; i < EnemyWave[m_waveIndex].EnemyType.Length; i++)
-        {
-            string currentEnemyTag = EnemyWave[m_waveIndex].EnemyType[i].tag;
-            m_enemiesOnScreen = GameObject.FindGameObjectsWithTag(currentEnemyTag);
-        }
-
-        return m_enemiesOnScreen.Length;
-    }
-
     private bool IsReadyToSpawn()
     {
         bool spawnIntervalComplete = m_timer >= EnemyWave[m_waveIndex].EnemySpawningInterval;
-        bool doesNotExceedEnemiesOnScreen = CountEnemiesOnScreen() < EnemyWave[m_waveIndex].EnemiesOnScreen;
+        bool doesNotExceedEnemiesOnScreen = EnemiesOnScreenList.Size() < EnemyWave[m_waveIndex].EnemiesOnScreen;
 
         return spawnIntervalComplete && doesNotExceedEnemiesOnScreen;
     }
@@ -165,7 +141,7 @@ public class EnemySpawner : MonoBehaviour
         return new Vector3(randomX, randomY, 0);
     }
 
-    private void PlaySpawnVFX(UnityEngine.Vector3 position)
+    private void PlaySpawnVFX(Vector3 position)
     {
         GameObject spawnEffect = Instantiate(SpawnEnemyVFX, position, Quaternion.identity);
         Destroy(spawnEffect, 1f);

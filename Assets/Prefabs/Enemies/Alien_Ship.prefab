@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyStats: {fileID: 11400000, guid: 1ebfbeee12d502540905085b530a276f, type: 2}
+  EnemiesOnScreenList: {fileID: 11400000, guid: 511b98e25d023b84fb8bf79f2878eb37, type: 2}
 --- !u!114 &-95421342316555143
 MonoBehaviour:
   m_ObjectHideFlags: 0

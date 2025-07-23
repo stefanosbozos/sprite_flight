@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyCollisionSystem : MonoBehaviour
 {
     public EnemyStatsSO EnemyStats;
+    public EnemyRuntimeSetSO EnemiesOnScreenList;
     private VisualEffects Vfx;
     private HealthBar floatingHealthBar;
 
@@ -44,6 +45,7 @@ public class EnemyCollisionSystem : MonoBehaviour
 
         if (EnemyStats.IsDead())
         {
+            EnemiesOnScreenList.Remove(gameObject);
             Vfx.ExplodeVFX(transform.position, transform.rotation);
             Destroy(gameObject);
         }
