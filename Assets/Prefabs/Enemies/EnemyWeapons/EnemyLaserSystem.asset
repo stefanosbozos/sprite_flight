@@ -15,9 +15,9 @@ MonoBehaviour:
   projectile: {fileID: 5471034891812468259, guid: 69791d647ae567548b69d04cfabef369, type: 3}
   m_projectileDirection: {x: 0, y: -1, z: 0}
   m_projectileSpeed: 30
-  m_timeBetweenShots: 0
   m_damageAmount: 3
   m_damageMultiplier: 1
   m_laserHeatDecreaseStep: 0
   m_laserHeatIncreaseStep: 0
   m_laserTemperature: 0
+  m_timeBetweenShots: 0

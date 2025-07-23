@@ -28,7 +28,7 @@ public class Enemy_Ship : MonoBehaviour
     void Start()
     {
         // Get a random original distance from the player.
-        distanceFromThePlayer = GenerateDistanceFromPlayerLimit();
+        limitOfDistanceFromPlayer = GenerateDistanceFromPlayerLimit();
         EnemyStats.SetHealth(100);
     }
 

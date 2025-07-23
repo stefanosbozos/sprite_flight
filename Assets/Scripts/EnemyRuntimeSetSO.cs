@@ -4,8 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyRuntimeSet", menuName = "Enemy Runtime Set")]
 public class EnemyRuntimeSetSO : ScriptableObject
 {
-    private List<GameObject> m_enemies = new List<GameObject>();
-    public List<GameObject> Enemies => m_enemies;
+    private static List<GameObject> m_enemies = new List<GameObject>();
+    public static List<GameObject> Enemies => m_enemies;
 
     public void Add(GameObject enemyToAdd)
     {
@@ -23,12 +23,12 @@ public class EnemyRuntimeSetSO : ScriptableObject
         }
     }
 
-    public int Size()
+    public static int Size()
     {
         return m_enemies.Count;
     }
 
-    public void KillAll()
+    public static void KillAll()
     {
         foreach (var enemy in m_enemies)
         {

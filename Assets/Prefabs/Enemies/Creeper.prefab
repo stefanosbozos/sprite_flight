@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 1125006812242733651}
   - component: {fileID: 6903539385133986621}
   - component: {fileID: 1627281962429218889}
+  - component: {fileID: -6993944414262618462}
   m_Layer: 0
   m_Name: Creeper
   m_TagString: enemy
@@ -642,8 +643,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 3e5fe1a762a5fcc4bb872618308c4680, type: 2}
-  deathExplosionFX: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
-  takeDamageFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}
 --- !u!114 &1125006812242733651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -685,3 +684,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 3e5fe1a762a5fcc4bb872618308c4680, type: 2}
   m_distanceBetweenEnemies: 10
+--- !u!114 &-6993944414262618462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676113999607285523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262bdc3e9d51b494b8b36348a86845d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyRuntimeSet: {fileID: 11400000, guid: 511b98e25d023b84fb8bf79f2878eb37, type: 2}

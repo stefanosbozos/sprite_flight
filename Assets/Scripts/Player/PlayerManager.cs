@@ -3,12 +3,6 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private PlayerStatsSO m_playerStats;
-    private DamageSystem m_damageSystem;
-
-    void Awake()
-    {
-        m_damageSystem = GetComponent<DamageSystem>();
-    }
 
     void Start()
     {

@@ -21,7 +21,6 @@ public class EnemySpawner : MonoBehaviour
     private int m_waveIndex;
     private int m_totalEnemiesSpawned;
     private GameObject[] m_enemiesOnScreen;
-    public EnemyRuntimeSetSO EnemiesOnScreenList;
 
     private float m_timer = 0f;
     private bool m_prepareNextWave;
@@ -64,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (!PlayerIsAlive())
         {
-            EnemiesOnScreenList.KillAll();
+            EnemyRuntimeSetSO.KillAll();
         }
 
     }
@@ -81,21 +80,20 @@ public class EnemySpawner : MonoBehaviour
                 if (randomSpawnPosition != m_player.transform.position)
                 {
                     PlaySpawnVFX(randomSpawnPosition);
-                    GameObject enemy = Instantiate(GetRandomEnemyType(), randomSpawnPosition, Quaternion.identity);
-                    EnemiesOnScreenList.Add(enemy);
+                    Instantiate(GetRandomEnemyType(), randomSpawnPosition, Quaternion.identity);
+                    Debug.Log(EnemyRuntimeSetSO.Size());
                 }
             }
             
             m_totalEnemiesSpawned++;
             m_timer = 0f;
-
         }
 
     }
 
     private void PrepareNextWave()
     {
-        if (EnemiesOnScreenList.Size() <= 0 && !m_prepareNextWave)
+        if (EnemyRuntimeSetSO.Size() <= 0 && !m_prepareNextWave)
         {
             m_prepareNextWave = true;
             StartCoroutine(SpawnNextWave());
@@ -117,7 +115,7 @@ public class EnemySpawner : MonoBehaviour
     private bool IsReadyToSpawn()
     {
         bool spawnIntervalComplete = m_timer >= EnemyWave[m_waveIndex].EnemySpawningInterval;
-        bool doesNotExceedEnemiesOnScreen = EnemiesOnScreenList.Size() < EnemyWave[m_waveIndex].EnemiesOnScreen;
+        bool doesNotExceedEnemiesOnScreen = EnemyRuntimeSetSO.Size() < EnemyWave[m_waveIndex].EnemiesOnScreen;
 
         return spawnIntervalComplete && doesNotExceedEnemiesOnScreen;
     }

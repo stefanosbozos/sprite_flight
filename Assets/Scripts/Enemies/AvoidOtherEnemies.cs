@@ -5,18 +5,16 @@ public class AvoidOtherEnemies : MonoBehaviour
     [SerializeField] private EnemyStatsSO enemyStats;
     [SerializeField] private float m_distanceBetweenEnemies;
     private float m_distanceFromOtherEnemies;
-    private GameObject[] m_EnemiesOnScreen;
     private Rigidbody2D rb;
 
     void Awake()
     {
-        m_EnemiesOnScreen = GameObject.FindGameObjectsWithTag("enemy");
         rb = GetComponent<Rigidbody2D>();
     }
 
     void AvoidEnemies()
     {
-        foreach (GameObject enemy in m_EnemiesOnScreen)
+        foreach (var enemy in EnemyRuntimeSetSO.Enemies)
         {
             if (enemy != null)
             {

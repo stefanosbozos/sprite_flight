@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: -842987939515142801}
   - component: {fileID: -95421342316555143}
   - component: {fileID: -3998211763383672930}
+  - component: {fileID: 6584754023215582543}
   m_Layer: 0
   m_Name: Alien_Ship
   m_TagString: enemy
@@ -483,7 +484,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyStats: {fileID: 11400000, guid: 1ebfbeee12d502540905085b530a276f, type: 2}
-  EnemiesOnScreenList: {fileID: 11400000, guid: 511b98e25d023b84fb8bf79f2878eb37, type: 2}
 --- !u!114 &-95421342316555143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,10 +512,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07d9ce72b1418a4cbe5d177ce0632fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_thrusterVFX: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+  m_thrusterVFX: {fileID: 4502550197988101056}
   m_smokeVFX: {fileID: 2437489493237807301, guid: bd25695f506f75c45b16659df728079d, type: 3}
   m_takeDamageVFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}
   m_explosionVFX: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
+--- !u!114 &6584754023215582543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3410269031510865162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262bdc3e9d51b494b8b36348a86845d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyRuntimeSet: {fileID: 11400000, guid: 511b98e25d023b84fb8bf79f2878eb37, type: 2}
 --- !u!1 &3622275103253320328
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,6 +777,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 7158822617300335750}
     m_Modifications:
     - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0.2200865
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.ctime1
       value: 36237
       objectReference: {fileID: 0}
@@ -860,6 +877,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+--- !u!198 &4502550197988101056 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1480583001834936317, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}
+  m_PrefabInstance: {fileID: 3094065207998700605}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8275818267185197097 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6352836571828022292, guid: 19544dbf31bc57b4b9fe6fcdeb2f21ef, type: 3}

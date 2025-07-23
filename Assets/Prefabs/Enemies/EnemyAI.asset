@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e7e59a02bf79e40a2f4c133108312b, type: 3}
-  m_Name: TestWave
+  m_Script: {fileID: 11500000, guid: 3832bcb7d91eb6548a3501e0fd582358, type: 3}
+  m_Name: EnemyAI
   m_EditorClassIdentifier: 
-  EnemyType:
-  - {fileID: 3410269031510865162, guid: 90c35e5b64f48fc45aac3e3d3890def0, type: 3}
-  EnemiesPerWave: 5
-  EnemiesOnScreen: 2
-  EnemySpawningInterval: 1
