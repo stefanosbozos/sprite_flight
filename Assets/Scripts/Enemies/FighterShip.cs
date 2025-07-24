@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class FighterShip : Enemy, ISpaceship, ICanAttack
 {
-
+    // The FighterShip's weapon.
+    [SerializeField] private Projectile m_projectile;
+    
     // The distance difference from the player.
     private float limitOfDistanceFromPlayer;
     private float distanceFromThePlayer;
     protected float m_attackTimer;
-    [SerializeField] protected float m_timeBetweenAttacks;
-
+    protected float m_timeBetweenAttacks;
 
     // Fighter Ship's Shooting system
-    private Projectile m_projectile;
     private float m_thrusterEmmissionRate = 5f;
 
     void Awake()
@@ -19,15 +19,16 @@ public class FighterShip : Enemy, ISpaceship, ICanAttack
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         m_vfx = GetComponent<VisualEffects>();
-        m_projectile = EnemyStats.ProjectilePreFab.GetComponent<Projectile>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // Get a random original distance from the player.
         limitOfDistanceFromPlayer = GenerateDistanceFromPlayerLimit();
         m_timeBetweenAttacks = Random.Range(ICanAttack.minTimeToAttack, ICanAttack.maxTimeToAttack);
+
+        m_movementSpeed = 5f;
+        m_scoreValue = 100;
     }
 
     // Update is called once per frame
@@ -57,12 +58,12 @@ public class FighterShip : Enemy, ISpaceship, ICanAttack
             if (distanceFromThePlayer < limitOfDistanceFromPlayer)
             {
                 // Get away from the player
-                m_rigidbody.AddForce(direction * EnemyStats.movement_speed, ForceMode2D.Force);
+                m_rigidbody.AddForce(direction * m_movementSpeed, ForceMode2D.Force);
             }
             else
             {
                 // Go to the player's position
-                m_rigidbody.AddForceAtPosition(-direction * EnemyStats.movement_speed, m_playerPosition.position);
+                m_rigidbody.AddForceAtPosition(-direction * m_movementSpeed, m_playerPosition.position);
             }
         }
 

@@ -1,27 +1,14 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public abstract class Projectile : MonoBehaviour
 {
-    [SerializeField] private LaserSystemSO m_laserSystem;
+    protected float m_speed;
+    protected float m_damage;
+    protected const float k_timeToLive = 1.5f;
 
-    void Update()
-    {
-        MoveToDirection();
-    }
+    public abstract void FireProjectileAt(Vector3 spawn_position, Quaternion spawn_rotation);
 
-    public void FireProjectileAt(Vector3 spawn_position, Quaternion spawn_rotation)
-    {
-        Instantiate(gameObject, spawn_position, spawn_rotation);
-    }
+    public abstract float GetDamage();
 
-    public float GetDamage()
-    {
-        return m_laserSystem.GetLaserDamage();
-    }
-
-    void MoveToDirection()
-    {
-        transform.Translate(m_laserSystem.ProjectileDirection * m_laserSystem.ProjectileSpeed * Time.deltaTime);
-        Destroy(gameObject, m_laserSystem.ProjectileTTL);
-    }
+    protected abstract void MoveToDirection();
 }

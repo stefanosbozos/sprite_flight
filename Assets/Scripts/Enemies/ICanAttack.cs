@@ -5,4 +5,5 @@ public interface ICanAttack
 
     public void Attack();
     public bool IsReadyToAttack();
+
 }

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    public EnemyStatsSO EnemyStats;
+    
+
     public EnemyRuntimeSetSO EnemyRuntimeSet;
     protected Transform m_playerPosition;
     protected Rigidbody2D m_rigidbody;
@@ -10,13 +11,23 @@ public abstract class Enemy : MonoBehaviour
     // Fighter Ship's Visual Effects
     protected VisualEffects m_vfx;
 
-    [SerializeField] private float m_distanceBetweenEnemies;
+    private float m_distanceBetweenEnemies;
     private float m_distanceFromOtherEnemies;
+
+    // Movement
+    protected float m_movementSpeed;
+    protected float m_rotationSpeed;
+
+    // Damage & ScoreValue
+    protected int m_scoreValue;
+
+    private float m_minDistanceFromOtherEnemies = 5f;
+    private float m_maxDistanceFromOtherEnemies = 20;
 
     void OnEnable()
     {
         EnemyRuntimeSet.Add(gameObject);
-        m_distanceBetweenEnemies = Random.Range(EnemyStats.minDistanceFromOtherEnemies, EnemyStats.maxDistanceFromOtherEnemies);
+        m_distanceBetweenEnemies = Random.Range(m_minDistanceFromOtherEnemies, m_maxDistanceFromOtherEnemies);
     }
 
     void OnDestroy()
@@ -32,15 +43,15 @@ public abstract class Enemy : MonoBehaviour
             // Change the rotation accoriding to the player's rotation to always face the player
             Vector3 enemyRotation = m_playerPosition.position - transform.position;
             float rotationZ = Mathf.Atan2(enemyRotation.y, enemyRotation.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ + 90.0f), EnemyStats.rotation_speed * Time.deltaTime);
+            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ + 90.0f), m_rotationSpeed * Time.deltaTime);
         }
     }
 
     protected void MaintainLinearVelocity()
     {
-        if (m_rigidbody.linearVelocity.magnitude > EnemyStats.movement_speed)
+        if (m_rigidbody.linearVelocity.magnitude > m_movementSpeed)
         {
-            m_rigidbody.linearVelocity = m_rigidbody.linearVelocity.normalized * EnemyStats.movement_speed;
+            m_rigidbody.linearVelocity = m_rigidbody.linearVelocity.normalized * m_movementSpeed;
         }
     }
 
@@ -55,7 +66,7 @@ public abstract class Enemy : MonoBehaviour
                 {
                     // Stay away from other enemies
                     Vector3 enemyDirection = (transform.position - enemy.transform.position).normalized;
-                    m_rigidbody.AddForce(enemyDirection * EnemyStats.movement_speed);
+                    m_rigidbody.AddForce(enemyDirection * m_movementSpeed);
                 }
             }
         }

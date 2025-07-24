@@ -4,11 +4,12 @@ using UnityEngine.InputSystem;
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] private PlayerStatsSO m_playerStats;
-    [SerializeField] private LaserSystemSO m_laserSystem;
+    [SerializeField] private P_Laser laser;
     [SerializeField] private Transform m_bulletSpawnPosition;
 
     private InputAction m_shootLaser;
     private float m_timeSinceLastShot;
+    [SerializeField] private float m_timeBetweenShoots = 0.5f;
     private float m_laserCooldDownTimer;
 
 
@@ -19,8 +20,8 @@ public class PlayerShooting : MonoBehaviour
 
     void Start()
     {
-        m_laserCooldDownTimer = m_laserSystem.LaserCooldownInterval;
-        m_laserSystem.m_laserTemperature = 0;
+        m_laserCooldDownTimer = I_CanOverheat.k_LaserCooldownInterval;
+        laser.SetTemperature(0);
     }
 
     void Update()
@@ -36,12 +37,12 @@ public class PlayerShooting : MonoBehaviour
         if (m_shootLaser.inProgress)
         {
 
-            if (m_laserSystem.IsLaserReady(m_timeSinceLastShot))
+            if (m_timeSinceLastShot > m_timeBetweenShoots)
             {
 
-                if (m_laserSystem.IsLaserCool())
+                if (laser.IsReady())
                 {
-                    FireLaser();
+                    Fire();
                 }
                 m_timeSinceLastShot = 0f;
 
@@ -54,9 +55,9 @@ public class PlayerShooting : MonoBehaviour
 
     private void CheckGunsTemperature()
     {
-        if (m_laserSystem.IsLaserWithinHeatLimit())
+        if (laser.IsWithinHeatLimit())
         {
-            m_laserSystem.m_laserTemperature -= m_laserSystem.HeatDecreaseStep * Time.deltaTime;
+            laser.DecreaseHeat();
         }
         else
         {
@@ -67,20 +68,18 @@ public class PlayerShooting : MonoBehaviour
     private void CooldownLaser()
     {
         m_laserCooldDownTimer -= Time.smoothDeltaTime;
-        m_laserSystem.UpdateCooldownTimer(m_laserCooldDownTimer);
-
-        if (m_laserSystem.m_laserTemperature >= m_laserSystem.laserHeatLimit && m_laserCooldDownTimer <= 0.0f)
+        if (laser.IsOverheated() && m_laserCooldDownTimer <= 0.0f)
         {
-            m_laserSystem.m_laserTemperature = 0f;
-            m_laserCooldDownTimer = m_laserSystem.LaserCooldownInterval;
+            laser.SetTemperature(0);
+            m_laserCooldDownTimer = I_CanOverheat.k_LaserCooldownInterval;
         }
 
     }
 
-    private void FireLaser()
+    private void Fire()
     {
-        m_laserSystem.GetProjectile.FireProjectileAt(m_bulletSpawnPosition.position, m_bulletSpawnPosition.rotation);
-        m_laserSystem.m_laserTemperature += m_laserSystem.HeatIncreaseStep;
+        laser.FireProjectileAt(m_bulletSpawnPosition.position, m_bulletSpawnPosition.rotation);
+        laser.IncreaseHeat();
     }
 
     public float CooldownTimer => m_laserCooldDownTimer;
