@@ -45,12 +45,7 @@ GameObject:
   - component: {fileID: 3602890472728953025}
   - component: {fileID: 7876405911913664006}
   - component: {fileID: -6756094584037500207}
-  - component: {fileID: 3382631582969193736}
-  - component: {fileID: 4702092133432559229}
-  - component: {fileID: -842987939515142801}
-  - component: {fileID: -95421342316555143}
   - component: {fileID: -3998211763383672930}
-  - component: {fileID: 6584754023215582543}
   m_Layer: 0
   m_Name: BasicAlienShip
   m_TagString: enemy
@@ -290,7 +285,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyStats: {fileID: 11400000, guid: 1ebfbeee12d502540905085b530a276f, type: 2}
-  limitOfDistanceFromPlayer: 10
+  EnemyRuntimeSet: {fileID: 11400000, guid: 511b98e25d023b84fb8bf79f2878eb37, type: 2}
+  m_distanceBetweenEnemies: 0
+  m_timeBetweenAttacks: 0
 --- !u!114 &-6756094584037500207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,63 +302,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   X_offset: 1
   Y_offset: 3
---- !u!114 &3382631582969193736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3410269031510865162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cccfeb32bd18be49bd17095e23d8944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 0}
---- !u!114 &4702092133432559229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3410269031510865162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd325841419c5c499de2d12519cbedb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyStats: {fileID: 11400000, guid: 1ebfbeee12d502540905085b530a276f, type: 2}
-  m_distanceBetweenEnemies: 15
---- !u!114 &-842987939515142801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3410269031510865162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21cbaf4c8880ede4885a109f910a2a69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyStats: {fileID: 11400000, guid: 1ebfbeee12d502540905085b530a276f, type: 2}
-  GameHud: {fileID: 2724447557138007003, guid: d90216994e6e05942834e175023ee7bf, type: 3}
---- !u!114 &-95421342316555143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3410269031510865162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a37385b274f3ad64d826b9b4eb7df27b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyStats: {fileID: 11400000, guid: 1ebfbeee12d502540905085b530a276f, type: 2}
-  minTimeToAttack: 1.5
-  maxTimeToAttack: 5
-  timeBetweenShots: 0
 --- !u!114 &-3998211763383672930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,19 +318,6 @@ MonoBehaviour:
   m_smokeVFX: {fileID: 2437489493237807301, guid: bd25695f506f75c45b16659df728079d, type: 3}
   m_takeDamageVFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}
   m_explosionVFX: {fileID: 3150404581025707716, guid: 5c953a3c603c7a542b5ff5a416c56406, type: 3}
---- !u!114 &6584754023215582543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3410269031510865162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 262bdc3e9d51b494b8b36348a86845d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyRuntimeSet: {fileID: 11400000, guid: 511b98e25d023b84fb8bf79f2878eb37, type: 2}
 --- !u!1001 &3094065207998700605
 PrefabInstance:
   m_ObjectHideFlags: 0
