@@ -424,11 +424,9 @@ GameObject:
   - component: {fileID: 4378109832152802}
   - component: {fileID: 2156119352659199959}
   - component: {fileID: -4973055002141696020}
-  - component: {fileID: 261773395901310954}
   - component: {fileID: 6349384168176940331}
   - component: {fileID: 7033410972420185814}
   - component: {fileID: 4908332904402889354}
-  - component: {fileID: 6556123861634823245}
   - component: {fileID: 2073211790125924746}
   - component: {fileID: 8666015988711107089}
   m_Layer: 0
@@ -567,24 +565,15 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: cc475191-18e4-4bd3-96a3-ffea64c2651e
     m_ActionName: 'Player Input/Aim[/Mouse/delta]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d572b50f-d061-4971-abad-ebe06fad6151
+    m_ActionName: 'Player Input/MouseAim[/Mouse/position]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player Input
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &261773395901310954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4152517578923950792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf4c046bb1c72e646a4a291d0b6a3f1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_playerStats: {fileID: 11400000, guid: 317cb079afa35c447a3004705bd7f103, type: 2}
 --- !u!114 &6349384168176940331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c273d2c8bd4414f854f333c23f23e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerStats: {fileID: 11400000, guid: 317cb079afa35c447a3004705bd7f103, type: 2}
+  m_thrustForce: 10
 --- !u!114 &7033410972420185814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,7 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6642752731ab5d945ae62714af065d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerStats: {fileID: 11400000, guid: 317cb079afa35c447a3004705bd7f103, type: 2}
+  m_aimingSpeed: 5
 --- !u!114 &4908332904402889354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -626,19 +615,6 @@ MonoBehaviour:
   laser: {fileID: 276941428462158266, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
   m_bulletSpawnPosition: {fileID: 8209724612017901199}
   m_timeBetweenShoots: 0.5
---- !u!114 &6556123861634823245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4152517578923950792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f824da1de2a7dd49aeddda8449c121e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_playerStats: {fileID: 11400000, guid: 317cb079afa35c447a3004705bd7f103, type: 2}
 --- !u!114 &2073211790125924746
 MonoBehaviour:
   m_ObjectHideFlags: 0

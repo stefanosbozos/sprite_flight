@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerLaser : Projectile, I_CanOverheat
+public class P_Laser : Projectile, I_CanOverheat
 {
     [SerializeField] private float m_laserHeatDecreaseStep;
     [SerializeField] private float m_laserHeatIncreaseStep;
@@ -19,7 +19,7 @@ public class PlayerLaser : Projectile, I_CanOverheat
 
     public override float GetDamage()
     {
-        return this.m_damage;
+        return m_damage;
     }
 
     public void DecreaseHeat()

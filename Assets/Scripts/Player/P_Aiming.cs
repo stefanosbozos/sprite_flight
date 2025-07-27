@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAiming : MonoBehaviour
+public class P_Aiming : Player
 {
-    [SerializeField] private PlayerStatsSO m_playerStats;
+    [SerializeField] protected float m_aimingSpeed;
 
     private InputAction m_gamepadAim;
     private InputAction m_mouseAim;
@@ -14,11 +14,14 @@ public class PlayerAiming : MonoBehaviour
     {
         m_gamepadAim = InputSystem.actions.FindAction("GamepadAim");
         m_mouseAim = InputSystem.actions.FindAction("MouseAim");
-
-        Cursor.lockState = CursorLockMode.Confined;
     }
 
     void Update()
+    {
+        Aim();
+    }
+
+    private void Aim()
     {
         if (Gamepad.current != null)
         {
@@ -59,7 +62,7 @@ public class PlayerAiming : MonoBehaviour
     {
         float angle = Mathf.Atan2(rotationY, rotationX) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - rotationOffset);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * m_playerStats.RotationSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * m_aimingSpeed);
     }
 
 }

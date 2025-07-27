@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerShooting : MonoBehaviour
+public class P_Shooting : Player
 {
-    [SerializeField] private PlayerLaser laser;
+    [SerializeField] private P_Laser laser;
     [SerializeField] private Transform m_bulletSpawnPosition;
-
     private InputAction m_shootLaser;
     private float m_timeSinceLastShot;
     [SerializeField] private float m_timeBetweenShoots = 0.5f;

@@ -4,7 +4,9 @@ using UnityEngine.UIElements;
 public class GameHUD : MonoBehaviour
 {
     [SerializeField] private UIDocument m_UIDoc;
-    [SerializeField] private PlayerStatsSO m_playerStats;
+    [SerializeField] private Player m_player;
+    [SerializeField] private P_Laser m_playerLaser;
+    [SerializeField] private P_Shooting m_playerShooting;
 
     private int m_score;
     private VisualElement m_healthBar;
@@ -17,6 +19,9 @@ public class GameHUD : MonoBehaviour
 
     void Awake()
     {
+        m_playerShooting = gameObject.GetComponent<P_Shooting>();
+        m_playerLaser = gameObject.GetComponent<P_Laser>();
+
         m_healthBar = m_UIDoc.rootVisualElement.Q<VisualElement>("HealthBarFill");
         m_shieldBar = m_UIDoc.rootVisualElement.Q<VisualElement>("ShieldBarFill");
         m_laserBar = m_UIDoc.rootVisualElement.Q<VisualElement>("LaserBarFill");
@@ -34,35 +39,35 @@ public class GameHUD : MonoBehaviour
 
     void Update()
     {
-        UpdateHealthBar();
-        UpdateShieldBar();
-        UpdateLaserBar();
+        // UpdateHealthBar();
+        // UpdateShieldBar();
+        // UpdateLaserBar();
     }
 
     void UpdateHealthBar()
     {
-        int healthValue = Mathf.Clamp(Mathf.FloorToInt(m_playerStats.Health), 0, m_playerStats.MaxHealth);
+        int healthValue = Mathf.Clamp(Mathf.FloorToInt(m_playerShooting.Health), 0, (int)m_playerShooting.MaxHealth);
         m_healthBar.style.width = Length.Percent(healthValue);
-        m_healthPercentage.text = healthValue + "/" + m_playerStats.MaxHealth;
+        m_healthPercentage.text = healthValue + "/" + m_player.MaxHealth;
     }
 
     void UpdateShieldBar()
     {
-        int shieldValue = Mathf.Clamp(Mathf.FloorToInt(m_playerStats.Shield), 0, m_playerStats.MaxShield);
+        int shieldValue = Mathf.Clamp(Mathf.FloorToInt(m_playerShooting.Shield), 0, (int)m_playerShooting.MaxShield);
         m_shieldBar.style.width = Length.Percent(shieldValue);
-        m_shieldPercentage.text = shieldValue + "/" + m_playerStats.MaxShield;
+        m_shieldPercentage.text = shieldValue + "/" + m_player.MaxShield;
     }
 
     void UpdateLaserBar()
     {
-        // int laserValue = Mathf.Clamp(Mathf.FloorToInt(m_playerStats.LaserSystem.LaserTemperature), 0, 100);
-        // m_laserBar.style.width = Length.Percent(laserValue);
-        // m_laserPercentage.text = laserValue + "/" + m_playerStats.LaserSystem.laserHeatLimit;
+        int laserValue = Mathf.Clamp(Mathf.FloorToInt(m_playerLaser.GetTemperature()), 0, 100);
+        m_laserBar.style.width = Length.Percent(laserValue);
+        m_laserPercentage.text = laserValue + "/" + I_CanOverheat.k_LaserHeatLimit;
 
-        // if (laserValue >= 100)
-        // {
-        //     m_laserPercentage.text = m_playerStats.LaserSystem.CooldownTimer() + "s";
-        // }
+        if (laserValue >= 100)
+        {
+            m_laserPercentage.text = m_playerShooting.CooldownTimer + "s";
+        }
     }
 
     public void UpdateScore(int scoreValue)
