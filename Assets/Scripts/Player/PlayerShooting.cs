@@ -3,8 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] private PlayerStatsSO m_playerStats;
-    [SerializeField] private P_Laser laser;
+    [SerializeField] private PlayerLaser laser;
     [SerializeField] private Transform m_bulletSpawnPosition;
 
     private InputAction m_shootLaser;
@@ -50,7 +49,7 @@ public class PlayerShooting : MonoBehaviour
 
         }
 
-        CheckGunsTemperature();
+        CheckGunsTemperature(); 
     }
 
     private void CheckGunsTemperature()

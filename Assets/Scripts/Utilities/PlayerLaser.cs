@@ -1,12 +1,10 @@
 using UnityEngine;
 
-public class P_Laser : Projectile, I_CanOverheat
+public class PlayerLaser : Projectile, I_CanOverheat
 {
-
     [SerializeField] private float m_laserHeatDecreaseStep;
     [SerializeField] private float m_laserHeatIncreaseStep;
-    private float m_laserTemperature;
-    private float m_cooldownTimer;
+    private static float m_laserTemperature;
 
 
     void Start()
@@ -19,20 +17,9 @@ public class P_Laser : Projectile, I_CanOverheat
         MoveToDirection();
     }
 
-    public override void FireProjectileAt(Vector3 spawn_position, Quaternion spawn_rotation)
-    {
-        Instantiate(gameObject, spawn_position, spawn_rotation);
-    }
-
     public override float GetDamage()
     {
         return this.m_damage;
-    }
-
-    protected override void MoveToDirection()
-    {
-        transform.Translate(Vector3.up * m_speed * Time.deltaTime);
-        Destroy(gameObject, k_timeToLive);
     }
 
     public void DecreaseHeat()
@@ -70,5 +57,6 @@ public class P_Laser : Projectile, I_CanOverheat
     {
         m_laserTemperature = temperature;
     }
+
 
 }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -56,14 +55,14 @@ public class GameHUD : MonoBehaviour
 
     void UpdateLaserBar()
     {
-        int laserValue = Mathf.Clamp(Mathf.FloorToInt(m_playerStats.LaserSystem.LaserTemperature), 0, 100);
-        m_laserBar.style.width = Length.Percent(laserValue);
-        m_laserPercentage.text = laserValue + "/" + m_playerStats.LaserSystem.laserHeatLimit;
+        // int laserValue = Mathf.Clamp(Mathf.FloorToInt(m_playerStats.LaserSystem.LaserTemperature), 0, 100);
+        // m_laserBar.style.width = Length.Percent(laserValue);
+        // m_laserPercentage.text = laserValue + "/" + m_playerStats.LaserSystem.laserHeatLimit;
 
-        if (laserValue >= 100)
-        {
-            m_laserPercentage.text = m_playerStats.LaserSystem.CooldownTimer() + "s";
-        }
+        // if (laserValue >= 100)
+        // {
+        //     m_laserPercentage.text = m_playerStats.LaserSystem.CooldownTimer() + "s";
+        // }
     }
 
     public void UpdateScore(int scoreValue)

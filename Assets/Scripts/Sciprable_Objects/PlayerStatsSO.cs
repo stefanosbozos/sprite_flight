@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerStats", menuName = "Player Stats")]
@@ -14,9 +13,6 @@ public class PlayerStatsSO : ScriptableObject
     private float m_shield;
     private int m_maxHealth = 100;
     private int m_maxShield = 50;
-
-    // Shooting System
-    [SerializeField] private LaserSystemSO m_laserSystem;
 
     // Member Methods
     public bool IsInCriticalState()
@@ -52,8 +48,6 @@ public class PlayerStatsSO : ScriptableObject
     public int MaxHealth => m_maxHealth;
     public int MaxShield => m_maxShield;
     public float MaxSpeed => k_MaxSpeed;
-    public LaserSystemSO LaserSystem => m_laserSystem;
-
 
     // Setters
     public void SetCurrentHealth(float healthValue)

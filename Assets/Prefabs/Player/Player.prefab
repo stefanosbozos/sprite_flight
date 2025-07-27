@@ -623,11 +623,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc63c86dbf9b87468950c78a3671eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerStats: {fileID: 11400000, guid: 317cb079afa35c447a3004705bd7f103, type: 2}
-  m_laserSystem: {fileID: 11400000, guid: 7c2acaccb46157f4f82ae523bceb2da6, type: 2}
+  laser: {fileID: 276941428462158266, guid: 445dbd2a4016976449c901c5a685476d, type: 3}
   m_bulletSpawnPosition: {fileID: 8209724612017901199}
-  m_timeBetweenShots: 0.3
-  m_laserCooldownInterval: 5
+  m_timeBetweenShoots: 0.5
 --- !u!114 &6556123861634823245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -667,7 +665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07d9ce72b1418a4cbe5d177ce0632fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerStats: {fileID: 11400000, guid: 317cb079afa35c447a3004705bd7f103, type: 2}
   m_thrusterVFX: {fileID: 6451985547371713868}
   m_smokeVFX: {fileID: 6933094571657861663}
   m_takeDamageVFX: {fileID: 2741131209905498264, guid: 5e043b3530c3eb9468709639df27bdb6, type: 3}
