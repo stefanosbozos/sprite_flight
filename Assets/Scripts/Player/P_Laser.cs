@@ -4,7 +4,7 @@ public class P_Laser : Projectile, I_CanOverheat
 {
     [SerializeField] private float m_laserHeatDecreaseStep;
     [SerializeField] private float m_laserHeatIncreaseStep;
-    private static float m_laserTemperature;
+    private float m_laserTemperature;
 
 
     void Start()
@@ -29,7 +29,8 @@ public class P_Laser : Projectile, I_CanOverheat
 
     public void IncreaseHeat()
     {
-        m_laserTemperature += m_laserHeatIncreaseStep * Time.deltaTime;
+        m_laserTemperature += m_laserHeatIncreaseStep;
+        Debug.Log(m_laserTemperature);
     }
 
     public bool IsOverheated()

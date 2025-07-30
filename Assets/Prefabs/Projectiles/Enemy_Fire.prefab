@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5423032730762939096}
   - component: {fileID: 4074205773878264289}
   - component: {fileID: 3398275499037134745}
-  - component: {fileID: 5471034891812468259}
   m_Layer: 0
   m_Name: Enemy_Fire
   m_TagString: enemy_fire
@@ -126,16 +125,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &5471034891812468259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3439262997926754641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae8e01f82d504474f87fcfa5d4cb947c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_laserSystem: {fileID: 11400000, guid: 537a90fca20354946b670c7e28e1045c, type: 2}

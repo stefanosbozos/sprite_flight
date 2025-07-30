@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 public class GameHUD : MonoBehaviour
 {
     [SerializeField] private UIDocument m_UIDoc;
-    [SerializeField] private Player m_player;
+    [SerializeField] private PlayerStatsSO m_playerStats;
     [SerializeField] private P_Laser m_playerLaser;
     [SerializeField] private P_Shooting m_playerShooting;
 
@@ -19,9 +19,6 @@ public class GameHUD : MonoBehaviour
 
     void Awake()
     {
-        m_playerShooting = gameObject.GetComponent<P_Shooting>();
-        m_playerLaser = gameObject.GetComponent<P_Laser>();
-
         m_healthBar = m_UIDoc.rootVisualElement.Q<VisualElement>("HealthBarFill");
         m_shieldBar = m_UIDoc.rootVisualElement.Q<VisualElement>("ShieldBarFill");
         m_laserBar = m_UIDoc.rootVisualElement.Q<VisualElement>("LaserBarFill");
@@ -39,23 +36,23 @@ public class GameHUD : MonoBehaviour
 
     void Update()
     {
-        // UpdateHealthBar();
-        // UpdateShieldBar();
-        // UpdateLaserBar();
+        UpdateHealthBar();
+        UpdateShieldBar();
+        UpdateLaserBar();
     }
 
     void UpdateHealthBar()
     {
-        int healthValue = Mathf.Clamp(Mathf.FloorToInt(m_playerShooting.Health), 0, (int)m_playerShooting.MaxHealth);
+        int healthValue = Mathf.Clamp(Mathf.FloorToInt(m_playerStats.Health), 0, (int)m_playerStats.MaxHealth);
         m_healthBar.style.width = Length.Percent(healthValue);
-        m_healthPercentage.text = healthValue + "/" + m_player.MaxHealth;
+        m_healthPercentage.text = healthValue + "/" + m_playerStats.MaxHealth;
     }
 
     void UpdateShieldBar()
     {
-        int shieldValue = Mathf.Clamp(Mathf.FloorToInt(m_playerShooting.Shield), 0, (int)m_playerShooting.MaxShield);
+        int shieldValue = Mathf.Clamp(Mathf.FloorToInt(m_playerStats.Shield), 0, (int)m_playerStats.MaxShield);
         m_shieldBar.style.width = Length.Percent(shieldValue);
-        m_shieldPercentage.text = shieldValue + "/" + m_player.MaxShield;
+        m_shieldPercentage.text = shieldValue + "/" + m_playerStats.MaxShield;
     }
 
     void UpdateLaserBar()
@@ -66,7 +63,7 @@ public class GameHUD : MonoBehaviour
 
         if (laserValue >= 100)
         {
-            m_laserPercentage.text = m_playerShooting.CooldownTimer + "s";
+            m_laserPercentage.text = m_playerShooting.CooldownTimer.ToString("0.00") +  " s";
         }
     }
 
