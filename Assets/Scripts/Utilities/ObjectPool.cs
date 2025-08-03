@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public static ObjectPool SharedInstance;
     [SerializeField] private uint m_initialPoolSize;
     [SerializeField] private PooledObject m_objectToPool;
 

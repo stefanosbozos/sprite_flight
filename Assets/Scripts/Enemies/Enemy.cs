@@ -15,8 +15,8 @@ public abstract class Enemy : MonoBehaviour
     private float m_distanceFromOtherEnemies;
 
     // Movement
-    protected float m_movementSpeed;
-    protected float m_rotationSpeed;
+    [SerializeField] protected float m_movementSpeed;
+    [SerializeField] protected float m_rotationSpeed;
 
     // Damage & ScoreValue
     protected int m_scoreValue;
@@ -43,7 +43,7 @@ public abstract class Enemy : MonoBehaviour
             // Change the rotation accoriding to the player's rotation to always face the player
             Vector3 enemyRotation = m_playerPosition.position - transform.position;
             float rotationZ = Mathf.Atan2(enemyRotation.y, enemyRotation.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ + 90.0f), m_rotationSpeed * Time.deltaTime);
+            transform.localRotation = Quaternion.LerpUnclamped(transform.rotation, Quaternion.Euler(0f, 0f, rotationZ - 90.0f), m_rotationSpeed * Time.deltaTime);
         }
     }
 

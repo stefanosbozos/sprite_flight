@@ -26,4 +26,14 @@ public class PlayerStatsSO : ScriptableObject
     public float Shield => m_shield;
     public float MaxShield => m_maxShield;
     public float MaxSpeed => k_MaxSpeed;
+
+    public void SetHealth(float healthAmount)
+    {
+        m_health = healthAmount;
+    }
+
+    public void SetShield(float shieldAmount)
+    {
+        m_shield = shieldAmount;
+    }
 }

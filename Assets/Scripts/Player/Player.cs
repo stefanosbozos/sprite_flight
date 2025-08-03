@@ -5,6 +5,13 @@ public abstract class Player : MonoBehaviour
     [SerializeField] private PlayerStatsSO m_playerStats;
     protected Rigidbody2D m_rigidBody;
     protected VisualEffects m_vfx;
+    
+
+    void Start()
+    {
+        m_playerStats.SetShield(100);
+        m_playerStats.SetHealth(100);
+    }
 
     protected void MaintainLinearVelocity()
     {
@@ -20,7 +27,7 @@ public abstract class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "enemy_fire")
         {
-            Projectile enemyProjectile = collision.gameObject.GetComponent<Projectile>();
+            Projectile enemyProjectile = collision.gameObject.GetComponent<E_Laser>();
 
             if (enemyProjectile != null)
             {
@@ -43,12 +50,12 @@ public abstract class Player : MonoBehaviour
             m_playerStats.DecreaseHealth(damageAmount);
         }
 
-        m_vfx.EmitSmoke(IsInCriticalState());
+        // m_vfx.EmitSmoke(IsInCriticalState());
 
         if (collision != null)
         {
             Vector2 contactOfdamage = collision.GetContact(0).point;
-            m_vfx.TakeDamageVFX(contactOfdamage, Quaternion.identity);
+            // m_vfx.TakeDamageVFX(contactOfdamage, Quaternion.identity);
         }
 
         // Player's is dead.
