@@ -59,5 +59,4 @@ public class P_Laser : Projectile, I_CanOverheat
         m_laserTemperature = temperature;
     }
 
-
 }
